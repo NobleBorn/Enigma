@@ -1,10 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19">
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="448.0" prefWidth="879.0" style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <effect>
+      <InnerShadow>
+         <color>
+            <Color red="0.0941176488995552" green="0.4627451002597809" blue="0.8549019694328308" />
+         </color>
+      </InnerShadow>
+   </effect>
    <children>
-      <BorderPane prefHeight="1080.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <TextField layoutX="266.0" layoutY="93.0" prefHeight="46.0" prefWidth="408.0" promptText="Username">
+         <font>
+            <Font name="Arial" size="24.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="266.0" layoutY="203.0" prefHeight="46.0" prefWidth="408.0" promptText="Password">
+         <font>
+            <Font name="Arial" size="24.0" />
+         </font>
+      </TextField>
+      <Button layoutX="399.0" layoutY="305.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="163.0" text="Login">
+         <font>
+            <Font name="Arial" size="24.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
-</AnchorPane>
+</Pane>
