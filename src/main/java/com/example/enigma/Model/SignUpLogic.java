@@ -16,7 +16,7 @@ public class SignUpLogic {
 
     public SignUpLogic(String userName, String passWord){
 
-        csv = new FileManager(String.valueOf(getClass().getResourceAsStream("users.csv")));
+        csv = new FileManager("src/main/resources/com/example/users.csv");
         int id = userID();
         addNewUser(id, userName, passWord);
     }
@@ -26,9 +26,7 @@ public class SignUpLogic {
 
         try (CSVParser csvParser = csv.readFromFile()) {
 
-            for (CSVRecord record : csvParser) {
-                id++;
-            }
+            id = csvParser.getRecords().size() + 1;
 
             System.out.println("CSV file read successfully!");
 
@@ -47,7 +45,7 @@ public class SignUpLogic {
             csvPrinter.printRecord(String.valueOf(id), userName, passWord);
 
         } catch (IOException e) {
-            System.out.println("Error occurred while reading the CSV file: " + e.getMessage());
+            System.out.println("Error occurred while writing to the CSV file: " + e.getMessage());
         }
     }
 

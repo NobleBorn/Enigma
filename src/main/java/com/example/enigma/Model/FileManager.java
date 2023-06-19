@@ -20,13 +20,13 @@ public class FileManager {
 
     public CSVParser readFromFile() throws IOException {
 
-        Reader reader = new FileReader(String.valueOf(getClass().getResourceAsStream(filePath)));
+        Reader reader = new FileReader(filePath);
         return new CSVParser(reader, CSVFormat.DEFAULT);
     }
 
     public CSVPrinter writeToFile() throws IOException {
 
-        FileWriter writer = new FileWriter(String.valueOf(getClass().getResourceAsStream(filePath)));
+        FileWriter writer = new FileWriter(filePath, true);
         return new CSVPrinter(writer, CSVFormat.DEFAULT);
     }
 }

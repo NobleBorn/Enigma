@@ -5,23 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5560cdc8-e559-4056-8cb6-5c7a182272c9" name="Changes" comment="Little updates">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_csv_1_10_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/enigma/LogInPage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enigma.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Enigma.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/enigma/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/enigma/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/enigma/HelloController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/enigma/LogInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/enigma/LogInController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/enigma/Model/LogInLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/enigma/Model/LogInLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/enigma/Model/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/enigma/Model/FileManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/enigma/Model/SignUpLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/enigma/Model/SignUpLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/enigma/SignUpController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/enigma/LogIn.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/enigma/hello-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enigma/HelloApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enigma/HelloController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enigma/LogIn.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/enigma/LogIn.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enigma/Model/LogInLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/enigma/Model/LogInLogic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enigma/hello-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/enigma/LogInPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/enigma/LogInPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/enigma/SignUp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/enigma/SignUp.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/users.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enigma/LogIn.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enigma/LogInController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/enigma/LogInController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enigma/Model/FileManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/enigma/Model/FileManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enigma/Model/SignUpLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/enigma/Model/SignUpLogic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enigma/SignUp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/enigma/SignUp.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enigma/SignUpController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/users.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,6 +44,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="ProjectId" id="2RLHlOozurekf3hFifTUSadNYGu" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -67,6 +68,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/com/example/enigma" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.enigma.Model" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -74,7 +78,7 @@
       <module name="Enigma" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.enigma.*" />
+          <option name="PATTERN" value="com.example.enigma.Model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>

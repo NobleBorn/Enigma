@@ -13,7 +13,7 @@ public class LogInLogic {
     private final boolean authorizedUser;
 
     public LogInLogic(String userName, String passWord){
-        csv = new FileManager(String.valueOf(getClass().getResourceAsStream("users.csv")));
+        csv = new FileManager("src/main/resources/com/example/users.csv");
         boolean userNameExists = checkUserName(userName);
         boolean correctPassWord = false;
 

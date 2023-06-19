@@ -8,4 +8,6 @@ module com.example.enigma {
 
     opens com.example.enigma to javafx.fxml;
     exports com.example.enigma;
+    exports com.example.enigma.Model;
+    opens com.example.enigma.Model to javafx.fxml;
 }
