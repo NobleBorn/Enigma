@@ -4,26 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5560cdc8-e559-4056-8cb6-5c7a182272c9" name="Changes" comment="Little updates">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/enigma/LogInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/enigma/LogInController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/enigma/Model/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/enigma/Model/FileManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/enigma/Model/SignUpLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/enigma/Model/SignUpLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/enigma/SignUpController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/enigma/LogIn.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/enigma/LogInPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/enigma/LogInPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/enigma/SignUp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/enigma/SignUp.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/users.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enigma/LogIn.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enigma/LogInController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/enigma/LogInController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enigma/Model/FileManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/enigma/Model/FileManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enigma/Model/SignUpLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/enigma/Model/SignUpLogic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enigma/SignUp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/enigma/SignUp.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enigma/SignUpController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/users.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
-    </list>
+    <list default="true" id="5560cdc8-e559-4056-8cb6-5c7a182272c9" name="Changes" comment="SignUp.fxml as well as LogInPage.fxml page are done and user can switch between those two pages, users can be added to the users.csv and a user can log in successfully" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
