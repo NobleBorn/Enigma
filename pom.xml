@@ -47,6 +47,11 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.10.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -69,7 +74,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.example.enigma/com.example.enigma.HelloApplication</mainClass>
+                            <mainClass>com.example.enigma/com.example.enigma.Main</mainClass>
                         </configuration>
                     </execution>
                 </executions>

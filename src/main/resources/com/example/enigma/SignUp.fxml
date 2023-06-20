@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="signUpPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="448.0" prefWidth="879.0" style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.enigma.LogInController">
+   <children>
+      <TextField fx:id="userNameSign" layoutX="266.0" layoutY="93.0" prefHeight="46.0" prefWidth="408.0" promptText="Username">
+         <font>
+            <Font name="Arial" size="24.0" />
+         </font>
+      </TextField>
+      <Button fx:id="signUpButton" layoutX="399.0" layoutY="305.0" mnemonicParsing="false" onAction="#registerUser" prefHeight="48.0" prefWidth="163.0" text="Sign up">
+         <font>
+            <Font name="Arial" size="24.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <PasswordField fx:id="passWordSign" layoutX="266.0" layoutY="203.0" prefHeight="46.0" prefWidth="408.0" promptText="Password">
+         <font>
+            <Font name="Arial" size="24.0" />
+         </font>
+      </PasswordField>
+      <Label fx:id="errorLabel" alignment="CENTER" layoutX="265.0" layoutY="27.0" prefHeight="46.0" prefWidth="408.0" textFill="#ff0d0d">
+         <font>
+            <Font name="Arial" size="24.0" />
+         </font>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.7647058963775635" green="0.32156863808631897" blue="0.32156863808631897" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Label>
+   </children>
+   <effect>
+      <InnerShadow>
+         <color>
+            <Color red="0.0941176488995552" green="0.4627451002597809" blue="0.8549019694328308" />
+         </color>
+      </InnerShadow>
+   </effect>
+</Pane>
