@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
@@ -36,8 +37,14 @@ public class LogInController {
         if (!userNameField.getText().equals("") && !passWordField.getText().equals("")){
             LogInLogic logInLogic = new LogInLogic(userNameField.getText(), passWordField.getText());
             if (logInLogic.isAuthorizedUser()){
-                Parent node = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainPage.fxml")));
-                borderPane.setCenter(node);
+                userNameField.setText("");
+                passWordField.setText("");
+                paneManager.next(borderPane);
+
+                Parent node1 = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainPage.fxml")));
+                Parent node2 = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainPageBar.fxml")));
+                borderPane.setCenter(node1);
+                borderPane.setTop(node2);
             }
             else {
                 errorText.setText("Wrong username or password");
@@ -49,7 +56,6 @@ public class LogInController {
         } else {
             errorText.setText("Please provide password");
         }
-
     }
 
     public void signUpPage() throws IOException {

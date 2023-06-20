@@ -23,5 +23,14 @@ public class PaneManager {
         return stack.pop();
     }
 
+    public Node firstElement(){
+        Node element = stack.pop();
+
+        while (!stack.isEmpty()) {
+            element = stack.pop();
+        }
+
+        return element;
+    }
 
 }
