@@ -31,12 +31,13 @@ public class LogInController {
         paneManager = PaneManager.getInstance();
     }
 
-    public void logIn(){
+    public void logIn() throws IOException {
 
         if (!userNameField.getText().equals("") && !passWordField.getText().equals("")){
             LogInLogic logInLogic = new LogInLogic(userNameField.getText(), passWordField.getText());
             if (logInLogic.isAuthorizedUser()){
-                System.out.println("Logged In");
+                Parent node = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainPage.fxml")));
+                borderPane.setCenter(node);
             }
             else {
                 errorText.setText("Wrong username or password");
