@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5560cdc8-e559-4056-8cb6-5c7a182272c9" name="Changes" comment="SignUp.fxml as well as LogInPage.fxml page are done and user can switch between those two pages, users can be added to the users.csv and a user can log in successfully" />
+    <list default="true" id="5560cdc8-e559-4056-8cb6-5c7a182272c9" name="Changes" comment="Little updates">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/enigma/LogInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/enigma/LogInController.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="logIn" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -71,6 +74,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -85,6 +89,7 @@
       <workItem from="1687022597360" duration="7107000" />
       <workItem from="1687042732916" duration="226000" />
       <workItem from="1687091910352" duration="13126000" />
+      <workItem from="1687266304405" duration="284000" />
     </task>
     <task id="LOCAL−00001" summary="Start of the login page">
       <created>1687042252395</created>
@@ -104,7 +109,13 @@
       <option name="presentableId" value="LOCAL−00003" />
       <updated>1687131013605</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL−00004" summary="Little updates">
+      <created>1687216017368</created>
+      <option name="number" value="LOCAL−00004" />
+      <option name="presentableId" value="LOCAL−00004" />
+      <updated>1687216017368</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,8 +135,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Start of the login page" />
-    <MESSAGE value="Little updates" />
     <MESSAGE value="Progress in login by adding login, sign up logic as well as fxml files for each, and having a csv file working as a database for users" />
-    <option name="LAST_COMMIT_MESSAGE" value="Progress in login by adding login, sign up logic as well as fxml files for each, and having a csv file working as a database for users" />
+    <MESSAGE value="Little updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Little updates" />
   </component>
 </project>
