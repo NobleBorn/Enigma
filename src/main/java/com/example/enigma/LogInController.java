@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 
@@ -18,28 +19,36 @@ public class LogInController {
     @FXML TextField userNameField;
     @FXML TextField passWordField;
     @FXML BorderPane borderPane;
+    @FXML Label errorText;
 
     @FXML TextField userNameSign;
     @FXML TextField passWordSign;
+    @FXML Label errorLabel;
 
-    private LogInLogic logInLogic;
     private final PaneManager paneManager;
 
     public LogInController() {
-
         paneManager = PaneManager.getInstance();
-
     }
 
     public void logIn(){
-        logInLogic = new LogInLogic(userNameField.getText(), passWordField.getText());
 
-        if (logInLogic.isAuthorizedUser()){
-            System.out.println("Logged In");
+        if (!userNameField.getText().equals("") && !passWordField.getText().equals("")){
+            LogInLogic logInLogic = new LogInLogic(userNameField.getText(), passWordField.getText());
+            if (logInLogic.isAuthorizedUser()){
+                System.out.println("Logged In");
+            }
+            else {
+                errorText.setText("Wrong username or password");
+                userNameField.setText("");
+                passWordField.setText("");
+            }
+        } else if (userNameField.getText().equals("")){
+            errorText.setText("Please provide username");
+        } else {
+            errorText.setText("Please provide password");
         }
-        else {
-            System.out.println("No acces");
-        }
+
     }
 
     public void signUpPage() throws IOException {
@@ -55,9 +64,9 @@ public class LogInController {
     }
 
     public void registerUser() {
-        new SignUpLogic(userNameSign.getText(), passWordSign.getText());
-        logInPage();
-
+        SignUpController signUpController = new SignUpController(paneManager, borderPane);
+        signUpController.registerUser(userNameSign, passWordSign, errorLabel);
     }
+
 
 }

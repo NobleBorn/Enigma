@@ -13,18 +13,32 @@ import org.apache.commons.csv.CSVRecord;
 public class SignUpLogic {
 
     private final FileManager csv;
+    private boolean userExists;
 
-    public SignUpLogic(String userName, String passWord){
+    public SignUpLogic(String userName, String passWord) throws IOException {
 
         csv = new FileManager("src/main/resources/com/example/users.csv");
-        int id = userID();
-        addNewUser(id, userName, passWord);
+        userExists = false;
+        int id = userID(userName);
+
+        if (!userExists){
+            addNewUser(id, userName, passWord);
+        } else {
+            throw new IOException();
+        }
     }
 
-    private int userID(){
+    private int userID(String userName){
         int id = 0;
 
         try (CSVParser csvParser = csv.readFromFile()) {
+
+            for (CSVRecord record : csvParser){
+                if (record.get(1).equals(userName)){
+                    userExists = true;
+                    break;
+                }
+            }
 
             id = csvParser.getRecords().size() + 1;
 
