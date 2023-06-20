@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5560cdc8-e559-4056-8cb6-5c7a182272c9" name="Changes" comment="Little updates">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/enigma/LogInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/enigma/LogInController.java" afterDir="false" />
-    </list>
+    <list default="true" id="5560cdc8-e559-4056-8cb6-5c7a182272c9" name="Changes" comment="Login updates" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,7 +86,7 @@
       <workItem from="1687022597360" duration="7107000" />
       <workItem from="1687042732916" duration="226000" />
       <workItem from="1687091910352" duration="13126000" />
-      <workItem from="1687266304405" duration="284000" />
+      <workItem from="1687266304405" duration="572000" />
     </task>
     <task id="LOCAL−00001" summary="Start of the login page">
       <created>1687042252395</created>
@@ -115,7 +112,13 @@
       <option name="presentableId" value="LOCAL−00004" />
       <updated>1687216017368</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL−00005" summary="Login updates">
+      <created>1687266915661</created>
+      <option name="number" value="LOCAL−00005" />
+      <option name="presentableId" value="LOCAL−00005" />
+      <updated>1687266915661</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,6 +140,7 @@
     <MESSAGE value="Start of the login page" />
     <MESSAGE value="Progress in login by adding login, sign up logic as well as fxml files for each, and having a csv file working as a database for users" />
     <MESSAGE value="Little updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="Little updates" />
+    <MESSAGE value="Login updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login updates" />
   </component>
 </project>
