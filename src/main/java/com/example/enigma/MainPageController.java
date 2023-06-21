@@ -1,36 +1,43 @@
 package com.example.enigma;
 
-import com.example.enigma.Model.PaneManager;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
+import javafx.fxml.FXMLLoader;
+
+import javafx.scene.Parent;
+
+import javafx.scene.layout.BorderPane;
+
+
+import java.io.IOException;
 import java.util.Objects;
 
 public class MainPageController {
 
     private final PaneManager paneManager;
+    private final BorderPane borderPane;
 
-    public MainPageController(){
+    public MainPageController(BorderPane borderPane) throws IOException {
         paneManager = PaneManager.getInstance();
+        this.borderPane = borderPane;
+
+        Parent center = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainPage.fxml")));
+        Parent top = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainPageBar.fxml")));
+
+        borderPane.setCenter(center);
+        borderPane.setTop(top);
     }
 
-    public void logOut(ActionEvent event) {
+    public void logOut() {
+        BorderPane node = (BorderPane) paneManager.firstElement();
+        borderPane.setTop(node.getTop());
+        borderPane.setCenter(node.getCenter());
+    }
 
-        try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LogInPage.fxml")));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
+    public void account(){
 
-            stage.setScene(scene);
-            stage.show();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    }
+
+    public void achievement(){
+
     }
 }

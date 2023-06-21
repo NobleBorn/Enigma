@@ -1,6 +1,5 @@
 package com.example.enigma;
 
-import com.example.enigma.Model.PaneManager;
 import com.example.enigma.Model.SignUpLogic;
 import javafx.scene.Node;
 import javafx.scene.control.Label;

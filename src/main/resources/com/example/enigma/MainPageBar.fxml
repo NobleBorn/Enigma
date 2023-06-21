@@ -26,7 +26,29 @@
             <Glow level="0.7" />
          </effect>
       </Label>
-      <Button alignment="CENTER" layoutX="1760.0" layoutY="18.0" mnemonicParsing="false" onAction="#logOut" prefHeight="42.0" prefWidth="119.0" text="Log out">
+      <Button alignment="CENTER" layoutX="1747.0" layoutY="18.0" mnemonicParsing="false" onAction="#logOut" prefHeight="42.0" prefWidth="147.0" text="Log out">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button alignment="CENTER" layoutX="1560.0" layoutY="18.0" mnemonicParsing="false" onAction="#account" prefHeight="42.0" prefWidth="147.0" text="Account">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button alignment="CENTER" layoutX="1373.0" layoutY="18.0" mnemonicParsing="false" onAction="#achievement" prefHeight="42.0" prefWidth="147.0" text="Achievements">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>

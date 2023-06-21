@@ -1,15 +1,12 @@
 package com.example.enigma;
 
 import com.example.enigma.Model.LogInLogic;
-import com.example.enigma.Model.PaneManager;
-import com.example.enigma.Model.SignUpLogic;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
@@ -32,7 +29,7 @@ public class LogInController {
         paneManager = PaneManager.getInstance();
     }
 
-    public void logIn() throws IOException {
+    public void logIn() {
 
         if (!userNameField.getText().equals("") && !passWordField.getText().equals("")){
             LogInLogic logInLogic = new LogInLogic(userNameField.getText(), passWordField.getText());
@@ -41,10 +38,13 @@ public class LogInController {
                 passWordField.setText("");
                 paneManager.next(borderPane);
 
-                Parent node1 = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainPage.fxml")));
-                Parent node2 = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainPageBar.fxml")));
-                borderPane.setCenter(node1);
-                borderPane.setTop(node2);
+                try {
+                    new MainPageController(borderPane);
+                } catch (IOException e){
+                    System.out.println("Can not load the main page " + e.getMessage());
+                }
+
+
             }
             else {
                 errorText.setText("Wrong username or password");

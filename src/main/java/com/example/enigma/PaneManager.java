@@ -1,4 +1,4 @@
-package com.example.enigma.Model;
+package com.example.enigma;
 
 import javafx.scene.Node;
 
