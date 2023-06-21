@@ -29,7 +29,7 @@ public class LogInController {
         paneManager = PaneManager.getInstance();
     }
 
-    public void logIn() {
+    public void logIn() throws IOException {
 
         if (!userNameField.getText().equals("") && !passWordField.getText().equals("")){
             LogInLogic logInLogic = new LogInLogic(userNameField.getText(), passWordField.getText());
