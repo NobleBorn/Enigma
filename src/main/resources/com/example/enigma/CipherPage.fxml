@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.SepiaTone?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" stylesheets="@../css/CipherPageCSS.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="526.0" prefWidth="954.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button alignment="CENTER" layoutX="30.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="Q">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button layoutX="105.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="W" />
+                  <Button layoutX="182.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="E" />
+                  <Button layoutX="258.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="R" />
+                  <Button layoutX="332.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="T" />
+                  <Button layoutX="405.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="Y" />
+                  <Button layoutX="480.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="U" />
+                  <Button layoutX="556.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="I" />
+                  <Button layoutX="632.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="O" />
+                  <Button layoutX="711.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="P" />
+                  <Button layoutX="789.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="146.0" text="Back" />
+                  <Button layoutX="52.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="A" />
+                  <Button layoutX="129.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="S" />
+                  <Button layoutX="207.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="D" />
+                  <Button layoutX="367.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="G" />
+                  <Button layoutX="286.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="F" />
+                  <Button layoutX="612.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="K" />
+                  <Button layoutX="449.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="H" />
+                  <Button layoutX="696.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="L" />
+                  <Button layoutX="531.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="J" />
+                  <Button layoutX="773.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="'" />
+                  <Button layoutX="848.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="88.0" text="Enter" />
+                  <Button layoutX="30.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="Z" />
+                  <Button layoutX="108.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="X" />
+                  <Button layoutX="185.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="C" />
+                  <Button layoutX="262.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="V" />
+                  <Button layoutX="339.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="B" />
+                  <Button layoutX="416.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="N" />
+                  <Button layoutX="571.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="," />
+                  <Button layoutX="649.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="." />
+                  <Button layoutX="494.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="M" />
+                  <Button layoutX="727.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="-" />
+                  <Button layoutX="803.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="133.0" text="Shift" />
+                  <Button layoutX="30.0" layoutY="350.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="142.0" text="&amp;123" />
+                  <Button layoutX="185.0" layoutY="350.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="Ctrl" />
+                  <Button layoutX="274.0" layoutY="350.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="362.0" text="Space" />
+                  <Button layoutX="810.0" layoutY="350.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="126.0" text="Hide" />
+                  <Button layoutX="650.0" layoutY="350.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="144.0" text="Caps lock" />
+                  <TextField alignment="CENTER" layoutX="261.0" layoutY="80.0" prefHeight="42.0" prefWidth="432.0" promptText="Enter 3 letter key : ABC">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="cipherTextButton" layoutX="716.0" layoutY="80.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="108.0" text="Cipher" />
+                  <Label alignment="CENTER" layoutX="261.0" layoutY="35.0" prefHeight="35.0" prefWidth="432.0">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </center>
+         <top>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="420.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextArea layoutX="300.0" prefHeight="420.0" prefWidth="1380.0" promptText="Type..." wrapText="true">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow height="50.65" radius="17.4125">
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </InnerShadow>
+                     </effect>
+                  </TextArea>
+                  <ImageView fx:id="backButton" fitHeight="50.0" fitWidth="50.0" layoutX="29.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../pictures/backArrow.png" />
+                     </image>
+                     <effect>
+                        <SepiaTone>
+                           <input>
+                              <InnerShadow>
+                                 <color>
+                                    <Color red="0.01315789483487606" green="0.01315789483487606" blue="0.01315789483487606" />
+                                 </color>
+                              </InnerShadow>
+                           </input>
+                        </SepiaTone>
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </Pane>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>

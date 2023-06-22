@@ -1,8 +1,6 @@
 package com.example.enigma;
 
 import com.example.enigma.Model.LogInLogic;
-import com.example.enigma.Model.PaneManager;
-import com.example.enigma.Model.SignUpLogic;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -36,8 +34,17 @@ public class LogInController {
         if (!userNameField.getText().equals("") && !passWordField.getText().equals("")){
             LogInLogic logInLogic = new LogInLogic(userNameField.getText(), passWordField.getText());
             if (logInLogic.isAuthorizedUser()){
-                Parent node = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainPage.fxml")));
-                borderPane.setCenter(node);
+                userNameField.setText("");
+                passWordField.setText("");
+                paneManager.next(borderPane);
+
+                try {
+                    new MainPageController(borderPane);
+                } catch (IOException e){
+                    System.out.println("Can not load the main page " + e.getMessage());
+                }
+
+
             }
             else {
                 errorText.setText("Wrong username or password");
@@ -49,7 +56,6 @@ public class LogInController {
         } else {
             errorText.setText("Please provide password");
         }
-
     }
 
     public void signUpPage() throws IOException {

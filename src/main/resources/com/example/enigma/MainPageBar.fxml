@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="77.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <effect>
+      <InnerShadow>
+         <color>
+            <Color red="0.0941176488995552" green="0.4627451002597809" blue="0.8549019694328308" />
+         </color>
+      </InnerShadow>
+   </effect>
+   <children>
+      <Label alignment="TOP_CENTER" layoutX="112.0" prefHeight="77.0" prefWidth="199.0" text="Enigma" textFill="WHITE">
+         <font>
+            <Font name="Apple Chancery" size="35.0" />
+         </font>
+         <effect>
+            <Glow level="0.7" />
+         </effect>
+      </Label>
+      <Button fx:id="logOutButton" alignment="CENTER" layoutX="1747.0" layoutY="18.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="147.0" text="Log out">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="accountButton" alignment="CENTER" layoutX="1560.0" layoutY="18.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="147.0" text="Account">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="achievementButton" alignment="CENTER" layoutX="1373.0" layoutY="18.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="147.0" text="Achievements">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</Pane>

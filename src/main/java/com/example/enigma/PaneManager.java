@@ -1,6 +1,9 @@
-package com.example.enigma.Model;
+package com.example.enigma;
+
 
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
 
 import java.util.Stack;
 
@@ -23,5 +26,14 @@ public class PaneManager {
         return stack.pop();
     }
 
+    public Node firstElement(){
+        Node element = stack.pop();
+
+        while (!stack.isEmpty()) {
+            element = stack.pop();
+        }
+
+        return element;
+    }
 
 }
