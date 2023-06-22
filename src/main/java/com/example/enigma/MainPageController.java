@@ -1,6 +1,7 @@
 package com.example.enigma;
 
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
@@ -44,7 +45,7 @@ public class MainPageController {
         }
 
         logOutButton.setOnAction(actionEvent -> logOut());
-        cipherButton.setOnAction(actionEvent -> cipher());
+        cipherButton.setOnAction(this::cipher);
 
         borderPane.setCenter(center);
         borderPane.setTop(top);
@@ -63,7 +64,8 @@ public class MainPageController {
 
     }
 
-    public void cipher(){
-        new CipherController();
+    public void cipher(ActionEvent event){
+        paneManager.next(borderPane);
+        new CipherController(event);
     }
 }

@@ -92,7 +92,7 @@
                         </InnerShadow>
                      </effect>
                   </TextArea>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="29.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="backButton" fitHeight="50.0" fitWidth="50.0" layoutX="29.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../pictures/backArrow.png" />
                      </image>

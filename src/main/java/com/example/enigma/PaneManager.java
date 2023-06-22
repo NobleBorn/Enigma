@@ -1,11 +1,10 @@
 package com.example.enigma;
 
-import javafx.fxml.FXMLLoader;
+
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.util.Objects;
 import java.util.Stack;
 
 public class PaneManager {
@@ -35,10 +34,6 @@ public class PaneManager {
         }
 
         return element;
-    }
-
-    public Parent loader(String file) throws IOException {
-        return FXMLLoader.load(Objects.requireNonNull(getClass().getResource(file)));
     }
 
 }
