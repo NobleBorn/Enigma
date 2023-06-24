@@ -29,9 +29,9 @@ public class LogInController {
         paneManager = PaneManager.getInstance();
     }
 
-    public void logIn() throws IOException {
+    public void logIn() {
 
-        if (!userNameField.getText().equals("") && !passWordField.getText().equals("")){
+        if (!userNameField.getText().isEmpty() && !passWordField.getText().isEmpty()){
             LogInLogic logInLogic = new LogInLogic(userNameField.getText(), passWordField.getText());
             if (logInLogic.isAuthorizedUser()){
                 userNameField.setText("");
@@ -51,7 +51,7 @@ public class LogInController {
                 userNameField.setText("");
                 passWordField.setText("");
             }
-        } else if (userNameField.getText().equals("")){
+        } else if (userNameField.getText().isEmpty()){
             errorText.setText("Please provide username");
         } else {
             errorText.setText("Please provide password");

@@ -12,10 +12,14 @@
 }
 
 .button:hover {
-    -fx-background-color: linear-gradient(to bottom, #50c9c3, #96deda);;
+    -fx-background-color: linear-gradient(to bottom, #50c9c3, #96deda);
 }
 
 .text-area .content{
     -fx-background-color: #E8DCB8;
 }
 
+.button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #50c9c3, #96deda);
+    -fx-text-fill: #FFFFFF;
+}
