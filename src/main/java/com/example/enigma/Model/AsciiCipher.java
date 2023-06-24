@@ -4,11 +4,9 @@ package com.example.enigma.Model;
 public class AsciiCipher {
 
     private final String cipherText;
-    private final String cipherKey;
 
-    public AsciiCipher(String cipherText, String cipherKey){
+    public AsciiCipher(String cipherText){
         this.cipherText = cipherText;
-        this.cipherKey = cipherKey;
     }
 
     public String ascii(){

@@ -69,10 +69,17 @@
                      </font>
                   </TextField>
                   <Button fx:id="cipherTextButton" layoutX="716.0" layoutY="80.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="108.0" text="Cipher" />
-                  <Label alignment="CENTER" layoutX="261.0" layoutY="35.0" prefHeight="35.0" prefWidth="432.0">
+                  <Label fx:id="errorMessage" alignment="CENTER" layoutX="261.0" layoutY="35.0" prefHeight="35.0" prefWidth="432.0" textFill="#ff0d0d">
                      <font>
-                        <Font name="Arial" size="18.0" />
+                        <Font name="Arial" size="20.0" />
                      </font>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.7647058963775635" green="0.32156863808631897" blue="0.32156863808631897" />
+                           </color>
+                        </DropShadow>
+                     </effect>
                   </Label>
                </children>
             </Pane>

@@ -1,6 +1,7 @@
 package com.example.enigma;
 
 import com.example.enigma.Model.AsciiCipher;
+import com.example.enigma.Model.Cipher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -22,6 +24,7 @@ public class CipherController {
     @FXML TextArea cipherText;
     @FXML TextField cipherKey;
     @FXML Button cipherTextButton;
+    @FXML Label errorMessage;
 
     private Stage stage;
     private Scene scene;
@@ -51,8 +54,26 @@ public class CipherController {
     }
 
     public void cipher(){
-        AsciiCipher encrypt = new AsciiCipher(cipherText.getText(), cipherKey.getText());
-        cipherText.setText(encrypt.ascii());
+
+        String text = cipherText.getText();
+        String key = cipherKey.getText();
+
+        if (!text.isEmpty() && !key.isEmpty()) {
+            if (textValidator() && keyValidator()) {
+                errorMessage.setText("");
+                Cipher cipher = new Cipher(text, key);
+                cipherText.setText(cipher.getCodedText());
+            } else if (!textValidator()) {
+                errorMessage.setText("Provide only English letters");
+            } else {
+                errorMessage.setText("Provide only letters for the key");
+            }
+        } else if (text.isEmpty()) {
+            errorMessage.setText("Provide a text to cipher");
+        } else {
+            errorMessage.setText("Provide a key");
+        }
+
     }
 
     public void back(MouseEvent event){
@@ -61,5 +82,14 @@ public class CipherController {
         scene = root.getScene();
         stage.setScene(scene);
         stage.show();
+    }
+
+    private boolean textValidator(){
+        return cipherText.getText().matches("[a-zA-Z0-9!@#$%^&*()-=_+\\\\[\\\\]{}|;':\\\",./<>?]+");
+
+    }
+
+    private boolean keyValidator(){
+        return cipherKey.getText().matches("[a-zA-Z]+");
     }
 }
