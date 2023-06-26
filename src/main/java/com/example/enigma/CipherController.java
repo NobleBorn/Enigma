@@ -3,6 +3,7 @@ package com.example.enigma;
 import com.example.enigma.Model.Cipher;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -14,6 +15,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
@@ -83,12 +85,12 @@ public class CipherController {
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
 
+            populateButtons();
+            buttonActions();
+
             backButton.setOnMouseClicked(this::back);
             cipherTextButton.setOnAction(actionEvent -> cipher());
             showButton.setOnAction(actionEvent -> showKeyBoard());
-
-            populateButtons();
-            buttonActions();
 
             stage.setScene(scene);
             stage.show();
@@ -96,28 +98,10 @@ public class CipherController {
             throw new RuntimeException(exception);
         }
 
-
-        scene.setOnKeyPressed(keyEvent -> {
-            Button pressed = buttons.get(keyEvent.getCode());
-            if (pressed != null) {
-                System.out.println(keyEvent.getCode());
-                pressed.pseudoClassStateChanged(PseudoClass.getPseudoClass("pressed"), true);
-                pressed.fire();
-            }
-        });
-
-        scene.setOnKeyReleased(keyEvent -> {
-            Button pressed = buttons.get(keyEvent.getCode());
-            if (pressed != null){
-                pressed.pseudoClassStateChanged(PseudoClass.getPseudoClass("pressed"), false);
-            }
-        });
-
-
+        events();
     }
 
     public void cipher(){
-
         String text = cipherText.getText();
         String key = cipherKey.getText();
 
@@ -136,7 +120,6 @@ public class CipherController {
         } else {
             errorMessage.setText("Provide a key");
         }
-
     }
 
     public void back(MouseEvent event){
@@ -148,7 +131,7 @@ public class CipherController {
     }
 
     private boolean textValidator(){
-        return cipherText.getText().matches("[a-zA-Z0-9!@#$%^&*()-=_+\\\\[\\\\]{}|;':\\\",./<>?]+");
+        return cipherText.getText().matches("[a-zA-Z0-9!@#$%^&*()-=_+\\\\[\\\\]{}|;':\\\",./<>?\\s]+");
 
     }
 
@@ -179,7 +162,7 @@ public class CipherController {
         buttons.put(KeyCode.J, jButton);
         buttons.put(KeyCode.K, kButton);
         buttons.put(KeyCode.L, lButton);
-        buttons.put(KeyCode.QUOTE, apostropheButton);
+        buttons.put(KeyCode.BACK_SLASH, apostropheButton);
         buttons.put(KeyCode.ENTER, enterButton);
         buttons.put(KeyCode.Z, zButton);
         buttons.put(KeyCode.X, xButton);
@@ -234,16 +217,6 @@ public class CipherController {
         cipherText.setText(newText);
     }
 
-    public void capLock(){
-        if (lockOff){
-            setLock.setVisible(false);
-            lockOff = false;
-        } else {
-            setLock.setVisible(true);
-            lockOff = true;
-        }
-    }
-
     public void hideKeyBoard(){
         for (Button button : buttons.values()){
             button.setVisible(false);
@@ -256,6 +229,38 @@ public class CipherController {
             button.setVisible(true);
         }
         showButton.setVisible(false);
+    }
+
+    public void capLock(){
+        if (lockOff){
+            setLock.setVisible(false);
+            lockOff = false;
+        } else {
+            setLock.setVisible(true);
+            lockOff = true;
+        }
+    }
+
+    private void events(){
+        cipherText.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent event) {
+                Button pressed = buttons.get(event.getCode());
+                if (pressed != null) {
+                    if (pressed == enterButton || pressed == lockButton){
+                        event.consume();
+                        pressed.fire();
+                    }
+                    pressed.pseudoClassStateChanged(PseudoClass.getPseudoClass("pressed"), true);
+                }
+            }
+        });
+
+        cipherText.setOnKeyReleased(keyEvent -> {
+            Button pressed = buttons.get(keyEvent.getCode());
+            if (pressed != null){
+                pressed.pseudoClassStateChanged(PseudoClass.getPseudoClass("pressed"), false);
+            }
+        });
     }
 
 
