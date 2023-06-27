@@ -25,7 +25,6 @@ public class LogInLogic {
     }
 
     private boolean checkUserName(String userName){
-
         boolean exists = false;
 
         try (CSVParser csvParser = csv.readFromFile()) {
@@ -51,14 +50,11 @@ public class LogInLogic {
         boolean correct = false;
 
         try (CSVParser csvParser = csv.readFromFile()) {
-
             for (CSVRecord record : csvParser) {
-
                 if (record.get(1).equals(userName) && record.get(2).equals(passWord)) {
                     correct = true;
                     break;
                 }
-
             }
 
         } catch (IOException e) {

@@ -16,7 +16,6 @@ public class SignUpLogic {
     private boolean userExists;
 
     public SignUpLogic(String userName, String passWord) throws IOException {
-
         csv = new FileManager("src/main/resources/com/example/users.csv");
         userExists = false;
         int id = userID(userName);
@@ -52,7 +51,6 @@ public class SignUpLogic {
     }
 
     private void addNewUser(int id, String userName, String passWord){
-
         try (CSVPrinter csvPrinter = csv.writeToFile()){
 
             // Add the new user to the csv

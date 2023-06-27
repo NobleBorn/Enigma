@@ -8,11 +8,10 @@ public class Cipher {
 
 
     public Cipher(String cipherText, String cipherKey) {
-
         shiftCipher = new ShiftCipher(cipherText, cipherKey);
         String textLevel1 = cipherLevel1();
 
-        substituteCipher = new SubstituteCipher(textLevel1);
+        substituteCipher = new SubstituteCipher(textLevel1, cipherKey);
         String textLevel2 = cipherLevel2();
 
         asciiCipher = new AsciiCipher(textLevel2);

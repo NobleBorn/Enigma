@@ -98,15 +98,17 @@ public class CipherController {
             throw new RuntimeException(exception);
         }
 
-        events();
+        setupKeyHandlers();
     }
 
-    public void cipher(){
+    private void cipher(){
         String text = cipherText.getText();
         String key = cipherKey.getText();
 
         if (!text.isEmpty() && !key.isEmpty()) {
-            if (textValidator() && keyValidator()) {
+            if (cipherKey.getText().length() > 3){
+                errorMessage.setText("Provide only 3 letters for the key");
+            } else if (textValidator() && keyValidator()) {
                 errorMessage.setText("");
                 Cipher cipher = new Cipher(text, key);
                 cipherText.setText(cipher.getCodedText());
@@ -122,7 +124,7 @@ public class CipherController {
         }
     }
 
-    public void back(MouseEvent event){
+    private void back(MouseEvent event){
         Parent root = (Parent) paneManager.previous();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = root.getScene();
@@ -201,37 +203,36 @@ public class CipherController {
         }
     }
 
-    public void keyBoard(String buttonText){
+    private void keyBoard(String buttonText){
         String text = cipherText.getText();
         if (lockOff){
             cipherText.setText(text+buttonText);
         } else {
             cipherText.setText(text+buttonText.toLowerCase());
         }
-
     }
 
-    public void clearText(){
+    private void clearText(){
         String text = cipherText.getText();
         String newText = text.substring(0, text.length()-1);
         cipherText.setText(newText);
     }
 
-    public void hideKeyBoard(){
+    private void hideKeyBoard(){
         for (Button button : buttons.values()){
             button.setVisible(false);
         }
         showButton.setVisible(true);
     }
 
-    public void showKeyBoard(){
+    private void showKeyBoard(){
         for (Button button : buttons.values()){
             button.setVisible(true);
         }
         showButton.setVisible(false);
     }
 
-    public void capLock(){
+    private void capLock(){
         if (lockOff){
             setLock.setVisible(false);
             lockOff = false;
@@ -241,26 +242,30 @@ public class CipherController {
         }
     }
 
-    private void events(){
-        cipherText.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-            public void handle(KeyEvent event) {
-                Button pressed = buttons.get(event.getCode());
-                if (pressed != null) {
-                    if (pressed == enterButton || pressed == lockButton){
-                        event.consume();
-                        pressed.fire();
-                    }
-                    pressed.pseudoClassStateChanged(PseudoClass.getPseudoClass("pressed"), true);
-                }
-            }
-        });
+    private void setupKeyHandlers() {
+        cipherText.addEventFilter(KeyEvent.KEY_PRESSED, this::handleKeyPressed);
+        cipherText.setOnKeyReleased(this::handleKeyReleased);
 
-        cipherText.setOnKeyReleased(keyEvent -> {
-            Button pressed = buttons.get(keyEvent.getCode());
-            if (pressed != null){
-                pressed.pseudoClassStateChanged(PseudoClass.getPseudoClass("pressed"), false);
+        cipherKey.addEventFilter(KeyEvent.KEY_PRESSED, this::handleKeyPressed);
+        cipherKey.setOnKeyReleased(this::handleKeyReleased);
+    }
+
+    private void handleKeyPressed(KeyEvent event) {
+        Button pressed = buttons.get(event.getCode());
+        if (pressed != null) {
+            if (pressed == enterButton || pressed == lockButton) {
+                event.consume();
+                pressed.fire();
             }
-        });
+            pressed.pseudoClassStateChanged(PseudoClass.getPseudoClass("pressed"), true);
+        }
+    }
+
+    private void handleKeyReleased(KeyEvent event) {
+        Button pressed = buttons.get(event.getCode());
+        if (pressed != null) {
+            pressed.pseudoClassStateChanged(PseudoClass.getPseudoClass("pressed"), false);
+        }
     }
 
 
