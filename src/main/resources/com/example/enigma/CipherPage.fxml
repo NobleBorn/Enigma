@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
@@ -22,65 +23,70 @@
          <center>
             <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="526.0" prefWidth="954.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button alignment="CENTER" layoutX="30.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="Q">
+                  <Button fx:id="qButton" layoutX="30.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="Q">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <Button layoutX="105.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="W" />
-                  <Button layoutX="182.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="E" />
-                  <Button layoutX="258.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="R" />
-                  <Button layoutX="332.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="T" />
-                  <Button layoutX="405.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="Y" />
-                  <Button layoutX="480.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="U" />
-                  <Button layoutX="556.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="I" />
-                  <Button layoutX="632.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="O" />
-                  <Button layoutX="711.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="P" />
-                  <Button layoutX="789.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="146.0" text="Back" />
-                  <Button layoutX="52.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="A" />
-                  <Button layoutX="129.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="S" />
-                  <Button layoutX="207.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="D" />
-                  <Button layoutX="367.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="G" />
-                  <Button layoutX="286.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="F" />
-                  <Button layoutX="612.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="K" />
-                  <Button layoutX="449.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="H" />
-                  <Button layoutX="696.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="L" />
-                  <Button layoutX="531.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="J" />
-                  <Button layoutX="773.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="'" />
-                  <Button layoutX="848.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="88.0" text="Enter" />
-                  <Button layoutX="30.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="Z" />
-                  <Button layoutX="108.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="X" />
-                  <Button layoutX="185.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="C" />
-                  <Button layoutX="262.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="V" />
-                  <Button layoutX="339.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="B" />
-                  <Button layoutX="416.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="N" />
-                  <Button layoutX="571.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="," />
-                  <Button layoutX="649.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="." />
-                  <Button layoutX="494.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="M" />
-                  <Button layoutX="727.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="-" />
-                  <Button layoutX="803.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="133.0" text="Shift" />
-                  <Button layoutX="30.0" layoutY="350.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="142.0" text="&amp;123" />
-                  <Button layoutX="185.0" layoutY="350.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="Ctrl" />
-                  <Button layoutX="274.0" layoutY="350.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="362.0" text="Space" />
-                  <Button layoutX="810.0" layoutY="350.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="126.0" text="Hide" />
-                  <Button layoutX="650.0" layoutY="350.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="144.0" text="Caps lock" />
-                  <TextField alignment="CENTER" layoutX="261.0" layoutY="80.0" prefHeight="42.0" prefWidth="432.0" promptText="Enter 3 letter key : ABC">
+                  <Button fx:id="wButton" layoutX="105.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="W" />
+                  <Button fx:id="eButton" layoutX="182.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="E" />
+                  <Button fx:id="rButton" layoutX="258.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="R" />
+                  <Button fx:id="tButton" layoutX="332.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="T" />
+                  <Button fx:id="yButton" layoutX="405.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="Y" />
+                  <Button fx:id="uButton" layoutX="480.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="U" />
+                  <Button fx:id="iButton" layoutX="556.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="I" />
+                  <Button fx:id="oButton" layoutX="632.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="O" />
+                  <Button fx:id="pButton" layoutX="711.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="P" />
+                  <Button fx:id="clearButton" layoutX="789.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="146.0" text="Back" />
+                  <Button fx:id="aButton" layoutX="52.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="A" />
+                  <Button fx:id="sButton" layoutX="129.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="S" />
+                  <Button fx:id="dButton" layoutX="207.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="D" />
+                  <Button fx:id="gButton" layoutX="367.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="G" />
+                  <Button fx:id="fButton" layoutX="286.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="F" />
+                  <Button fx:id="kButton" layoutX="612.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="K" />
+                  <Button fx:id="hButton" layoutX="449.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="H" />
+                  <Button fx:id="lButton" layoutX="696.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="L" />
+                  <Button fx:id="jButton" layoutX="531.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="J" />
+                  <Button fx:id="apostropheButton" layoutX="773.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="'" />
+                  <Button fx:id="enterButton" layoutX="848.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="88.0" text="Enter" />
+                  <Button fx:id="zButton" layoutX="30.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="Z" />
+                  <Button layoutX="108.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="X" fx:id="xButton" />
+                  <Button fx:id="cButton" layoutX="185.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="C" />
+                  <Button fx:id="vButton" layoutX="262.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="V" />
+                  <Button fx:id="bButton" layoutX="339.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="B" />
+                  <Button fx:id="nButton" layoutX="416.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="N" />
+                  <Button fx:id="commaButton" layoutX="571.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="," />
+                  <Button fx:id="dotButton" layoutX="649.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="." />
+                  <Button fx:id="mButton" layoutX="494.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="M" />
+                  <Button fx:id="spaceButton" layoutX="263.0" layoutY="350.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="450.0" text="Space" />
+                  <Button fx:id="hideButton" layoutX="729.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="Hide" />
+                  <Button fx:id="lockButton" layoutX="808.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="129.0" text="Caps lock" />
+                  <TextField fx:id="cipherKey" alignment="CENTER" layoutX="261.0" layoutY="80.0" prefHeight="42.0" prefWidth="432.0" promptText="Enter 3 letter key : ABC">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </TextField>
                   <Button fx:id="cipherTextButton" layoutX="716.0" layoutY="80.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="108.0" text="Cipher" />
-                  <Label alignment="CENTER" layoutX="261.0" layoutY="35.0" prefHeight="35.0" prefWidth="432.0">
+                  <Label fx:id="errorMessage" alignment="CENTER" layoutX="261.0" layoutY="35.0" prefHeight="35.0" prefWidth="432.0" textFill="#ff0d0d">
                      <font>
-                        <Font name="Arial" size="18.0" />
+                        <Font name="Arial" size="20.0" />
                      </font>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.7647058963775635" green="0.32156863808631897" blue="0.32156863808631897" />
+                           </color>
+                        </DropShadow>
+                     </effect>
                   </Label>
+                  <Circle fx:id="setLock" fill="#02da10" layoutX="817.0" layoutY="299.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+                  <Button fx:id="showButton" layoutX="263.0" layoutY="426.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="450.0" text="Show Keyboard" visible="false" />
                </children>
             </Pane>
          </center>
          <top>
             <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="420.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextArea layoutX="300.0" prefHeight="420.0" prefWidth="1380.0" promptText="Type..." wrapText="true">
+                  <TextArea fx:id="cipherText" layoutX="300.0" prefHeight="420.0" prefWidth="1380.0" promptText="Type..." wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="24.0" />
                      </font>

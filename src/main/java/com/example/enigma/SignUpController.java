@@ -20,7 +20,7 @@ public class SignUpController {
 
     public void registerUser(TextField userNameSign, TextField passWordSign, Label errorLabel) {
 
-        if (!userNameSign.getText().equals("") && !passWordSign.getText().equals("")){
+        if (!userNameSign.getText().isEmpty() && !passWordSign.getText().isEmpty()){
             try {
                 new SignUpLogic(userNameSign.getText(), passWordSign.getText());
                 Node node = paneManager.previous();
@@ -30,7 +30,7 @@ public class SignUpController {
                 userNameSign.setText("");
                 passWordSign.setText("");
             }
-        } else if (userNameSign.getText().equals("")){
+        } else if (userNameSign.getText().isEmpty()){
             errorLabel.setText("Please provide username");
         } else {
             errorLabel.setText("Please provide password");

@@ -1,10 +1,6 @@
 package com.example.enigma;
 
-
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.stage.Stage;
-
 import java.util.Stack;
 
 public class PaneManager {
