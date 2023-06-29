@@ -13,14 +13,19 @@ public class ShiftCipher {
     }
 
     private void switchUp(String cipherKey) {
-        char[] keyValues = cipherKey.toCharArray();
-        keys.put(keyValues[0], keyValues[2]);
-        keys.put(keyValues[2], keyValues[1]);
-        keys.put(keyValues[1], keyValues[0]);
+        String lower = cipherKey.toLowerCase();
+        String upper = cipherKey.toUpperCase();
+        String key = lower + upper;
+        char[] keyValues = key.toCharArray();
+        keys.put(keyValues[0], keyValues[5]);
+        keys.put(keyValues[1], keyValues[3]);
+        keys.put(keyValues[2], keyValues[4]);
+        keys.put(keyValues[3], keyValues[2]);
+        keys.put(keyValues[4], keyValues[1]);
+        keys.put(keyValues[5], keyValues[0]);
     }
 
     public String shift() {
-
         char[] shiftChar = cipherText.toCharArray();
 
         for (int i = 0; i < shiftChar.length; i++) {

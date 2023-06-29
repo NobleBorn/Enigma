@@ -28,4 +28,5 @@ public class Cipher {
     public String getCodedText(){
         return asciiCipher.ascii();
     }
+
 }

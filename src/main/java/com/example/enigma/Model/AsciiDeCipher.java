@@ -1,16 +1,16 @@
 package com.example.enigma.Model;
 
+public class AsciiDeCipher {
 
-public class AsciiCipher {
+    private final String deCipherText;
 
-    private final String cipherText;
-
-    public AsciiCipher(String cipherText){
-        this.cipherText = cipherText;
+    public AsciiDeCipher(String deCipherText){
+        this.deCipherText = deCipherText;
     }
 
-    public String ascii(){
-        char[] asciiChar = cipherText.toCharArray();
+    public String asciiDecrypt(){
+        char[] asciiChar = deCipherText.toCharArray();
+
         for (int i = 0; i < asciiChar.length; i++){
             int charValue = asciiChar[i];
 
@@ -19,10 +19,10 @@ public class AsciiCipher {
             }
 
             if ((i % 2) == 0){
-                charValue += 5;
+                charValue -= 5;
             }
             else {
-                charValue -= 5;
+                charValue += 5;
             }
 
             if (charValue < 32) {
@@ -36,6 +36,4 @@ public class AsciiCipher {
 
         return String.valueOf(asciiChar);
     }
-
-
 }

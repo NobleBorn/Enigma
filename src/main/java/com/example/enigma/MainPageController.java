@@ -46,6 +46,7 @@ public class MainPageController {
 
         logOutButton.setOnAction(actionEvent -> logOut());
         cipherButton.setOnAction(this::cipher);
+        decipherButton.setOnAction(this::deCipher);
 
         borderPane.setCenter(center);
         borderPane.setTop(top);
@@ -68,4 +69,10 @@ public class MainPageController {
         paneManager.next(borderPane);
         new CipherController(event);
     }
+
+    public void deCipher(ActionEvent event){
+        paneManager.next(borderPane);
+        new DeCipherController(event);
+    }
+
 }
