@@ -17,7 +17,7 @@ public class DeCipher {
     }
 
     private String deCipherLevel1(){
-        return asciiDeCipher.asciiDecrypt();
+        return asciiDeCipher.asciiCipher();
     }
 
     private String deCipherLevel2(){
@@ -25,6 +25,6 @@ public class DeCipher {
     }
 
     public String getDeCodedText(){
-        return shiftDeCipher.shiftBack();
+        return shiftDeCipher.shiftCipher();
     }
 }

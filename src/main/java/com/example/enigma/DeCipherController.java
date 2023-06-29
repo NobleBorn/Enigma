@@ -1,6 +1,5 @@
 package com.example.enigma;
 
-import com.example.enigma.Model.Cipher;
 import com.example.enigma.Model.DeCipher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class DeCipherController {
+public class DeCipherController implements IEncodable{
 
     @FXML ImageView backArrow;
     @FXML TextArea deCipherText;
@@ -63,22 +62,14 @@ public class DeCipherController {
     }
 
     private void deCipher(){
-        String text = deCipherText.getText();
-        String key = deCipherKey.getText();
+        TextValidator textValidator = new TextValidator(deCipherText.getText(), deCipherKey.getText());
+        textValidator.validator(errorLabel, this);
+    }
 
-        if (!text.isEmpty() && !key.isEmpty()) {
-            if (deCipherKey.getText().length() > 3){
-                errorLabel.setText("Provide only 3 letters for the key");
-            } else {
-                errorLabel.setText("");
-                DeCipher deCipher = new DeCipher(text, key);
-                deCipherText.setText(deCipher.getDeCodedText());
-            }
-
-        } else if (text.isEmpty()) {
-            errorLabel.setText("Provide a text to cipher");
-        } else {
-            errorLabel.setText("Provide a key");
-        }
+    @Override
+    public void ciphering() {
+        errorLabel.setText("");
+        DeCipher deCipher = new DeCipher(deCipherText.getText(), deCipherKey.getText());
+        deCipherText.setText(deCipher.getDeCodedText());
     }
 }

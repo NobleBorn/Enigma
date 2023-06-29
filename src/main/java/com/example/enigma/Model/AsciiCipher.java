@@ -1,7 +1,7 @@
 package com.example.enigma.Model;
 
 
-public class AsciiCipher {
+public class AsciiCipher extends AsciiParent {
 
     private final String cipherText;
 
@@ -9,19 +9,17 @@ public class AsciiCipher {
         this.cipherText = cipherText;
     }
 
-    public String ascii(){
+    @Override
+    public String asciiCipher() {
         char[] asciiChar = cipherText.toCharArray();
         for (int i = 0; i < asciiChar.length; i++){
             int charValue = asciiChar[i];
 
-            if (charValue > 126){
-                continue;
-            }
+            if (charValue > 126) continue;
 
             if ((i % 2) == 0){
                 charValue += 5;
-            }
-            else {
+            } else {
                 charValue -= 5;
             }
 
@@ -36,6 +34,4 @@ public class AsciiCipher {
 
         return String.valueOf(asciiChar);
     }
-
-
 }

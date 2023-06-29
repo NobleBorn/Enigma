@@ -2,7 +2,7 @@ package com.example.enigma.Model;
 
 import java.util.HashMap;
 
-public class ShiftCipher {
+public class ShiftCipher extends ShiftParent{
 
     private final HashMap<Character, Character> keys = new HashMap<>();
     private final String cipherText;
@@ -12,11 +12,13 @@ public class ShiftCipher {
         switchUp(cipherKey);
     }
 
-    private void switchUp(String cipherKey) {
-        String lower = cipherKey.toLowerCase();
-        String upper = cipherKey.toUpperCase();
-        String key = lower + upper;
-        char[] keyValues = key.toCharArray();
+
+    @Override
+    public void switchUp(String key) {
+        String lower = key.toLowerCase();
+        String upper = key.toUpperCase();
+        String secretKey = lower + upper;
+        char[] keyValues = secretKey.toCharArray();
         keys.put(keyValues[0], keyValues[5]);
         keys.put(keyValues[1], keyValues[3]);
         keys.put(keyValues[2], keyValues[4]);
@@ -25,7 +27,8 @@ public class ShiftCipher {
         keys.put(keyValues[5], keyValues[0]);
     }
 
-    public String shift() {
+    @Override
+    public String shiftCipher() {
         char[] shiftChar = cipherText.toCharArray();
 
         for (int i = 0; i < shiftChar.length; i++) {

@@ -1,6 +1,6 @@
 package com.example.enigma.Model;
 
-public class AsciiDeCipher {
+public class AsciiDeCipher extends AsciiParent{
 
     private final String deCipherText;
 
@@ -8,20 +8,18 @@ public class AsciiDeCipher {
         this.deCipherText = deCipherText;
     }
 
-    public String asciiDecrypt(){
+    @Override
+    public String asciiCipher() {
         char[] asciiChar = deCipherText.toCharArray();
 
         for (int i = 0; i < asciiChar.length; i++){
             int charValue = asciiChar[i];
 
-            if (charValue > 126){
-                continue;
-            }
+            if (charValue > 126) continue;
 
             if ((i % 2) == 0){
                 charValue -= 5;
-            }
-            else {
+            } else {
                 charValue += 5;
             }
 
