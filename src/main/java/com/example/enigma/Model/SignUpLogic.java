@@ -31,7 +31,6 @@ public class SignUpLogic {
         int id = 0;
 
         try (CSVParser csvParser = csv.readFromFile()) {
-
             for (CSVRecord record : csvParser){
                 if (record.get(1).equals(userName)){
                     userExists = true;

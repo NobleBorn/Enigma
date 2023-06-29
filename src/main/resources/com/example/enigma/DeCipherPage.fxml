@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.SepiaTone?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" stylesheets="@../css/CipherPageCSS.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <Pane prefHeight="420.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="backArrow" fitHeight="50.0" fitWidth="50.0" layoutX="29.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../pictures/backArrow.png" />
+                     </image>
+                     <effect>
+                        <SepiaTone>
+                           <input>
+                              <InnerShadow />
+                           </input>
+                        </SepiaTone>
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <TextArea fx:id="deCipherText" layoutX="300.0" prefHeight="420.0" prefWidth="1380.0" promptText="Type...">
+                     <effect>
+                        <DropShadow>
+                           <input>
+                              <InnerShadow />
+                           </input>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </TextArea>
+               </children>
+            </Pane>
+         </top>
+         <center>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="526.0" prefWidth="954.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField fx:id="deCipherKey" alignment="CENTER" layoutX="261.0" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="42.0" prefWidth="432.0" promptText="Provide the key">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Label fx:id="errorLabel" alignment="CENTER" layoutX="261.0" layoutY="35.0" prefHeight="35.0" prefWidth="432.0" textFill="#ff0d0d">
+                     <font>
+                        <Font name="Arial" size="20.0" />
+                     </font>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.7647058963775635" green="0.32156863808631897" blue="0.32156863808631897" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Label>
+                  <Button fx:id="deCipherButton" layoutX="195.0" layoutY="238.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="550.0" text="Decipher" />
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

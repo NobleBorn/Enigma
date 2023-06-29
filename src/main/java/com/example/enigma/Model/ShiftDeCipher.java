@@ -2,16 +2,15 @@ package com.example.enigma.Model;
 
 import java.util.HashMap;
 
-public class ShiftCipher extends ShiftParent{
+public class ShiftDeCipher extends ShiftParent{
 
     private final HashMap<Character, Character> keys = new HashMap<>();
-    private final String cipherText;
+    private final String deCipherText;
 
-    public ShiftCipher(String cipherText, String cipherKey){
-        this.cipherText = cipherText;
-        switchUp(cipherKey);
+    public ShiftDeCipher(String deCipherText, String deCipherKey){
+        this.deCipherText = deCipherText;
+        switchUp(deCipherKey);
     }
-
 
     @Override
     public void switchUp(String key) {
@@ -19,17 +18,17 @@ public class ShiftCipher extends ShiftParent{
         String upper = key.toUpperCase();
         String secretKey = lower + upper;
         char[] keyValues = secretKey.toCharArray();
-        keys.put(keyValues[0], keyValues[5]);
-        keys.put(keyValues[1], keyValues[3]);
-        keys.put(keyValues[2], keyValues[4]);
-        keys.put(keyValues[3], keyValues[2]);
-        keys.put(keyValues[4], keyValues[1]);
         keys.put(keyValues[5], keyValues[0]);
+        keys.put(keyValues[3], keyValues[1]);
+        keys.put(keyValues[4], keyValues[2]);
+        keys.put(keyValues[2], keyValues[3]);
+        keys.put(keyValues[1], keyValues[4]);
+        keys.put(keyValues[0], keyValues[5]);
     }
 
     @Override
     public String shiftCipher() {
-        char[] shiftChar = cipherText.toCharArray();
+        char[] shiftChar = deCipherText.toCharArray();
 
         for (int i = 0; i < shiftChar.length; i++) {
             if (keys.containsKey(shiftChar[i])){

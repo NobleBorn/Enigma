@@ -6,7 +6,6 @@ public class Cipher {
     private final SubstituteCipher substituteCipher;
     private final AsciiCipher asciiCipher;
 
-
     public Cipher(String cipherText, String cipherKey) {
         shiftCipher = new ShiftCipher(cipherText, cipherKey);
         String textLevel1 = cipherLevel1();
@@ -18,7 +17,7 @@ public class Cipher {
     }
 
     private String cipherLevel1(){
-        return shiftCipher.shift();
+        return shiftCipher.shiftCipher();
     }
 
     private String cipherLevel2(){
@@ -26,6 +25,7 @@ public class Cipher {
     }
 
     public String getCodedText(){
-        return asciiCipher.ascii();
+        return asciiCipher.asciiCipher();
     }
+
 }
