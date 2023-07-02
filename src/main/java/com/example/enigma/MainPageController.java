@@ -10,8 +10,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 
 
@@ -24,6 +22,7 @@ public class MainPageController {
     @FXML Button cipherButton;
     @FXML Button decipherButton;
     @FXML Button accountButton;
+    @FXML Button achievementButton;
 
     private final PaneManager paneManager;
     private final BorderPane borderPane;
@@ -53,6 +52,7 @@ public class MainPageController {
         cipherButton.setOnAction(this::cipher);
         decipherButton.setOnAction(this::deCipher);
         accountButton.setOnAction(actionEvent -> account());
+        achievementButton.setOnAction(actionEvent -> usersKeys());
 
         borderPane.setCenter(center);
         borderPane.setTop(top);
@@ -79,6 +79,11 @@ public class MainPageController {
 
     public void achievement(){
 
+    }
+
+    public void usersKeys(){
+        paneManager.next(borderPane);
+        new KeysPageController(borderPane);
     }
 
     public void cipher(ActionEvent event){
