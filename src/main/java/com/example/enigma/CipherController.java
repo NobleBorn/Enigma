@@ -1,6 +1,8 @@
 package com.example.enigma;
 
 import com.example.enigma.Model.Cipher;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,6 +32,10 @@ public class CipherController implements IEncodable{
     @FXML Button cipherTextButton;
     @FXML Label errorMessage;
     @FXML Circle setLock;
+    @FXML Button cleanButton;
+    @FXML Button pasteButton;
+    @FXML Button copyButton;
+    @FXML Label infoLabel;
 
     @FXML Button qButton;
     @FXML Button wButton;
@@ -71,11 +77,13 @@ public class CipherController implements IEncodable{
     private Stage stage;
     private Scene scene;
     private final PaneManager paneManager;
+    private final CopyPaste copyPaste;
     private final HashMap<KeyCode, Button> buttons = new HashMap<>();
     private boolean lockOff = false;
 
     public CipherController(ActionEvent event){
         paneManager = PaneManager.getInstance();
+        copyPaste = CopyPaste.getInstance();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CipherPage.fxml"));
         fxmlLoader.setController(this);
 
@@ -154,6 +162,9 @@ public class CipherController implements IEncodable{
         backButton.setOnMouseClicked(this::back);
         cipherTextButton.setOnAction(actionEvent -> cipher());
         showButton.setOnAction(actionEvent -> showKeyBoard());
+        cleanButton.setOnAction(actionEvent -> removeText());
+        copyButton.setOnAction(actionEvent -> copy());
+        pasteButton.setOnAction(actionEvent -> paste());
     }
 
     private void setButtons(Button button){
@@ -245,5 +256,20 @@ public class CipherController implements IEncodable{
         errorMessage.setText("");
         Cipher cipher = new Cipher(cipherText.getText(), cipherKey.getText());
         cipherText.setText(cipher.getCodedText());
+    }
+
+    private void removeText(){
+        cipherText.setText("");
+    }
+
+    private void copy(){
+        copyPaste.copyText(cipherText.getText());
+        copyPaste.timer(infoLabel,"Copied", pasteButton);
+    }
+
+    private void paste(){
+        cipherText.setText(copyPaste.pasteText());
+        copyPaste.timer(infoLabel,"Pasted", copyButton);
+
     }
 }

@@ -28,9 +28,7 @@ public class LogInLogic {
         boolean exists = false;
 
         try (CSVParser csvParser = csv.readFromFile()) {
-
             for (CSVRecord record : csvParser) {
-
                 if (record.get(1).equals(userName)) {
                     exists = true;
                     break;
@@ -46,9 +44,7 @@ public class LogInLogic {
     }
 
     private boolean checkPassWord(String userName, String passWord){
-
         boolean correct = false;
-
         try (CSVParser csvParser = csv.readFromFile()) {
             for (CSVRecord record : csvParser) {
                 if (record.get(1).equals(userName) && record.get(2).equals(passWord)) {

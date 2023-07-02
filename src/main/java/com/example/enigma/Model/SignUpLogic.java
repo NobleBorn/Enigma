@@ -15,13 +15,13 @@ public class SignUpLogic {
     private final FileManager csv;
     private boolean userExists;
 
-    public SignUpLogic(String userName, String passWord) throws IOException {
+    public SignUpLogic(String userName, String passWord, String secretCode) throws IOException {
         csv = new FileManager("src/main/resources/com/example/users.csv");
         userExists = false;
         int id = userID(userName);
 
         if (!userExists){
-            addNewUser(id, userName, passWord);
+            addNewUser(id, userName, passWord, secretCode);
         } else {
             throw new IOException();
         }
@@ -36,9 +36,10 @@ public class SignUpLogic {
                     userExists = true;
                     break;
                 }
+
             }
 
-            id = csvParser.getRecords().size() + 1;
+            id = (int) csvParser.getRecordNumber() + 1;
 
             System.out.println("CSV file read successfully!");
 
@@ -49,11 +50,11 @@ public class SignUpLogic {
         return id;
     }
 
-    private void addNewUser(int id, String userName, String passWord){
+    private void addNewUser(int id, String userName, String passWord, String secretCode){
         try (CSVPrinter csvPrinter = csv.writeToFile()){
 
             // Add the new user to the csv
-            csvPrinter.printRecord(String.valueOf(id), userName, passWord);
+            csvPrinter.printRecord(String.valueOf(id), userName, passWord, secretCode);
 
         } catch (IOException e) {
             System.out.println("Error occurred while writing to the CSV file: " + e.getMessage());

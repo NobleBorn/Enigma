@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -22,10 +23,14 @@ public class LogInController {
 
     @FXML TextField userNameSign;
     @FXML TextField passWordSign;
+    @FXML TextField pokemonCode;
     @FXML Label errorLabel;
+    @FXML Button signUpButton;
 
     private final PaneManager paneManager;
     private final User current = User.getInstance();
+    private Node center;
+
 
     public LogInController() {
         paneManager = PaneManager.getInstance();
@@ -36,6 +41,7 @@ public class LogInController {
             LogInLogic logInLogic = new LogInLogic(userNameField.getText(), passWordField.getText());
             if (logInLogic.isAuthorizedUser()){
                 current.currentUser(userNameField.getText());
+                errorText.setText("");
                 userNameField.setText("");
                 passWordField.setText("");
                 paneManager.next(borderPane);
@@ -45,13 +51,9 @@ public class LogInController {
                 } catch (IOException e){
                     System.out.println("Can not load the main page " + e.getMessage());
                 }
-
-
             }
             else {
                 errorText.setText("Wrong username or password");
-                userNameField.setText("");
-                passWordField.setText("");
             }
         } else if (userNameField.getText().isEmpty()){
             errorText.setText("Please provide username");
@@ -61,21 +63,23 @@ public class LogInController {
     }
 
     public void signUpPage() throws IOException {
-        paneManager.next(borderPane.getCenter());
-        Parent node = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SignUp.fxml")));
+        center = borderPane.getCenter();
+        paneManager.next(borderPane);
+        FXMLLoader fxmlLoader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("SignUp.fxml")));
+        fxmlLoader.setController(this);
+        Parent node = fxmlLoader.load();
+        signUpButton.setOnAction(actionEvent -> registerUser());
         borderPane.setCenter(node);
-
     }
 
     public void logInPage() {
-        Node node = paneManager.previous();
-        borderPane.setCenter(node);
+        borderPane.setCenter(center);
     }
 
     public void registerUser() {
-        SignUpController signUpController = new SignUpController(paneManager, borderPane);
-        signUpController.registerUser(userNameSign, passWordSign, errorLabel);
+        BorderPane border = (BorderPane) paneManager.peekPrevious();
+        SignUpController signUpController = new SignUpController(border, center, errorLabel);
+        signUpController.registerUser(userNameSign, passWordSign, pokemonCode);
     }
-
 
 }

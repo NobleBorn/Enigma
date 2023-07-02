@@ -1,6 +1,8 @@
 package com.example.enigma;
 
 import com.example.enigma.Model.DeCipher;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,13 +26,19 @@ public class DeCipherController implements IEncodable{
     @FXML Label errorLabel;
     @FXML TextField deCipherKey;
     @FXML Button deCipherButton;
+    @FXML Button cleanButton;
+    @FXML Button pasteButton;
+    @FXML Button copyButton;
+    @FXML Label infoLabel;
 
     private Stage stage;
     private Scene scene;
     private final PaneManager paneManager;
+    private final CopyPaste copyPaste;
 
     public DeCipherController(ActionEvent event){
         paneManager = PaneManager.getInstance();
+        copyPaste = CopyPaste.getInstance();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DeCipherPage.fxml"));
         fxmlLoader.setController(this);
 
@@ -51,6 +59,9 @@ public class DeCipherController implements IEncodable{
     private void setActions(){
         backArrow.setOnMouseClicked(this::back);
         deCipherButton.setOnAction(actionEvent -> deCipher());
+        cleanButton.setOnAction(actionEvent -> removeText());
+        copyButton.setOnAction(actionEvent -> copy());
+        pasteButton.setOnAction(actionEvent -> paste());
     }
 
     private void back(MouseEvent event){
@@ -71,5 +82,19 @@ public class DeCipherController implements IEncodable{
         errorLabel.setText("");
         DeCipher deCipher = new DeCipher(deCipherText.getText(), deCipherKey.getText());
         deCipherText.setText(deCipher.getDeCodedText());
+    }
+
+    private void removeText(){
+        deCipherText.setText("");
+    }
+
+    private void copy(){
+        copyPaste.copyText(deCipherText.getText());
+        copyPaste.timer(infoLabel, "Copied", pasteButton);
+    }
+
+    private void paste(){
+        deCipherText.setText(copyPaste.pasteText());
+        copyPaste.timer(infoLabel,"Pasted", copyButton);
     }
 }

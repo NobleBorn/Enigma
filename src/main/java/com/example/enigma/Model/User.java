@@ -9,6 +9,9 @@ public class User {
 
     private final static User instance = new User();
     private int id;
+    private String name;
+    private String secretCode;
+    private String password;
     private final FileManager csv;
 
     private User(){
@@ -24,6 +27,9 @@ public class User {
             for (CSVRecord record : csvParser){
                 if (record.get(1).equals(userName)){
                     id = Integer.parseInt(record.get(0));
+                    name = record.get(1);
+                    password = record.get(2);
+                    secretCode = record.get(3);
                     break;
                 }
             }
@@ -38,5 +44,15 @@ public class User {
         return id;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public String getSecretCode() {
+        return secretCode;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }

@@ -85,7 +85,7 @@
             </Pane>
          </center>
          <top>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="420.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="470.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
                <children>
                   <TextArea fx:id="cipherText" layoutX="300.0" prefHeight="420.0" prefWidth="1380.0" promptText="Type..." wrapText="true">
                      <font>
@@ -118,6 +118,36 @@
                         </SepiaTone>
                      </effect>
                   </ImageView>
+                  <Button fx:id="cleanButton" alignment="CENTER" layoutX="1579.0" layoutY="428.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="101.0" text="Clear">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="pasteButton" alignment="CENTER" layoutX="1464.0" layoutY="428.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="101.0" text="Paste">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="copyButton" alignment="CENTER" layoutX="1347.0" layoutY="428.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="101.0" text="Copy">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label fx:id="infoLabel" alignment="CENTER" layoutX="818.0" layoutY="429.0" prefHeight="33.0" prefWidth="397.0" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="20.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
                </children>
             </Pane>
          </top>

@@ -22,4 +22,8 @@ public class PaneManager {
         return stack.pop();
     }
 
+    public Node peekPrevious(){
+        return stack.peek();
+    }
+
 }
