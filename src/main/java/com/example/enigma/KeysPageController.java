@@ -1,5 +1,6 @@
 package com.example.enigma;
 
+import com.example.enigma.Model.FileManager;
 import com.example.enigma.Model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +11,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVPrinter;
+import org.apache.commons.csv.CSVRecord;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 public class KeysPageController {
@@ -24,12 +33,14 @@ public class KeysPageController {
 
     private final PaneManager paneManager;
     private final User user;
+    private final FileManager csv;
 
     public KeysPageController(BorderPane borderPane){
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("KeysPage.fxml")));
         loader.setController(this);
         paneManager = PaneManager.getInstance();
         user = User.getInstance();
+        csv = new FileManager("src/main/resources/com/example/keys.csv");
 
         try {
             Parent node = loader.load();
@@ -39,29 +50,35 @@ public class KeysPageController {
         }
 
         submitButton.setOnAction(actionEvent -> submit());
-        header();
         keys();
     }
 
     private void keys(){
-        for (int i = 10; i >= 0; i--){
+        header();
+
+        user.newMap();
+        user.keys();
+        HashMap<String, String> userKeys = user.getUserKeys();
+
+        for (String key : userKeys.keySet()){
             HBox hBox = new HBox();
             hBox.setId("hBox");
 
-            Label key = new Label();
-            key.setText(String.valueOf(i));
+            Label keyValue = new Label();
+            keyValue.setText(key);
 
             Label creation = new Label();
-            creation.setText("2023-07-01");
+            creation.setText(userKeys.get(key));
 
             Button button = new Button("Delete");
+            button.setOnAction(actionEvent -> deleteKey());
 
-            hBox.getChildren().addAll(key, creation, button);
+            hBox.getChildren().addAll(keyValue, creation, button);
             keyVBox.getChildren().add(hBox);
+
         }
 
         scrollPane.setContent(keyVBox);
-
     }
 
     private void header(){
@@ -79,11 +96,57 @@ public class KeysPageController {
         button.setVisible(false);
 
         hBox.getChildren().addAll(key, creation, button);
+        keyVBox.getChildren().clear();
         keyVBox.getChildren().add(hBox);
     }
 
     private void submit(){
-        secretCodePane.setDisable(true);
-        secretCodePane.setVisible(false);
+        if (secretPass.getText().equals(user.getSecretCode())){
+            secretCodePane.setDisable(true);
+            secretCodePane.setVisible(false);
+        }
+    }
+
+    private void deleteKey(){
+        try {
+            CSVParser csvParser = csv.readFromFile();
+
+            List<CSVRecord> records = csvParser.getRecords();
+
+            modifyRecord(records, String.valueOf(user.getUserId()));
+
+            csvParser.close();
+
+            File existingFile = new File("src/main/resources/com/example/keys.csv");
+            boolean deleted = existingFile.delete();
+
+            CSVPrinter csvPrinter = csv.writeToFile();
+
+            if (deleted){
+                for (CSVRecord record : records) {
+                    csvPrinter.printRecord(record);
+                }
+            } else {
+                System.out.println("Not deleted!");
+            }
+
+            csvPrinter.flush();
+            csvPrinter.close();
+            csvParser.close();
+
+        } catch (IOException e) {
+            System.out.println("Error occurred while writing to the CSV file: " + e.getMessage());
+        }
+
+        keys();
+    }
+
+    private void modifyRecord(List<CSVRecord> records, String id) throws IOException {
+        for (int i = 0; i < records.size(); i++) {
+            CSVRecord record = records.get(i);
+            if (record.get(0).equals(id)) {
+                records.remove(record);
+            }
+        }
     }
 }

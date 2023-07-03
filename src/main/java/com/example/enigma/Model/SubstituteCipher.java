@@ -3,6 +3,10 @@ package com.example.enigma.Model;
 import org.apache.commons.csv.CSVPrinter;
 
 import java.io.IOException;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class SubstituteCipher {
@@ -31,8 +35,14 @@ public class SubstituteCipher {
 
     private void saveCodeNumber(){
         try (CSVPrinter csvPrinter = substituteCipher.getCsv().writeToFile()){
+            Instant timestamp = Instant.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            ZonedDateTime zonedDateTime = timestamp.atZone(ZoneId.systemDefault());
+            String formattedTimestamp = formatter.format(zonedDateTime);
+            System.out.println(formattedTimestamp);
+
             csvPrinter.printRecord(String.valueOf(substituteCipher.getUser().getUserId()),
-                    String.valueOf(substituteCipher.getCodeNumber()), substituteCipher.getKey());
+                    String.valueOf(substituteCipher.getCodeNumber()), substituteCipher.getKey(), formattedTimestamp);
         } catch (IOException e) {
             System.out.println("Error occurred while writing to the CSV file: " + e.getMessage());
         }
