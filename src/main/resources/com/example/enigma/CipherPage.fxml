@@ -48,7 +48,21 @@
                   <Button fx:id="lButton" layoutX="696.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="L" />
                   <Button fx:id="jButton" layoutX="531.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="J" />
                   <Button fx:id="apostropheButton" layoutX="773.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="'" />
-                  <Button fx:id="enterButton" layoutX="848.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="88.0" text="Enter" />
+                  <Button fx:id="enterButton" layoutX="848.0" layoutY="230.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="88.0" text="Enter">
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="0.10980392247438431" green="0.6313725709915161" blue="0.7803921699523926" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="0.11764705926179886" green="0.6470588445663452" blue="0.843137264251709" />
+                           </color>
+                        </InnerShadow>
+                     </effect></Button>
                   <Button fx:id="zButton" layoutX="30.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="Z" />
                   <Button layoutX="108.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="X" fx:id="xButton" />
                   <Button fx:id="cButton" layoutX="185.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="C" />
@@ -58,7 +72,21 @@
                   <Button fx:id="commaButton" layoutX="571.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="," />
                   <Button fx:id="dotButton" layoutX="649.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="." />
                   <Button fx:id="mButton" layoutX="494.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="M" />
-                  <Button fx:id="spaceButton" layoutX="263.0" layoutY="350.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="450.0" text="Space" />
+                  <Button fx:id="spaceButton" layoutX="263.0" layoutY="350.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="450.0" text="Space">
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="0.10980392247438431" green="0.6313725709915161" blue="0.7803921699523926" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="0.11764705926179886" green="0.6470588445663452" blue="0.843137264251709" />
+                           </color>
+                        </InnerShadow>
+                     </effect></Button>
                   <Button fx:id="hideButton" layoutX="729.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="65.0" text="Hide" />
                   <Button fx:id="lockButton" layoutX="808.0" layoutY="290.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="129.0" text="Caps lock" />
                   <TextField fx:id="cipherKey" alignment="CENTER" layoutX="261.0" layoutY="80.0" prefHeight="42.0" prefWidth="432.0" promptText="Enter 3 letter key : ABC">
@@ -66,7 +94,21 @@
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="cipherTextButton" layoutX="716.0" layoutY="80.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="108.0" text="Cipher" />
+                  <Button fx:id="cipherTextButton" layoutX="716.0" layoutY="80.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="108.0" text="Cipher">
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="0.10980392247438431" green="0.6313725709915161" blue="0.7803921699523926" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="0.11764705926179886" green="0.6470588445663452" blue="0.843137264251709" />
+                           </color>
+                        </InnerShadow>
+                     </effect></Button>
                   <Label fx:id="errorMessage" alignment="CENTER" layoutX="261.0" layoutY="35.0" prefHeight="35.0" prefWidth="432.0" textFill="#ff0d0d">
                      <font>
                         <Font name="Arial" size="20.0" />
@@ -122,16 +164,58 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="0.11764705926179886" green="0.6470588445663452" blue="0.843137264251709" />
+                           </color>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="0.10980392247438431" green="0.6313725709915161" blue="0.7803921699523926" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                        </InnerShadow>
+                     </effect>
                   </Button>
                   <Button fx:id="pasteButton" alignment="CENTER" layoutX="1464.0" layoutY="428.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="101.0" text="Paste">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="0.11764705926179886" green="0.6470588445663452" blue="0.843137264251709" />
+                           </color>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="0.10980392247438431" green="0.6313725709915161" blue="0.7803921699523926" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                        </InnerShadow>
+                     </effect>
                   </Button>
                   <Button fx:id="copyButton" alignment="CENTER" layoutX="1347.0" layoutY="428.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="101.0" text="Copy">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="0.10980392247438431" green="0.6313725709915161" blue="0.7803921699523926" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="0.11764705926179886" green="0.6470588445663452" blue="0.843137264251709" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
                   </Button>
                   <Label fx:id="infoLabel" alignment="CENTER" layoutX="818.0" layoutY="429.0" prefHeight="33.0" prefWidth="397.0" textFill="WHITE">
                      <font>

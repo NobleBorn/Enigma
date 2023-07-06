@@ -1,48 +1,73 @@
 package com.example.enigma;
 
 import com.example.enigma.Model.FileManager;
+import com.example.enigma.Model.IChangable;
+import com.example.enigma.Model.SecretCode;
 import com.example.enigma.Model.User;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVPrinter;
+import javafx.scene.image.ImageView;
+
+import javafx.scene.layout.BorderPane;
+
 import org.apache.commons.csv.CSVRecord;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.List;
+import java.util.Objects;
 
-public class AccountController {
+public class AccountController implements IChangable {
 
     @FXML TextField userName;
     @FXML TextField newPassword;
     @FXML TextField newConfirm;
     @FXML TextField newCode;
     @FXML Label informationLabel;
+    @FXML ImageView backImage;
+    @FXML Button changePass;
+    @FXML Button changeCode;
 
     private final PaneManager paneManager;
-    private final FileManager csv;
     private final User user;
+    private final BorderPane borderPane;
+    private final ModifyFiles modifyFiles;
 
     public AccountController() {
-        paneManager = PaneManager.getInstance();
-        user = User.getInstance();
-        csv = new FileManager("src/main/resources/com/example/users.csv");
-    }
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("AccountPage.fxml")));
+        loader.setController(this);
 
-    public void setUserName(String name) {
-        userName.setText(name);
+        user = User.getInstance();
+        paneManager = PaneManager.getInstance();
+        modifyFiles = new ModifyFiles("src/main/resources/com/example/users.csv");
+        borderPane = paneManager.getBorderPane();
+
+        try {
+            Parent node = loader.load();
+            borderPane.setCenter(node);
+        } catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+
+        backImage.setOnMouseClicked(mouseEvent -> back());
+        userName.setText(user.getName());
+        changePass.setOnAction(actionEvent -> changePassword());
+        changeCode.setOnAction(actionEvent -> changeCode());
     }
 
     public void changePassword() {
         boolean validPass = passWordValidator(newPassword.getText());
+        List<CSVRecord> records = modifyFiles.readRecords();
 
         if (!newPassword.getText().isEmpty() && !newConfirm.getText().isEmpty()) {
             if (newPassword.getText().equals(newConfirm.getText()) && validPass) {
-                updateFile(newPassword.getText(), user.getSecretCode());
+                user.currentUser(user.getName());
+                modifyFiles.modifyRecords(records, this);
                 informationLabel.setText("Password changed");
             } else if (!validPass) {
                 informationLabel.setText("Not a valid password");
@@ -58,7 +83,8 @@ public class AccountController {
 
     public void changeCode() {
         if (!newCode.getText().isEmpty()) {
-            updateFile(user.getPassword(), newCode.getText());
+            SecretCode secretCode = new SecretCode(newCode.getText());
+            secretCode.secretCodeChange();
             informationLabel.setText("Secret code changed");
         } else {
             informationLabel.setText("Provide a new pokemon name");
@@ -69,53 +95,21 @@ public class AccountController {
         return text.matches("[a-zA-Z0-9!@#$%^&*()-=_+\\\\[\\\\]{}|;':\\\",./<>?\\s]+");
     }
 
-    private void updateFile(String passWord, String secretCode) {
-        try {
-            CSVParser csvParser = csv.readFromFile();
 
-            List<CSVRecord> records = csvParser.getRecords();
-
-            modifyRecord(records, String.valueOf(user.getUserId()), user.getName(),
-                    passWord, secretCode);
-
-            csvParser.close();
-
-            File existingFile = new File("src/main/resources/com/example/users.csv");
-            boolean deleted = existingFile.delete();
-
-            CSVPrinter csvPrinter = csv.writeToFile();
-
-            if (deleted){
-                for (CSVRecord record : records) {
-                    csvPrinter.printRecord(record);
-                }
-            } else {
-                System.out.println("Not deleted!");
-            }
-
-            csvPrinter.flush();
-            csvPrinter.close();
-            csvParser.close();
-
-        } catch (IOException e) {
-            System.out.println("Error occurred while writing to the CSV file: " + e.getMessage());
-        }
+    private void back(){
+        Node nodeRight = paneManager.getPreviousNodes();
+        Node nodeLeft = paneManager.getPreviousNodes();
+        Node nodeCenter = paneManager.getPreviousNodes();
+        Node nodeTop = paneManager.getPreviousNodes();
+        borderPane.setTop(nodeTop);
+        borderPane.setLeft(nodeLeft);
+        borderPane.setCenter(nodeCenter);
+        borderPane.setRight(nodeRight);
     }
 
-    private void modifyRecord(List<CSVRecord> records, String id, String name, String password,
-                              String secretCode) throws IOException {
-        String[] newValues = {id, name, password, secretCode};
-
-        for (int i = 0; i < records.size(); i++) {
-            CSVRecord record = records.get(i);
-            if (record.get(0).equals(id)) {
-                CSVRecord newRecord = CSVFormat.DEFAULT
-                        .parse(new StringReader(String.join(",", newValues)))
-                        .iterator()
-                        .next();
-
-                records.set(i, newRecord);
-            }
-        }
+    @Override
+    public void modify(List<CSVRecord> records) {
+        String[] newValues = {String.valueOf(user.getUserId()), user.getName(), newPassword.getText(), user.getSecretCode()};
+        modifyFiles.newRecord(records, newValues, String.valueOf(user.getUserId()));
     }
 }

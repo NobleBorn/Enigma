@@ -3,57 +3,103 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.SepiaTone?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="448.0" prefWidth="879.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1003.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ScrollPane fx:id="scrollPane" layoutX="55.0" layoutY="34.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="378.0" prefWidth="787.0" stylesheets="@../css/KeysPageCSS.css" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="34.0">
-         <effect>
-            <DropShadow>
-               <color>
-                  <Color red="0.0941176488995552" green="0.4627451002597809" blue="0.8549019694328308" />
-               </color>
-            </DropShadow>
-         </effect>
-         <content>
-            <VBox fx:id="keyVBox" prefHeight="120.0" prefWidth="785.0" />
-         </content>
-      </ScrollPane>
-      <Pane fx:id="secretCodePane" layoutX="55.0" layoutY="34.0" prefHeight="378.0" prefWidth="787.0" style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" stylesheets="@../css/ButtonCSS.css" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="34.0">
-         <children>
-            <TextField fx:id="secretPass" layoutX="195.0" layoutY="112.0" prefHeight="35.0" prefWidth="402.0" promptText="Name of your favorite pokemon">
-               <font>
-                  <Font name="Arial Bold" size="14.0" />
-               </font>
-            </TextField>
-            <Button fx:id="submitButton" layoutX="284.0" layoutY="201.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="232.0" text="Submit" />
-            <CheckBox layoutX="228.0" layoutY="287.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="271.0" text="Remember me" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <effect>
-                  <InnerShadow>
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                     <input>
-                        <DropShadow />
-                     </input>
-                  </InnerShadow>
-               </effect>
-            </CheckBox>
-         </children>
-      </Pane>
+      <BorderPane prefHeight="1003.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <center>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="378.0" prefWidth="787.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ScrollPane fx:id="scrollPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="378.0" prefWidth="787.0" stylesheets="@../css/KeysPageCSS.css">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.0941176488995552" green="0.4627451002597809" blue="0.8549019694328308" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <content>
+                        <VBox fx:id="keyVBox" prefHeight="120.0" prefWidth="785.0" />
+                     </content>
+                  </ScrollPane>
+                  <Pane fx:id="secretCodePane" prefHeight="378.0" prefWidth="787.0" style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" stylesheets="@../css/ButtonCSS.css">
+                     <children>
+                        <TextField fx:id="secretPass" layoutX="195.0" layoutY="112.0" prefHeight="35.0" prefWidth="402.0" promptText="Name of your favorite pokemon">
+                           <font>
+                              <Font name="Arial Bold" size="14.0" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="submitButton" layoutX="284.0" layoutY="201.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="232.0" text="Submit" />
+                        <CheckBox layoutX="228.0" layoutY="287.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="271.0" text="Remember me" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                                 <input>
+                                    <DropShadow />
+                                 </input>
+                              </InnerShadow>
+                           </effect>
+                        </CheckBox>
+                        <Label fx:id="errorInfo" alignment="CENTER" layoutX="195.0" layoutY="60.0" prefHeight="35.0" prefWidth="402.0" textFill="#ff0d0d">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                           <effect>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="0.7647058963775635" green="0.32156863808631897" blue="0.32156863808631897" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+         </center>
+         <top>
+            <Pane prefHeight="79.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="backPointer" fitHeight="50.0" fitWidth="50.0" layoutX="29.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../pictures/backArrow.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <SepiaTone>
+                           <input>
+                              <InnerShadow />
+                           </input>
+                        </SepiaTone>
+                     </effect>
+                  </ImageView>
+               </children>
+            </Pane>
+         </top>
+      </BorderPane>
    </children>
 </AnchorPane>

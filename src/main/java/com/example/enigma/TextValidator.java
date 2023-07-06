@@ -1,25 +1,34 @@
 package com.example.enigma;
 
+import com.example.enigma.Model.User;
 import javafx.scene.control.Label;
+
+import java.util.HashMap;
 
 public class TextValidator {
 
-    String text;
-    String key;
+    private final String text;
+    private final String key;
+    private final User user;
 
     public TextValidator(String text, String key){
         this.text = text;
         this.key = key;
+        user = User.getInstance();
     }
 
     public void validator(Label errorMessage, IEncodable encryption){
         boolean validText = textValidator();
         boolean specialCase = encryption.getClass().equals(DeCipherController.class);
         boolean validKey = keyValidator();
+        user.keys();
+        HashMap<String, String> keysInUse = user.getUserKeys();
 
         if (!text.isEmpty() && !key.isEmpty()) {
             if (key.length() > 3){
                 errorMessage.setText("Provide only 3 letters for the key");
+            } else if (keysInUse.containsKey(key) && encryption.getClass().equals(CipherController.class)){
+                errorMessage.setText("This key is already in use");
             } else if ((specialCase || validText) && validKey) {
                 encryption.ciphering();
             } else if (!validText) {

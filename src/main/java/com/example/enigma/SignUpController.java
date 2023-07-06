@@ -13,13 +13,13 @@ import java.io.IOException;
 public class SignUpController {
 
     private final BorderPane borderPane;
-    private final Node center;
     private final Label errorLabel;
+    private final PaneManager paneManager;
 
-    public SignUpController(BorderPane borderPane, Node center, Label errorLabel){
-        this.center = center;
-        this.borderPane = borderPane;
+    public SignUpController(Label errorLabel){
         this.errorLabel = errorLabel;
+        paneManager = PaneManager.getInstance();
+        borderPane = paneManager.getBorderPane();
     }
 
     public void registerUser(TextField userNameSign, TextField passWordSign, TextField secretCode) {
@@ -31,7 +31,7 @@ public class SignUpController {
             try {
                 new SignUpLogic(userNameSign.getText(), passWordSign.getText(), secretCode.getText());
                 errorLabel.setStyle("-fx-text-fill: White");
-                timer(errorLabel, "Account created!", center);
+                timer(errorLabel, "Account created!", paneManager.getPreviousNodes());
             } catch (IOException e){
                 errorLabel.setText("Username already exists");
                 userNameSign.setText("");

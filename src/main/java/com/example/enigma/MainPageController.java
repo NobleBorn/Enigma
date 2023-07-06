@@ -1,7 +1,5 @@
 package com.example.enigma;
 
-
-import com.example.enigma.Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +12,6 @@ import javafx.scene.layout.BorderPane;
 
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class MainPageController {
 
@@ -22,23 +19,24 @@ public class MainPageController {
     @FXML Button cipherButton;
     @FXML Button decipherButton;
     @FXML Button accountButton;
-    @FXML Button achievementButton;
+    @FXML Button keyButton;
+    @FXML Button homeButton;
 
     private final PaneManager paneManager;
     private final BorderPane borderPane;
-    private final Node topBar;
-    private final Node centerPart;
 
-    public MainPageController(BorderPane borderPane) throws IOException {
+    public MainPageController() throws IOException {
         paneManager = PaneManager.getInstance();
-        this.borderPane = borderPane;
-        this.topBar = borderPane.getTop();
-        this.centerPart = borderPane.getCenter();
+        borderPane = paneManager.getBorderPane();
+
+        Node[] startPage = paneManager.getStartPage();
+        Node rightPart = startPage[3];
 
         FXMLLoader topBar = new FXMLLoader(getClass().getResource("MainPageBar.fxml"));
         FXMLLoader centerPart = new FXMLLoader(getClass().getResource("MainPage.fxml"));
         topBar.setController(this);
         centerPart.setController(this);
+
         Parent top;
         Parent center;
         try {
@@ -52,29 +50,51 @@ public class MainPageController {
         cipherButton.setOnAction(this::cipher);
         decipherButton.setOnAction(this::deCipher);
         accountButton.setOnAction(actionEvent -> account());
-        achievementButton.setOnAction(actionEvent -> usersKeys());
+        keyButton.setOnAction(actionEvent -> usersKeys());
+        homeButton.setOnAction(actionEvent -> home());
 
         borderPane.setCenter(center);
         borderPane.setTop(top);
+        borderPane.setRight(rightPart);
+        rightPart.setVisible(true);
+        rightPart.setDisable(false);
+
+        Node[] home = {borderPane.getTop(), borderPane.getCenter(), borderPane.getLeft(),
+                borderPane.getRight()};
+        paneManager.setHomePage(home);
     }
 
     public void logOut() {
-        borderPane.setTop(topBar);
-        borderPane.setCenter(centerPart);
+        Node[] startPage = paneManager.getStartPage();
+
+        if (borderPane.getRight() == null && borderPane.getLeft() == null) {
+            borderPane.setRight(startPage[3]);
+            borderPane.setLeft(startPage[2]);
+        }
+
+        borderPane.getRight().setVisible(false);
+        borderPane.getRight().setDisable(true);
+
+        borderPane.setTop(startPage[0]);
+        borderPane.setCenter(startPage[1]);
+    }
+
+    public void home(){
+        Node[] home = paneManager.getHomePage();
+        borderPane.setTop(home[0]);
+        borderPane.setCenter(home[1]);
+        borderPane.setLeft(home[2]);
+        borderPane.setRight(home[3]);
     }
 
     public void account() {
-        paneManager.next(borderPane);
-        User user = User.getInstance();
-        try {
-            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("AccountPage.fxml")));
-            Parent node = loader.load();
-            AccountController accountController = loader.getController();
-            accountController.setUserName(user.getName());
-            borderPane.setCenter(node);
-        } catch (IOException e){
-            System.out.println(e.getMessage());
-        }
+        paneManager.saveCurrentNodes(borderPane.getTop());
+        paneManager.saveCurrentNodes(borderPane.getCenter());
+        paneManager.saveCurrentNodes(borderPane.getLeft());
+        paneManager.saveCurrentNodes(borderPane.getRight());
+
+        nullify();
+        new AccountController();
     }
 
     public void achievement(){
@@ -82,18 +102,35 @@ public class MainPageController {
     }
 
     public void usersKeys(){
-        paneManager.next(borderPane);
-        new KeysPageController(borderPane);
+        paneManager.saveCurrentNodes(borderPane.getTop());
+        paneManager.saveCurrentNodes(borderPane.getCenter());
+        paneManager.saveCurrentNodes(borderPane.getLeft());
+        paneManager.saveCurrentNodes(borderPane.getRight());
+
+        nullify();
+        new KeysPageController();
     }
 
     public void cipher(ActionEvent event){
-        paneManager.next(borderPane);
+        paneManager.saveCurrentNodes(borderPane.getTop());
+        paneManager.saveCurrentNodes(borderPane.getCenter());
+        paneManager.saveCurrentNodes(borderPane.getLeft());
+        paneManager.saveCurrentNodes(borderPane.getRight());
         new CipherController(event);
     }
 
     public void deCipher(ActionEvent event){
-        paneManager.next(borderPane);
+        paneManager.saveCurrentNodes(borderPane.getTop());
+        paneManager.saveCurrentNodes(borderPane.getCenter());
+        paneManager.saveCurrentNodes(borderPane.getLeft());
+        paneManager.saveCurrentNodes(borderPane.getRight());
         new DeCipherController(event);
     }
+
+    private void nullify(){
+        borderPane.setRight(null);
+        borderPane.setLeft(null);
+    }
+
 
 }

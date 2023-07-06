@@ -1,46 +1,46 @@
 package com.example.enigma;
 
 import com.example.enigma.Model.FileManager;
+import com.example.enigma.Model.IChangable;
 import com.example.enigma.Model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
-public class KeysPageController {
+public class KeysPageController implements IChangable {
 
     @FXML ScrollPane scrollPane;
     @FXML VBox keyVBox;
     @FXML Pane secretCodePane;
     @FXML TextField secretPass;
     @FXML Button submitButton;
+    @FXML ImageView backPointer;
+    @FXML Label errorInfo;
 
     private final PaneManager paneManager;
     private final User user;
-    private final FileManager csv;
+    private final BorderPane borderPane;
 
-    public KeysPageController(BorderPane borderPane){
+    public KeysPageController(){
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("KeysPage.fxml")));
         loader.setController(this);
         paneManager = PaneManager.getInstance();
         user = User.getInstance();
-        csv = new FileManager("src/main/resources/com/example/keys.csv");
+        borderPane = paneManager.getBorderPane();
 
         try {
             Parent node = loader.load();
@@ -50,6 +50,7 @@ public class KeysPageController {
         }
 
         submitButton.setOnAction(actionEvent -> submit());
+        backPointer.setOnMouseClicked(mouseEvent -> back());
         keys();
     }
 
@@ -101,50 +102,40 @@ public class KeysPageController {
     }
 
     private void submit(){
-        if (secretPass.getText().equals(user.getSecretCode())){
+        if (secretPass.getText().equals(user.getSecretCode()) && !secretPass.getText().isEmpty()){
             secretCodePane.setDisable(true);
             secretCodePane.setVisible(false);
+        } else if (secretPass.getText().isEmpty()) {
+            errorInfo.setText("Provide the secret code");
+        } else {
+            errorInfo.setText("Incorrect code!");
         }
     }
 
     private void deleteKey(){
-        try {
-            CSVParser csvParser = csv.readFromFile();
-
-            List<CSVRecord> records = csvParser.getRecords();
-
-            modifyRecord(records, String.valueOf(user.getUserId()));
-
-            csvParser.close();
-
-            File existingFile = new File("src/main/resources/com/example/keys.csv");
-            boolean deleted = existingFile.delete();
-
-            CSVPrinter csvPrinter = csv.writeToFile();
-
-            if (deleted){
-                for (CSVRecord record : records) {
-                    csvPrinter.printRecord(record);
-                }
-            } else {
-                System.out.println("Not deleted!");
-            }
-
-            csvPrinter.flush();
-            csvPrinter.close();
-            csvParser.close();
-
-        } catch (IOException e) {
-            System.out.println("Error occurred while writing to the CSV file: " + e.getMessage());
-        }
+        ModifyFiles modifyFiles = new ModifyFiles("src/main/resources/com/example/keys.csv");
+        List<CSVRecord> records = modifyFiles.readRecords();
+        modifyFiles.modifyRecords(records, this);
 
         keys();
     }
 
-    private void modifyRecord(List<CSVRecord> records, String id) throws IOException {
+    private void back(){
+        Node nodeRight = paneManager.getPreviousNodes();
+        Node nodeLeft = paneManager.getPreviousNodes();
+        Node nodeCenter = paneManager.getPreviousNodes();
+        Node nodeTop = paneManager.getPreviousNodes();
+        borderPane.setTop(nodeTop);
+        borderPane.setCenter(nodeCenter);
+        borderPane.setLeft(nodeLeft);
+        borderPane.setRight(nodeRight);
+    }
+
+    @Override
+    public void modify(List<CSVRecord> records) {
         for (int i = 0; i < records.size(); i++) {
             CSVRecord record = records.get(i);
-            if (record.get(0).equals(id)) {
+            if (record.get(0).equals(String.valueOf(user.getUserId()))) {
                 records.remove(record);
             }
         }

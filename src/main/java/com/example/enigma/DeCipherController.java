@@ -65,7 +65,7 @@ public class DeCipherController implements IEncodable{
     }
 
     private void back(MouseEvent event){
-        Parent root = (Parent) paneManager.previous();
+        Parent root = paneManager.getBorderPane();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = root.getScene();
         stage.setScene(scene);

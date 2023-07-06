@@ -1,6 +1,7 @@
 package com.example.enigma;
 
 import com.example.enigma.Model.Cipher;
+import com.example.enigma.Model.User;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.css.PseudoClass;
@@ -110,7 +111,7 @@ public class CipherController implements IEncodable{
     }
 
     private void back(MouseEvent event){
-        Parent root = (Parent) paneManager.previous();
+        Parent root = paneManager.getBorderPane();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = root.getScene();
         stage.setScene(scene);
