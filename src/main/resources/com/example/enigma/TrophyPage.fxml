@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.SepiaTone?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="1003.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1003.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="goingBack" fitHeight="50.0" fitWidth="50.0" layoutX="29.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../pictures/backArrow.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <SepiaTone>
+                     <input>
+                        <InnerShadow />
+                     </input>
+                  </SepiaTone>
+               </effect>
+            </ImageView>
+            <Pane fx:id="cipherTrophy" disable="true" layoutX="400.0" layoutY="107.0" prefHeight="704.0" prefWidth="270.0">
+               <children>
+                  <Pane layoutX="65.0" layoutY="21.0" prefHeight="571.0" prefWidth="143.0" style="-fx-background-color: linear-gradient(to right, #50c9c3, #96deda);">
+                     <effect>
+                        <DropShadow>
+                           <input>
+                              <InnerShadow />
+                           </input>
+                        </DropShadow>
+                     </effect>
+                     <children>
+                        <Label alignment="CENTER" layoutX="4.0" layoutY="304.0" prefHeight="68.0" prefWidth="143.0" text="20">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="4.0" layoutY="358.0" prefHeight="68.0" prefWidth="143.0" text="Ciphers">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="98.0" prefHeight="68.0" prefWidth="143.0" text="Enigma">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="156.0" prefHeight="68.0" prefWidth="143.0" text="Master">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="66.0" layoutY="514.0" prefHeight="154.0" prefWidth="154.0" rotate="45.0" style="-fx-background-color: linear-gradient(to bottom, #141e30, #243b55);">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.0941176488995552" green="0.4627451002597809" blue="0.8549019694328308" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <children>
+                        <ImageView fx:id="cipherImage" fitHeight="100.0" fitWidth="100.0" layoutX="31.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" rotate="-45.0">
+                           <image>
+                              <Image url="@../pictures/lock.png" />
+                           </image>
+                           <effect>
+                              <Shadow />
+                           </effect>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.7763158082962036" green="0.17610867321491241" blue="0.17610867321491241" />
+                     </color>
+                     <input>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.5789473652839661" green="0.04288499057292938" blue="0.04288499057292938" />
+                           </color>
+                        </DropShadow>
+                     </input>
+                  </InnerShadow>
+               </effect>
+            </Pane>
+            <Pane fx:id="keyTrophy" disable="true" layoutX="860.0" layoutY="196.0" prefHeight="704.0" prefWidth="270.0">
+               <children>
+                  <Pane layoutX="65.0" layoutY="21.0" prefHeight="571.0" prefWidth="143.0" style="-fx-background-color: linear-gradient(to right, #50c9c3, #96deda);">
+                     <effect>
+                        <DropShadow>
+                           <input>
+                              <InnerShadow />
+                           </input>
+                        </DropShadow>
+                     </effect>
+                     <children>
+                        <Label alignment="CENTER" layoutX="4.0" layoutY="304.0" prefHeight="68.0" prefWidth="143.0" text="20">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="4.0" layoutY="358.0" prefHeight="68.0" prefWidth="143.0" text="Keys">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="98.0" prefHeight="68.0" prefWidth="143.0" text="Key">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="156.0" prefHeight="68.0" prefWidth="143.0" text="Sorcerer">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="66.0" layoutY="514.0" prefHeight="154.0" prefWidth="154.0" rotate="45.0" style="-fx-background-color: linear-gradient(to bottom, #141e30, #243b55);">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.0941176488995552" green="0.4627451002597809" blue="0.8549019694328308" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <children>
+                        <ImageView fx:id="keyImage" fitHeight="100.0" fitWidth="100.0" layoutX="31.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" rotate="-45.0">
+                           <image>
+                              <Image url="@../pictures/key.png" />
+                           </image>
+                           <effect>
+                              <Shadow />
+                           </effect>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.19261695444583893" green="0.6710526347160339" blue="0.3441215753555298" />
+                     </color>
+                     <input>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.3009868562221527" green="0.7105262875556946" blue="0.16447368264198303" />
+                           </color>
+                        </DropShadow>
+                     </input>
+                  </InnerShadow>
+               </effect>
+            </Pane>
+            <Pane fx:id="decipherTrophy" disable="true" layoutX="1300.0" layoutY="107.0" prefHeight="704.0" prefWidth="270.0">
+               <children>
+                  <Pane layoutX="65.0" layoutY="21.0" prefHeight="571.0" prefWidth="143.0" style="-fx-background-color: linear-gradient(to right, #50c9c3, #96deda);">
+                     <effect>
+                        <DropShadow>
+                           <input>
+                              <InnerShadow />
+                           </input>
+                        </DropShadow>
+                     </effect>
+                     <children>
+                        <Label alignment="CENTER" layoutX="4.0" layoutY="304.0" prefHeight="68.0" prefWidth="143.0" text="20">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="4.0" layoutY="358.0" prefHeight="68.0" prefWidth="143.0" text="Deciphers">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="98.0" prefHeight="68.0" prefWidth="143.0" text="Enigma">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="156.0" prefHeight="68.0" prefWidth="143.0" text="Solver">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="66.0" layoutY="514.0" prefHeight="154.0" prefWidth="154.0" rotate="45.0" style="-fx-background-color: linear-gradient(to bottom, #141e30, #243b55);">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.0941176488995552" green="0.4627451002597809" blue="0.8549019694328308" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <children>
+                        <ImageView fx:id="decipherImage" fitHeight="100.0" fitWidth="100.0" layoutX="31.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" rotate="-45.0">
+                           <image>
+                              <Image url="@../pictures/openLock.png" />
+                           </image>
+                           <effect>
+                              <Shadow />
+                           </effect>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.6734283566474915" green="0.12061403691768646" blue="0.7236841917037964" />
+                     </color>
+                     <input>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.6669996976852417" green="0.16788499057292938" blue="0.6842105388641357" />
+                           </color>
+                        </DropShadow>
+                     </input>
+                  </InnerShadow>
+               </effect>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

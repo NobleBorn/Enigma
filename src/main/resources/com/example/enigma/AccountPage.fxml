@@ -1,8 +1,169 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.SepiaTone?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-
+<AnchorPane prefHeight="1003.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane layoutY="77.0" prefHeight="1003.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <center>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="456.0" prefWidth="879.0" style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" stylesheets="@../css/ButtonCSS.css" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField fx:id="userName" disable="true" layoutX="237.0" layoutY="63.0" prefHeight="25.0" prefWidth="202.0">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </InnerShadow>
+                     </effect>
+                  </TextField>
+                  <Label alignment="CENTER" layoutX="78.0" layoutY="63.0" prefHeight="30.0" prefWidth="103.0" text="Username:" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="78.0" layoutY="164.0" prefHeight="30.0" prefWidth="137.0" text="Old password:" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="oldPassword" layoutX="237.0" layoutY="164.0" prefHeight="33.0" prefWidth="202.0">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </InnerShadow>
+                     </effect>
+                  </TextField>
+                  <Label alignment="CENTER" layoutX="78.0" layoutY="209.0" prefHeight="30.0" prefWidth="137.0" text="New password:" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="newPassword" layoutX="237.0" layoutY="209.0" prefHeight="25.0" prefWidth="202.0">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </InnerShadow>
+                     </effect>
+                  </TextField>
+                  <Button fx:id="changePass" layoutX="237.0" layoutY="269.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="202.0" text="Change password" />
+                  <Label alignment="CENTER" layoutX="466.0" layoutY="209.0" prefHeight="30.0" prefWidth="118.0" text="New code:" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="newCode" layoutX="597.0" layoutY="209.0" prefHeight="25.0" prefWidth="202.0">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </InnerShadow>
+                     </effect>
+                  </TextField>
+                  <Button fx:id="changeCode" layoutX="597.0" layoutY="269.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="202.0" text="Change code" />
+                  <Label fx:id="informationLabel" alignment="CENTER" layoutX="321.0" layoutY="372.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="281.0" textFill="#ff0d0d">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.7647058963775635" green="0.32156863808631897" blue="0.32156863808631897" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Label>
+                  <CheckBox fx:id="rememberSecret" alignment="CENTER" disable="true" layoutX="546.0" layoutY="63.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="285.0" text="Remember secret code" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <Glow />
+                     </effect>
+                  </CheckBox>
+                  <TextField fx:id="oldCode" layoutX="597.0" layoutY="164.0" prefHeight="25.0" prefWidth="202.0" promptText="Favorite Pokemon">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </InnerShadow>
+                     </effect>
+                  </TextField>
+                  <Label alignment="CENTER" layoutX="466.0" layoutY="164.0" prefHeight="30.0" prefWidth="118.0" text="Old code:" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.0941176488995552" green="0.4627451002597809" blue="0.8549019694328308" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Pane>
+         </center>
+         <top>
+            <Pane prefHeight="79.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="backImage" fitHeight="50.0" fitWidth="50.0" layoutX="29.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../pictures/backArrow.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <SepiaTone>
+                           <input>
+                              <InnerShadow />
+                           </input>
+                        </SepiaTone>
+                     </effect>
+                  </ImageView>
+               </children>
+            </Pane>
+         </top>
+      </BorderPane>
+   </children>
 </AnchorPane>

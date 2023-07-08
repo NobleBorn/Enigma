@@ -6,17 +6,18 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="parentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.enigma.LogInController">
+<AnchorPane fx:id="parentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.enigma.Controller.LogInController">
    <children>
-      <BorderPane fx:id="borderPane" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane fx:id="borderPane" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" stylesheets="@../css/ButtonCSS.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
             <Pane fx:id="logInPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="448.0" prefWidth="879.0" style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" BorderPane.alignment="CENTER">
                <effect>
@@ -34,10 +35,20 @@
                   </TextField>
                   <Button fx:id="logInButton" layoutX="399.0" layoutY="305.0" mnemonicParsing="false" onAction="#logIn" prefHeight="48.0" prefWidth="163.0" text="Login">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="Arial Bold" size="18.0" />
                      </font>
                      <effect>
-                        <InnerShadow />
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="0.10980392247438431" green="0.6313725709915161" blue="0.7803921699523926" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="0.11764705926179886" green="0.6470588445663452" blue="0.843137264251709" />
+                           </color></InnerShadow>
                      </effect>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -78,26 +89,58 @@
                         <Font name="Apple Chancery" size="35.0" />
                      </font>
                      <effect>
-                        <Glow level="0.7" />
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="0.9953703880310059" blue="0.9953703880310059" />
+                           </color>
+                        </InnerShadow>
                      </effect>
                   </Label>
                   <Button fx:id="signUpMenuButton" alignment="CENTER" layoutX="1760.0" layoutY="18.0" mnemonicParsing="false" onAction="#signUpPage" prefHeight="42.0" prefWidth="119.0" text="Sign Up">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
-                     <effect>
-                        <InnerShadow />
-                     </effect>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="0.10980392247438431" green="0.6313725709915161" blue="0.7803921699523926" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="0.11764705926179886" green="0.6470588445663452" blue="0.843137264251709" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
                   </Button>
                   <Button fx:id="logInMenuButton" alignment="CENTER" layoutX="1594.0" layoutY="18.0" mnemonicParsing="false" onAction="#logInPage" prefHeight="42.0" prefWidth="119.0" text="Login">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                      <effect>
-                        <InnerShadow />
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="0.10980392247438431" green="0.6313725709915161" blue="0.7803921699523926" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="0.11764705926179886" green="0.6470588445663452" blue="0.843137264251709" />
+                           </color></InnerShadow>
                      </effect>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -105,6 +148,733 @@
                   </Button>
                </children>
             </Pane>
-         </top></BorderPane>
+         </top>
+         <right>
+            <Pane fx:id="messagePane" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="448.0" prefWidth="500.0" visible="false" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="message1" alignment="CENTER" layoutX="60.0" layoutY="40.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="W" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message2" alignment="CENTER" layoutX="95.0" layoutY="40.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="E" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="1.0" green="0.9861111044883728" blue="0.9861111044883728" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message3" alignment="CENTER" layoutX="130.0" layoutY="40.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="L" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message4" alignment="CENTER" layoutX="165.0" layoutY="40.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="C" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="0.9768518805503845" blue="0.9768518805503845" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message5" alignment="CENTER" layoutX="200.0" layoutY="40.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="O" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message7" alignment="CENTER" layoutX="270.0" layoutY="40.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="E" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message6" alignment="CENTER" layoutX="235.0" layoutY="40.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="M" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message8" alignment="CENTER" layoutX="109.0" layoutY="120.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="D" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message9" alignment="CENTER" layoutX="144.0" layoutY="120.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="E" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message10" alignment="CENTER" layoutX="179.0" layoutY="120.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="A" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message11" alignment="CENTER" layoutX="214.0" layoutY="120.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="R" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message12" alignment="CENTER" layoutX="275.0" layoutY="120.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="E" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message13" alignment="CENTER" layoutX="275.0" layoutY="150.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="N" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message14" alignment="CENTER" layoutX="275.0" layoutY="180.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="I" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message15" alignment="CENTER" layoutX="275.0" layoutY="210.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="G" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message16" alignment="CENTER" layoutX="275.0" layoutY="240.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="M" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message17" alignment="CENTER" layoutX="275.0" layoutY="270.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="A" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message18" alignment="CENTER" layoutX="330.0" layoutY="120.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="U" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="0.9907407164573669" blue="0.9907407164573669" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message19" alignment="CENTER" layoutX="365.0" layoutY="120.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="S" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message20" alignment="CENTER" layoutX="400.0" layoutY="120.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="E" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="0.9953703880310059" blue="0.9953703880310059" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message21" alignment="CENTER" layoutX="435.0" layoutY="120.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="R" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message111" alignment="CENTER" layoutX="65.0" layoutY="355.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="-" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message22" alignment="CENTER" layoutX="100.0" layoutY="355.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="I" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message23" alignment="CENTER" layoutX="135.0" layoutY="355.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="N" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message24" alignment="CENTER" layoutX="170.0" layoutY="355.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="V" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message25" alignment="CENTER" layoutX="205.0" layoutY="355.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="E" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message26" alignment="CENTER" layoutX="240.0" layoutY="355.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="N" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message27" alignment="CENTER" layoutX="275.0" layoutY="355.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="T" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message28" alignment="CENTER" layoutX="310.0" layoutY="355.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="O" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message29" alignment="CENTER" layoutX="345.0" layoutY="355.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="R" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+                  <Label fx:id="message30" alignment="CENTER" layoutX="380.0" layoutY="355.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="." textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Label>
+               </children>
+            </Pane>
+         </right>
+         <left>
+            <Pane fx:id="trophyPane" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="448.0" prefWidth="500.0" visible="false" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane layoutX="200.0" layoutY="20.0" prefHeight="259.0" prefWidth="78.0" style="-fx-background-color: linear-gradient(to right, #007991, #78ffd6);">
+                     <children>
+                        <Label alignment="CENTER" layoutY="38.0" prefHeight="44.0" prefWidth="78.0" text="Account">
+                           <font>
+                              <Font name="Arial Bold" size="17.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
+                        <Label alignment="CENTER" layoutY="86.0" prefHeight="44.0" prefWidth="78.0" text="Created">
+                           <font>
+                              <Font name="Arial Bold" size="17.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
+                     </children>
+                     <effect>
+                        <DropShadow spread="0.21">
+                           <input>
+                              <InnerShadow />
+                           </input>
+                        </DropShadow>
+                     </effect>
+                  </Pane>
+                  <Pane layoutX="190.0" layoutY="258.0" prefHeight="101.0" prefWidth="98.0" rotate="45.0" style="-fx-background-color: linear-gradient(to bottom, #141e30, #243b55);">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.0941176488995552" green="0.4627451002597809" blue="0.8549019694328308" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="27.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" rotate="-45.0">
+                           <image>
+                              <Image url="@../pictures/accountCreated.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Button fx:id="trophyButton" layoutX="135.0" layoutY="390.0" mnemonicParsing="false" onAction="#trophies" prefHeight="37.0" prefWidth="204.0" text="Trophies" />
+               </children></Pane>
+         </left></BorderPane>
    </children>
 </AnchorPane>
