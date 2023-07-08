@@ -44,7 +44,7 @@
                            </font>
                         </TextField>
                         <Button fx:id="submitButton" layoutX="284.0" layoutY="201.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="232.0" text="Submit" />
-                        <CheckBox layoutX="228.0" layoutY="287.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="271.0" text="Remember me" textFill="WHITE">
+                        <CheckBox fx:id="rememberMe" layoutX="228.0" layoutY="287.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="271.0" text="Remember me" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>

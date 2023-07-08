@@ -145,7 +145,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
          <image>
-            <Image url="@../pictures/key.png" />
+            <Image url="@../pictures/keys.png" />
          </image>
       </ImageView>
       <ImageView disable="true" fitHeight="33.0" fitWidth="40.0" layoutX="1410.0" layoutY="21.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
