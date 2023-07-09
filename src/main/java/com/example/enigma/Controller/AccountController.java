@@ -1,6 +1,6 @@
 package com.example.enigma.Controller;
 
-import com.example.enigma.Model.Interfaces.IChangable;
+import com.example.enigma.Model.Interfaces.IChangeable;
 import com.example.enigma.Model.Client.SecretCode;
 import com.example.enigma.Model.Client.User;
 import com.example.enigma.Model.ModifyFiles;
@@ -23,7 +23,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-public class AccountController implements IChangable {
+/**
+ * The AccountController class manages the account page functionality and user interface events in the Enigma application.
+ * @see IChangeable
+ */
+public class AccountController implements IChangeable {
 
     @FXML TextField userName;
     @FXML TextField oldPassword;
@@ -44,6 +48,9 @@ public class AccountController implements IChangable {
     private final ModifyFiles modifyFiles;
     private final ModifyFiles modifyRemember;
 
+    /**
+     * Constructs an AccountController object and initializes the account page of the Enigma application.
+     */
     public AccountController() {
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(
                 getClass().getResource("/com/example/enigma/AccountPage.fxml")));
@@ -63,11 +70,7 @@ public class AccountController implements IChangable {
             System.out.println(e.getMessage());
         }
 
-        backImage.setOnMouseClicked(mouseEvent -> back());
-        userName.setText(user.getName());
-        changePass.setOnAction(actionEvent -> changePassword());
-        changeCode.setOnAction(actionEvent -> changeCode());
-        rememberSecret.setOnAction(actionEvent -> changeRememberUser());
+        fxmlActions();
 
         if (user.isRemembered()){
             rememberSecret.setDisable(false);
@@ -75,6 +78,9 @@ public class AccountController implements IChangable {
         }
     }
 
+    /**
+     * Changes the user's password.
+     */
     public void changePassword() {
         boolean validPass = passWordValidator(newPassword.getText());
         List<CSVRecord> records = modifyFiles.readRecords();
@@ -98,6 +104,9 @@ public class AccountController implements IChangable {
         }
     }
 
+    /**
+     * Changes the user's secret code.
+     */
     public void changeCode() {
         if (!newCode.getText().isEmpty() && !oldCode.getText().isEmpty()) {
             if (oldCode.getText().equals(user.getSecretCode())){
@@ -119,16 +128,28 @@ public class AccountController implements IChangable {
         }
     }
 
+    /**
+     * Changes the state of remembering the user.
+     */
     private void changeRememberUser(){
         currentOperation = operation[1];
         List<CSVRecord> records = modifyRemember.readRecords();
         modifyRemember.modifyRecords(records, this);
     }
 
+    /**
+     * Validates the password based on the specified regular expression pattern.
+     *
+     * @param text The password string to validate.
+     * @return {@code true} if the password is valid, {@code false} otherwise.
+     */
     private boolean passWordValidator(String text) {
         return text.matches("[a-zA-Z0-9!@#$%^&*()-=_+\\\\[\\\\]{}|;':\\\",./<>?\\s]+");
     }
 
+    /**
+     * Navigates back to the previous page.
+     */
     private void back(){
         Node nodeRight = paneManager.getPreviousNodes();
         Node nodeLeft = paneManager.getPreviousNodes();
@@ -140,6 +161,10 @@ public class AccountController implements IChangable {
         borderPane.setRight(nodeRight);
     }
 
+    /**
+     * Modifies records of CSV file based on which operation it is
+     * @param records The list of CSV records to be modified.
+     */
     @Override
     public void modify(List<CSVRecord> records) {
         if (currentOperation.equals(operation[0])){
@@ -153,8 +178,23 @@ public class AccountController implements IChangable {
 
     }
 
+    /**
+     * Changes the style of the information label.
+     */
     private void changeStyle(){
         informationLabel.setStyle("-fx-text-fill: White; -fx-effect: innershadow(gaussian, #ffffff, 10, 0, 0, 0);" +
                 " -fx-effect: dropshadow(gaussian, #ffffff, 10, 0, 0, 0);");
     }
+
+    /**
+     * Sets the actions for the FXML nodes
+     */
+    private void fxmlActions(){
+        backImage.setOnMouseClicked(mouseEvent -> back());
+        userName.setText(user.getName());
+        changePass.setOnAction(actionEvent -> changePassword());
+        changeCode.setOnAction(actionEvent -> changeCode());
+        rememberSecret.setOnAction(actionEvent -> changeRememberUser());
+    }
 }
+

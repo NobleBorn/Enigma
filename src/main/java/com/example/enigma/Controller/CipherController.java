@@ -24,6 +24,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.HashMap;
 
+/**
+ * The `CipherController` class handles the encryption functionality and manages the cipher page.
+ * It allows users to enter text and a cipher key, perform encryption, copy/paste text, and control the virtual keyboard.
+ * @see IEncodable
+ * @see ITimer
+ */
 public class CipherController implements IEncodable, ITimer {
 
     @FXML ImageView backButton;
@@ -83,6 +89,11 @@ public class CipherController implements IEncodable, ITimer {
     private final String[] operation = {"copy", "paste"};
     private String currentOperation;
 
+    /**
+     * Constructs a CipherController object and initializes the cipher page of the Enigma application.
+     *
+     * @param event The action event that triggered the cipher page.
+     */
     public CipherController(ActionEvent event){
         paneManager = PaneManager.getInstance();
         copyPaste = CopyPaste.getInstance();
@@ -106,11 +117,19 @@ public class CipherController implements IEncodable, ITimer {
         setupKeyHandlers();
     }
 
+    /**
+     * Start of the encryption process when the cipher text button is clicked.
+     */
     private void cipher(){
         TextValidator textValidator = new TextValidator(cipherText.getText(), cipherKey.getText());
         textValidator.validator(errorMessage, this);
     }
 
+    /**
+     * Navigates back to the previous page.
+     *
+     * @param event The mouse event that triggered the back action.
+     */
     private void back(MouseEvent event){
         Parent root = paneManager.getBorderPane();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -119,6 +138,9 @@ public class CipherController implements IEncodable, ITimer {
         stage.show();
     }
 
+    /**
+     * Populates the hashmap with button objects and their associated key codes.
+     */
     private void populateButtons(){
         buttons.put(KeyCode.SPACE, spaceButton);
         buttons.put(KeyCode.Q, qButton);
@@ -156,6 +178,9 @@ public class CipherController implements IEncodable, ITimer {
         buttons.put(KeyCode.ESCAPE, hideButton);
     }
 
+    /**
+     * Sets the actions for each button in the virtual keyboard.
+     */
     private void buttonActions(){
         for (Button button : buttons.values()){
             setButtons(button);
@@ -169,6 +194,11 @@ public class CipherController implements IEncodable, ITimer {
         pasteButton.setOnAction(actionEvent -> paste());
     }
 
+    /**
+     * Sets the actions for some special buttons.
+     *
+     * @param button The button to set the action for.
+     */
     private void setButtons(Button button){
         if (button != clearButton && button != enterButton && button != lockButton && button != hideButton
                 && button != spaceButton){
@@ -187,6 +217,11 @@ public class CipherController implements IEncodable, ITimer {
         }
     }
 
+    /**
+     * Handles the key press event for the virtual keyboard.
+     *
+     * @param buttonText The text associated with the pressed key.
+     */
     private void keyBoard(String buttonText){
         String text = cipherText.getText();
         if (lockOff){
@@ -196,12 +231,18 @@ public class CipherController implements IEncodable, ITimer {
         }
     }
 
+    /**
+     * Clears the last character from the cipher text.
+     */
     private void clearText(){
         String text = cipherText.getText();
         String newText = text.substring(0, text.length()-1);
         cipherText.setText(newText);
     }
 
+    /**
+     * Hides the virtual keyboard by hiding all buttons except the show button.
+     */
     private void hideKeyBoard(){
         for (Button button : buttons.values()){
             button.setVisible(false);
@@ -209,6 +250,9 @@ public class CipherController implements IEncodable, ITimer {
         showButton.setVisible(true);
     }
 
+    /**
+     * Shows the virtual keyboard by making all buttons visible.
+     */
     private void showKeyBoard(){
         for (Button button : buttons.values()){
             button.setVisible(true);
@@ -216,6 +260,9 @@ public class CipherController implements IEncodable, ITimer {
         showButton.setVisible(false);
     }
 
+    /**
+     * Toggles the capital lock state by changing the visibility of the lock indicator.
+     */
     private void capLock(){
         if (lockOff){
             setLock.setVisible(false);
@@ -226,6 +273,9 @@ public class CipherController implements IEncodable, ITimer {
         }
     }
 
+    /**
+     * Sets up the key handlers for the cipher text and cipher key fields.
+     */
     private void setupKeyHandlers() {
         cipherText.addEventFilter(KeyEvent.KEY_PRESSED, this::handleKeyPressed);
         cipherText.setOnKeyReleased(this::handleKeyReleased);
@@ -234,6 +284,11 @@ public class CipherController implements IEncodable, ITimer {
         cipherKey.setOnKeyReleased(this::handleKeyReleased);
     }
 
+    /**
+     * Handles the key press event for the virtual keyboard buttons.
+     *
+     * @param event The key event that was triggered.
+     */
     private void handleKeyPressed(KeyEvent event) {
         Button pressed = buttons.get(event.getCode());
         if (pressed != null) {
@@ -245,6 +300,11 @@ public class CipherController implements IEncodable, ITimer {
         }
     }
 
+    /**
+     * Handles the key release event for the virtual keyboard buttons.
+     *
+     * @param event The key event that was triggered.
+     */
     private void handleKeyReleased(KeyEvent event) {
         Button pressed = buttons.get(event.getCode());
         if (pressed != null) {
@@ -252,34 +312,38 @@ public class CipherController implements IEncodable, ITimer {
         }
     }
 
-
+    /**
+     * Writes the encoded text on the text area
+     * Adds to user trophy score
+     */
     @Override
     public void ciphering() {
         errorMessage.setText("");
         Cipher cipher = new Cipher(cipherText.getText(), cipherKey.getText());
         cipherText.setText(cipher.getCodedText());
 
-        Trophy trophy = new Trophy();
-
-        if (trophy.getCipherTrophy() < 20){
-            trophy.updateTrophy(1);
-        }
-
-        if (trophy.getKeyTrophy() < 20){
-            trophy.updateTrophy(2);
-        }
+        addToUserTrophy();
     }
 
+    /**
+     * Removes the text from the text area.
+     */
     private void removeText(){
         cipherText.setText("");
     }
 
+    /**
+     * Copies the cipher text to the clipboard.
+     */
     private void copy(){
         currentOperation = operation[0];
         copyPaste.copyText(cipherText.getText());
         copyPaste.countTime(this);
     }
 
+    /**
+     * Pastes the text from the clipboard to the cipher text area.
+     */
     private void paste(){
         currentOperation = operation[1];
         cipherText.setText(copyPaste.pasteText());
@@ -287,6 +351,9 @@ public class CipherController implements IEncodable, ITimer {
 
     }
 
+    /**
+     * Operations during timer
+     */
     @Override
     public void duringTimer() {
         if (currentOperation.equals(operation[0])){
@@ -298,6 +365,9 @@ public class CipherController implements IEncodable, ITimer {
         }
     }
 
+    /**
+     * Operations after timer
+     */
     @Override
     public void afterTimer() {
         infoLabel.setText("");
@@ -306,6 +376,21 @@ public class CipherController implements IEncodable, ITimer {
             pasteButton.setDisable(false);
         } else {
             copyButton.setDisable(false);
+        }
+    }
+
+    /**
+     * Raise user trophy score
+     */
+    private void addToUserTrophy(){
+        Trophy trophy = new Trophy();
+
+        if (trophy.getCipherTrophy() < 20){
+            trophy.updateTrophy(1);
+        }
+
+        if (trophy.getKeyTrophy() < 20){
+            trophy.updateTrophy(2);
         }
     }
 }

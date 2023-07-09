@@ -19,6 +19,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * The `DeCipherController` class handles the decryption functionality and manages the decipher page.
+ * It allows users to enter text and a decipher key, perform decryption and copy/paste text
+ * @see IEncodable
+ * @see ITimer
+ */
 public class DeCipherController implements IEncodable, ITimer {
 
     @FXML ImageView backArrow;
@@ -38,6 +44,11 @@ public class DeCipherController implements IEncodable, ITimer {
     private final String[] operation = {"copy", "paste"};
     private String currentOperation;
 
+    /**
+     * Constructs a DeCipherController object and initializes the decipher page of the Enigma application.
+     *
+     * @param event The action event that triggered the decipher page.
+     */
     public DeCipherController(ActionEvent event){
         paneManager = PaneManager.getInstance();
         copyPaste = CopyPaste.getInstance();
@@ -58,6 +69,9 @@ public class DeCipherController implements IEncodable, ITimer {
         }
     }
 
+    /**
+     * Sets the actions for FXML nodes
+     */
     private void setActions(){
         backArrow.setOnMouseClicked(this::back);
         deCipherButton.setOnAction(actionEvent -> deCipher());
@@ -66,6 +80,11 @@ public class DeCipherController implements IEncodable, ITimer {
         pasteButton.setOnAction(actionEvent -> paste());
     }
 
+    /**
+     * Navigates back to the previous page.
+     *
+     * @param event The mouse event that triggered the back action.
+     */
     private void back(MouseEvent event){
         Parent root = paneManager.getBorderPane();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -74,40 +93,55 @@ public class DeCipherController implements IEncodable, ITimer {
         stage.show();
     }
 
+    /**
+     * Start of the decryption process when decipher text button is clicked.
+     */
     private void deCipher(){
         TextValidator textValidator = new TextValidator(deCipherText.getText(), deCipherKey.getText());
         textValidator.validator(errorLabel, this);
     }
 
+    /**
+     * Writes the decoded text on the text area
+     * Adds to user trophy score
+     */
     @Override
     public void ciphering() {
         errorLabel.setText("");
         DeCipher deCipher = new DeCipher(deCipherText.getText(), deCipherKey.getText());
         deCipherText.setText(deCipher.getDeCodedText());
 
-        Trophy trophy = new Trophy();
-
-        if (trophy.getDecipherTrophy() < 20){
-            trophy.updateTrophy(3);
-        }
+        addToUserTrophy();
     }
 
+    /**
+     * Removes the text from the text area.
+     */
     private void removeText(){
         deCipherText.setText("");
     }
 
+    /**
+     * Copies the cipher text to the clipboard.
+     */
     private void copy(){
         currentOperation = operation[0];
         copyPaste.copyText(deCipherText.getText());
         copyPaste.countTime(this);
     }
 
+    /**
+     * Pastes the text from the clipboard to the cipher text area.
+     */
     private void paste(){
         currentOperation = operation[1];
         deCipherText.setText(copyPaste.pasteText());
         copyPaste.countTime(this);
     }
 
+    /**
+     * Operations during timer
+     */
     @Override
     public void duringTimer() {
         if (currentOperation.equals(operation[0])){
@@ -119,6 +153,9 @@ public class DeCipherController implements IEncodable, ITimer {
         }
     }
 
+    /**
+     * Operations after timer
+     */
     @Override
     public void afterTimer() {
         infoLabel.setText("");
@@ -127,6 +164,17 @@ public class DeCipherController implements IEncodable, ITimer {
             pasteButton.setDisable(false);
         } else {
             copyButton.setDisable(false);
+        }
+    }
+
+    /**
+     * Raise user trophy score
+     */
+    private void addToUserTrophy(){
+        Trophy trophy = new Trophy();
+
+        if (trophy.getDecipherTrophy() < 20){
+            trophy.updateTrophy(3);
         }
     }
 }

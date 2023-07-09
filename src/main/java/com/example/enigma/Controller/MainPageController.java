@@ -13,6 +13,9 @@ import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 
+/**
+ * The MainPageController class manages the main page functionality and user interface events in the Enigma application.
+ */
 public class MainPageController {
 
     @FXML Button logOutButton;
@@ -25,6 +28,11 @@ public class MainPageController {
     private final PaneManager paneManager;
     private final BorderPane borderPane;
 
+    /**
+     * Constructs a MainPageController object and initializes the main page of the Enigma application.
+     *
+     * @throws IOException if an error occurs during loading of the FXML files.
+     */
     public MainPageController() throws IOException {
         paneManager = PaneManager.getInstance();
         borderPane = paneManager.getBorderPane();
@@ -47,12 +55,7 @@ public class MainPageController {
             throw new RuntimeException(exception);
         }
 
-        logOutButton.setOnAction(actionEvent -> logOut());
-        cipherButton.setOnAction(this::cipher);
-        decipherButton.setOnAction(this::deCipher);
-        accountButton.setOnAction(actionEvent -> account());
-        keyButton.setOnAction(actionEvent -> usersKeys());
-        homeButton.setOnAction(actionEvent -> home());
+        fxmlActions();
 
         borderPane.setCenter(center);
         borderPane.setTop(top);
@@ -69,6 +72,9 @@ public class MainPageController {
         paneManager.setHomePage(home);
     }
 
+    /**
+     * Logs out the user and returns to the start page of the Enigma application.
+     */
     public void logOut() {
         Node[] startPage = paneManager.getStartPage();
 
@@ -87,7 +93,10 @@ public class MainPageController {
         borderPane.setCenter(startPage[1]);
     }
 
-    public void home(){
+    /**
+     * Navigates to the home page of the Enigma application.
+     */
+    public void home() {
         Node[] home = paneManager.getHomePage();
         borderPane.setTop(home[0]);
         borderPane.setCenter(home[1]);
@@ -95,46 +104,74 @@ public class MainPageController {
         borderPane.setRight(home[3]);
     }
 
+    /**
+     * Navigates to the account page of the Enigma application.
+     */
     public void account() {
-        paneManager.saveCurrentNodes(borderPane.getTop());
-        paneManager.saveCurrentNodes(borderPane.getCenter());
-        paneManager.saveCurrentNodes(borderPane.getLeft());
-        paneManager.saveCurrentNodes(borderPane.getRight());
+        saveNodes();
 
         nullify();
         new AccountController();
     }
 
-    public void usersKeys(){
-        paneManager.saveCurrentNodes(borderPane.getTop());
-        paneManager.saveCurrentNodes(borderPane.getCenter());
-        paneManager.saveCurrentNodes(borderPane.getLeft());
-        paneManager.saveCurrentNodes(borderPane.getRight());
+    /**
+     * Navigates to the user's keys page in the Enigma application.
+     */
+    public void usersKeys() {
+        saveNodes();
 
         nullify();
         new KeysPageController();
     }
 
-    public void cipher(ActionEvent event){
-        paneManager.saveCurrentNodes(borderPane.getTop());
-        paneManager.saveCurrentNodes(borderPane.getCenter());
-        paneManager.saveCurrentNodes(borderPane.getLeft());
-        paneManager.saveCurrentNodes(borderPane.getRight());
+    /**
+     * Navigates to cipher page in the Enigma application.
+     *
+     * @param event The action event associated with the cipher button.
+     */
+    public void cipher(ActionEvent event) {
+        saveNodes();
         new CipherController(event);
     }
 
-    public void deCipher(ActionEvent event){
-        paneManager.saveCurrentNodes(borderPane.getTop());
-        paneManager.saveCurrentNodes(borderPane.getCenter());
-        paneManager.saveCurrentNodes(borderPane.getLeft());
-        paneManager.saveCurrentNodes(borderPane.getRight());
+    /**
+     * Navigates to decipher page in the Enigma application.
+     *
+     * @param event The action event associated with the decipher button.
+     */
+    public void deCipher(ActionEvent event) {
+        saveNodes();
         new DeCipherController(event);
     }
 
-    private void nullify(){
+    /**
+     * Removes the right and left parts of the border pane, effectively nullifying them.
+     */
+    private void nullify() {
         borderPane.setRight(null);
         borderPane.setLeft(null);
     }
 
+    /**
+     * Saves the current nodes of the border pane into the panemanager.
+     */
+    private void saveNodes() {
+        paneManager.saveCurrentNodes(borderPane.getTop());
+        paneManager.saveCurrentNodes(borderPane.getCenter());
+        paneManager.saveCurrentNodes(borderPane.getLeft());
+        paneManager.saveCurrentNodes(borderPane.getRight());
+    }
 
+    /**
+     * Sets the action events for the FXML buttons.
+     */
+    private void fxmlActions() {
+        logOutButton.setOnAction(actionEvent -> logOut());
+        cipherButton.setOnAction(this::cipher);
+        decipherButton.setOnAction(this::deCipher);
+        accountButton.setOnAction(actionEvent -> account());
+        keyButton.setOnAction(actionEvent -> usersKeys());
+        homeButton.setOnAction(actionEvent -> home());
+    }
 }
+

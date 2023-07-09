@@ -7,6 +7,11 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
 
+/**
+ * The SignUpLogic class handles the logic for user sign-up process.
+ * It interacts with CSV files to create new user records, remember user settings,
+ * and initialize trophy records for new users.
+ */
 public class SignUpLogic {
 
     private final FileManager csvUser;
@@ -14,6 +19,14 @@ public class SignUpLogic {
     private final FileManager csvTrophy;
     private boolean userExists;
 
+    /**
+     * Constructs a SignUpLogic object with the provided user details.
+     *
+     * @param userName    The username entered by the user.
+     * @param passWord    The password entered by the user.
+     * @param secretCode  The secret code entered by the user.
+     * @throws IOException If an error occurs while accessing the CSV files.
+     */
     public SignUpLogic(String userName, String passWord, String secretCode) throws IOException {
         csvUser = new FileManager("src/main/resources/com/example/enigma/users.csv");
         csvRememberUSer = new FileManager("src/main/resources/com/example/enigma/rememberUser.csv");
@@ -31,6 +44,13 @@ public class SignUpLogic {
         }
     }
 
+    /**
+     * Checks if the username already exists in the user CSV file and returns the user ID.
+     * If the username exists, sets the {@code userExists} flag to true.
+     *
+     * @param userName The username to be checked.
+     * @return The user ID.
+     */
     private int userID(String userName){
         int id = 0;
 
@@ -54,6 +74,14 @@ public class SignUpLogic {
         return id;
     }
 
+    /**
+     * Adds a new user record to the user CSV file.
+     *
+     * @param id         The user ID.
+     * @param userName   The username.
+     * @param passWord   The password.
+     * @param secretCode The secret code.
+     */
     private void addNewUser(int id, String userName, String passWord, String secretCode){
         try (CSVPrinter csvPrinter = csvUser.writeToFile()){
 
@@ -64,6 +92,11 @@ public class SignUpLogic {
         }
     }
 
+    /**
+     * Sets the default value to remember user's secret code for the new user in remember user CSV file.
+     *
+     * @param id The user ID.
+     */
     private void remember(int id){
         try (CSVPrinter csvPrinter = csvRememberUSer.writeToFile()){
 
@@ -75,6 +108,11 @@ public class SignUpLogic {
         }
     }
 
+    /**
+     * Initializes the trophy records for the new user in the trophy CSV file.
+     *
+     * @param id The user ID.
+     */
     private void initialTrophy(int id){
         try (CSVPrinter csvPrinter = csvTrophy.writeToFile()){
 

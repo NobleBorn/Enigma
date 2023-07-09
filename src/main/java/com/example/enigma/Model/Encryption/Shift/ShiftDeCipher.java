@@ -1,19 +1,32 @@
 package com.example.enigma.Model.Encryption.Shift;
 
-import com.example.enigma.Model.Encryption.Shift.ShiftParent;
-
 import java.util.HashMap;
 
+/**
+ * The ShiftDeCipher class is a concrete implementation of the ShiftParent class.
+ * It performs a reverse shift cipher algorithm using a specified decipher key.
+ */
 public class ShiftDeCipher extends ShiftParent {
 
     private final HashMap<Character, Character> keys = new HashMap<>();
     private final String deCipherText;
 
+    /**
+     * Constructs a ShiftDeCipher object with the given decipher text and decipher key.
+     *
+     * @param deCipherText The text to be deciphered.
+     * @param deCipherKey  The decipher key used for the reverse shift cipher algorithm.
+     */
     public ShiftDeCipher(String deCipherText, String deCipherKey){
         this.deCipherText = deCipherText;
         switchUp(deCipherKey);
     }
 
+    /**
+     * Switches up the decipher key by rearranging the characters based on a specific pattern.
+     *
+     * @param key The current decipher key.
+     */
     @Override
     public void switchUp(String key) {
         String lower = key.toLowerCase();
@@ -28,6 +41,11 @@ public class ShiftDeCipher extends ShiftParent {
         keys.put(keyValues[0], keyValues[5]);
     }
 
+    /**
+     * Performs the reverse shift cipher operation on decipher text using the current decipher key.
+     *
+     * @return The deciphered text.
+     */
     @Override
     public String shiftCipher() {
         char[] shiftChar = deCipherText.toCharArray();

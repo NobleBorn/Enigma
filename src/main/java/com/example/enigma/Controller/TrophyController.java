@@ -10,6 +10,10 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
+/**
+ * The controller class for the TrophyPage.
+ * It manages the functionality related to trophies and handles user interactions.
+ */
 public class TrophyController {
 
     @FXML Pane cipherTrophy;
@@ -23,6 +27,10 @@ public class TrophyController {
     private final PaneManager paneManager;
     private final BorderPane borderPane;
 
+    /**
+     * Initializes a new instance of the TrophyController class.
+     * Sets up the necessary dependencies and loads the associated FXML file.
+     */
     public TrophyController(){
         paneManager = PaneManager.getInstance();
         borderPane = paneManager.getBorderPane();
@@ -41,6 +49,9 @@ public class TrophyController {
         lookUpTrophies();
     }
 
+    /**
+     * Handles the action of going back to the main page.
+     */
     private void back(){
         Node[] home = paneManager.getHomePage();
         borderPane.setTop(home[0]);
@@ -49,6 +60,10 @@ public class TrophyController {
         borderPane.setRight(home[3]);
     }
 
+    /**
+     * Looks up the trophies earned by the user and updates the UI accordingly.
+     * Enables and disables trophy panes based on the user's achievements.
+     */
     private void lookUpTrophies(){
         Trophy trophy = new Trophy();
 
@@ -67,6 +82,4 @@ public class TrophyController {
             decipherImage.setEffect(null);
         }
     }
-
-
 }

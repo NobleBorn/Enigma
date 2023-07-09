@@ -17,6 +17,10 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * The LogInController class handles the login functionality and user interface events related to login, signup,
+ * and user actions in the Enigma application.
+ */
 public class LogInController {
 
     @FXML TextField userNameField;
@@ -39,12 +43,18 @@ public class LogInController {
     private final Set<String> secretMessageIDs = Set.of("message12", "message13", "message14", "message15",
             "message16", "message17");
 
-
+    /**
+     * Constructs a LogInController object and initializes the PaneManager instance.
+     */
     public LogInController() {
         paneManager = PaneManager.getInstance();
         populateMap();
     }
 
+    /**
+     * Handles the login action when the login button is clicked.
+     * It verifies the entered username and password, and if valid, sets up the main page.
+     */
     public void logIn() {
         if (!userNameField.getText().isEmpty() && !passWordField.getText().isEmpty()){
             LogInLogic logInLogic = new LogInLogic(userNameField.getText(), passWordField.getText());
@@ -75,6 +85,11 @@ public class LogInController {
         }
     }
 
+    /**
+     * Handles the signup page transition when the signup button is clicked.
+     *
+     * @throws IOException if an error occurs while loading the signup page.
+     */
     public void signUpPage() throws IOException {
         paneManager.setBorderPane(borderPane);
         paneManager.saveCurrentNodes(borderPane.getCenter());
@@ -86,15 +101,26 @@ public class LogInController {
         borderPane.setCenter(node);
     }
 
+    /**
+     * Handles the transition back to the login page.
+     */
     public void logInPage() {
         borderPane.setCenter(paneManager.getPreviousNodes());
     }
 
+    /**
+     * Registers a new user when the signup button is clicked.
+     */
     public void registerUser() {
         SignUpController signUpController = new SignUpController(errorLabel);
         signUpController.registerUser(userNameSign, passWordSign, pokemonCode);
     }
 
+    /**
+     * Changes the message text and style when a secret message label is clicked.
+     *
+     * @param event The mouse event triggered by clicking a secret message label.
+     */
     public void changeMessage(MouseEvent event){
         Label sourceLabel = (Label) event.getTarget();
         String id = sourceLabel.getId();
@@ -103,6 +129,9 @@ public class LogInController {
         if (secretMessage.get(id) != null) sourceLabel.setText(String.valueOf(secretMessage.get(id)));
     }
 
+    /**
+     * Populates the secretMessage map with the corresponding secret characters.
+     */
     private void populateMap(){
         char[] letters = "WE KEEPYOURSECRETSAFENobleBorn".toCharArray();
         for (int i = 0; i < letters.length; i++){
@@ -110,11 +139,20 @@ public class LogInController {
         }
     }
 
-    private void changeStyle(Label label){
+    /**
+     * Changes the style of the secret message label.
+     *
+     * @param label The label to change the style for.
+     */
+    private void changeStyle(Label label) {
         label.setStyle("-fx-text-fill: #ff0d0d; -fx-effect: dropshadow(gaussian, #c35252, 10, 0, 0, 0)");
     }
 
-    public void trophies(){
+    /**
+     * Handles the trophies action when the trophy button is clicked.
+     * It transitions to the trophy page.
+     */
+    public void trophies() {
         paneManager.setBorderPane(borderPane);
         paneManager.saveCurrentNodes(borderPane.getTop());
         paneManager.saveCurrentNodes(borderPane.getCenter());
@@ -125,9 +163,11 @@ public class LogInController {
         new TrophyController();
     }
 
-    private void nullify(){
+    /**
+     * Nullifies the left and right panes of the border pane.
+     */
+    private void nullify() {
         borderPane.setRight(null);
         borderPane.setLeft(null);
     }
-
 }
