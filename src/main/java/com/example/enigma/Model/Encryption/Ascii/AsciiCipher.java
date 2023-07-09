@@ -1,14 +1,27 @@
 package com.example.enigma.Model.Encryption.Ascii;
 
-
+/**
+ * The AsciiCipher class extends the AsciiParent class and provides an implementation for performing
+ * the ASCII cipher operation on a given cipher text.
+ */
 public class AsciiCipher extends AsciiParent {
 
     private final String cipherText;
 
+    /**
+     * Constructs an AsciiCipher object with the specified cipher text.
+     *
+     * @param cipherText The text to be ciphered using ASCII cipher.
+     */
     public AsciiCipher(String cipherText){
         this.cipherText = cipherText;
     }
 
+    /**
+     * Performs the ASCII cipher operation on the cipher text.
+     *
+     * @return The result of the ASCII cipher operation.
+     */
     @Override
     public String asciiCipher() {
         char[] asciiChar = cipherText.toCharArray();
@@ -35,3 +48,4 @@ public class AsciiCipher extends AsciiParent {
         return String.valueOf(asciiChar);
     }
 }
+

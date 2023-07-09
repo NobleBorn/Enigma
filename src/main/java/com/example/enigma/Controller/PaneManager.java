@@ -4,6 +4,10 @@ import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import java.util.Stack;
 
+/**
+ * The PaneManager class is responsible for managing the navigation between different panes in the application.
+ * It keeps track of the previous nodes (panes) and provides methods to save and retrieve them.
+ */
 public class PaneManager {
 
     private final static PaneManager instance = new PaneManager();
@@ -14,39 +18,76 @@ public class PaneManager {
 
     private PaneManager(){}
 
-    public static PaneManager getInstance(){
+    /**
+     * Returns the singleton instance of the PaneManager class.
+     * @return The PaneManager instance.
+     */
+    protected static PaneManager getInstance(){
         return instance;
     }
 
-    public void saveCurrentNodes(Node currentPane){
+    /**
+     * Saves the current pane node to the stack of previous nodes.
+     * @param currentPane The current pane node to be saved.
+     */
+    protected void saveCurrentNodes(Node currentPane){
         pageNodes.push(currentPane);
     }
 
-    public Node getPreviousNodes(){
+    /**
+     * Retrieves the previous pane node from the stack of previous nodes.
+     * @return The previous pane node.
+     */
+    protected Node getPreviousNodes(){
         return pageNodes.pop();
     }
 
-    public void setBorderPane(BorderPane borderPane) {
+    /**
+     * Sets the BorderPane instance used for managing panes.
+     * @param borderPane The BorderPane instance.
+     */
+    protected void setBorderPane(BorderPane borderPane) {
         this.borderPane = borderPane;
     }
 
-    public BorderPane getBorderPane() {
+    /**
+     * Returns the BorderPane instance used for managing panes.
+     * @return The BorderPane instance.
+     */
+    protected BorderPane getBorderPane() {
         return borderPane;
     }
 
-    public void setStartPage(Node[] startPage) {
+    /**
+     * Sets the start page nodes, which represent the initial state of the application.
+     * @param startPage The array of start page nodes.
+     */
+    protected void setStartPage(Node[] startPage) {
         this.startPage = startPage;
     }
 
-    public Node[] getStartPage() {
+    /**
+     * Returns the start page nodes, which represent the initial state of the application.
+     * @return The array of start page nodes.
+     */
+    protected Node[] getStartPage() {
         return startPage;
     }
 
-    public void setHomePage(Node[] homePage) {
+    /**
+     * Sets the home page nodes, which represent the main page of the application.
+     * @param homePage The array of home page nodes.
+     */
+    protected void setHomePage(Node[] homePage) {
         this.homePage = homePage;
     }
 
-    public Node[] getHomePage() {
+    /**
+     * Returns the home page nodes, which represent the main page of the application.
+     * @return The array of home page nodes.
+     */
+    protected Node[] getHomePage() {
         return homePage;
     }
 }
+

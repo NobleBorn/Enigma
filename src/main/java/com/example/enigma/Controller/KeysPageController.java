@@ -1,6 +1,6 @@
 package com.example.enigma.Controller;
 
-import com.example.enigma.Model.Interfaces.IChangable;
+import com.example.enigma.Model.Interfaces.IChangeable;
 import com.example.enigma.Model.Client.User;
 import com.example.enigma.Model.ModifyFiles;
 import javafx.event.ActionEvent;
@@ -19,7 +19,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class KeysPageController implements IChangable {
+/**
+ * The `KeysPageController` class is responsible for managing the keys page and related operations.
+ * It handles displaying and deleting user keys, validating the secret code, and remembering the user.
+ * @see IChangeable
+ */
+public class KeysPageController implements IChangeable {
 
     @FXML ScrollPane scrollPane;
     @FXML VBox keyVBox;
@@ -38,6 +43,9 @@ public class KeysPageController implements IChangable {
     private ModifyFiles modifyRemember;
     private String keyText;
 
+    /**
+     * Constructs a KeysPageController object and initializes the keys page of the Enigma application.
+     */
     public KeysPageController(){
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(
                 getClass().getResource("/com/example/enigma/KeysPage.fxml")));
@@ -64,6 +72,9 @@ public class KeysPageController implements IChangable {
         keys();
     }
 
+    /**
+     * Loads and displays the user's keys.
+     */
     private void keys(){
         header();
 
@@ -94,6 +105,9 @@ public class KeysPageController implements IChangable {
         scrollPane.setContent(keyVBox);
     }
 
+    /**
+     * Adds the header labels for key and creation date.
+     */
     private void header(){
         HBox hBox = new HBox();
         hBox.setId("hBox");
@@ -113,6 +127,9 @@ public class KeysPageController implements IChangable {
         keyVBox.getChildren().add(hBox);
     }
 
+    /**
+     * Submits the secret code and handles the corresponding actions.
+     */
     private void submit(){
         if (secretPass.getText().equals(user.getSecretCode()) && !secretPass.getText().isEmpty()){
             secretCodePane.setDisable(true);
@@ -130,9 +147,14 @@ public class KeysPageController implements IChangable {
         }
     }
 
+    /**
+     * Deletes a key from the user's keys.
+     *
+     * @param event The action event triggered by the delete button.
+     */
     private void deleteKey(ActionEvent event){
         currentOperation = operation[0];
-        keyText = getHBoxID(event);
+        keyText = getDeletedKeyText(event);
 
         ModifyFiles modifyFiles = new ModifyFiles("src/main/resources/com/example/enigma/keys.csv");
         List<CSVRecord> records = modifyFiles.readRecords();
@@ -141,6 +163,9 @@ public class KeysPageController implements IChangable {
         keys();
     }
 
+    /**
+     * Navigates back to the previous page.
+     */
     private void back(){
         Node nodeRight = paneManager.getPreviousNodes();
         Node nodeLeft = paneManager.getPreviousNodes();
@@ -152,6 +177,10 @@ public class KeysPageController implements IChangable {
         borderPane.setRight(nodeRight);
     }
 
+    /**
+     * Modifies records of CSV file based on which operation it is
+     * @param records The list of CSV records to be modified.
+     */
     @Override
     public void modify(List<CSVRecord> records) {
         if (currentOperation.equals(operation[0])){
@@ -168,7 +197,13 @@ public class KeysPageController implements IChangable {
 
     }
 
-    private String getHBoxID(ActionEvent event){
+    /**
+     * Retrieves the ID of the HBox containing the delete button for a key.
+     *
+     * @param event The action event triggered by the delete button.
+     * @return The text of the key that is deleted
+     */
+    private String getDeletedKeyText(ActionEvent event){
         Button button = (Button) event.getSource();
         HBox hbox = (HBox) button.getParent();
         String keyText = "";

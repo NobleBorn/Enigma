@@ -2,17 +2,32 @@ package com.example.enigma.Model.Encryption.Shift;
 
 import java.util.HashMap;
 
+/**
+ * The ShiftCipher class is a concrete implementation of the ShiftParent class.
+ * It performs a shift cipher algorithm using a specified cipher key.
+ */
 public class ShiftCipher extends ShiftParent {
 
     private final HashMap<Character, Character> keys = new HashMap<>();
     private final String cipherText;
 
+    /**
+     * Constructs a ShiftCipher object with the given cipher text and cipher key.
+     *
+     * @param cipherText The text to be ciphered.
+     * @param cipherKey  The cipher key used for the shift cipher algorithm.
+     */
     public ShiftCipher(String cipherText, String cipherKey){
         this.cipherText = cipherText;
         switchUp(cipherKey);
     }
 
 
+    /**
+     * Switches up the cipher key by rearranging the characters based on a specific pattern.
+     *
+     * @param key The current cipher key.
+     */
     @Override
     public void switchUp(String key) {
         String lower = key.toLowerCase();
@@ -27,6 +42,11 @@ public class ShiftCipher extends ShiftParent {
         keys.put(keyValues[5], keyValues[0]);
     }
 
+    /**
+     * Performs the shift cipher operation on the cipher text using the current cipher key.
+     *
+     * @return The ciphered text.
+     */
     @Override
     public String shiftCipher() {
         char[] shiftChar = cipherText.toCharArray();
