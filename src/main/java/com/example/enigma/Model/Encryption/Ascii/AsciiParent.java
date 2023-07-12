@@ -4,6 +4,7 @@ package com.example.enigma.Model.Encryption.Ascii;
  * The AsciiParent class is an abstract class that provides a template for performing ASCII cipher operations.
  * Subclasses extending this class should implement the asciiCipher method to define the specific logic for
  * performing the ASCII cipher.
+ * @author Mojtaba Alizade
  */
 public abstract class AsciiParent {
 

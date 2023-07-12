@@ -23,6 +23,7 @@ import java.util.Objects;
  * The `KeysPageController` class is responsible for managing the keys page and related operations.
  * It handles displaying and deleting user keys, validating the secret code, and remembering the user.
  * @see IChangeable
+ * @author Mojtaba Alizade
  */
 public class KeysPageController implements IChangeable {
 
@@ -52,7 +53,6 @@ public class KeysPageController implements IChangeable {
         loader.setController(this);
         paneManager = PaneManager.getInstance();
         user = User.getInstance();
-        user.currentUser(user.getName());
         borderPane = paneManager.getBorderPane();
 
         try {
@@ -62,6 +62,7 @@ public class KeysPageController implements IChangeable {
             System.out.println(e.getMessage());
         }
 
+        user.currentUser(user.getName());
         if (user.isRemembered()){
             secretCodePane.setDisable(true);
             secretCodePane.setVisible(false);
@@ -80,6 +81,7 @@ public class KeysPageController implements IChangeable {
 
         user.newMap();
         user.keys();
+
         Map<String, String> userKeys = user.getUserKeys();
         int hBoxID = 0;
 

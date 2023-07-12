@@ -29,6 +29,7 @@ import java.util.HashMap;
  * It allows users to enter text and a cipher key, perform encryption, copy/paste text, and control the virtual keyboard.
  * @see IEncodable
  * @see ITimer
+ * @author Mojtaba Alizade
  */
 public class CipherController implements IEncodable, ITimer {
 
@@ -319,7 +320,8 @@ public class CipherController implements IEncodable, ITimer {
     @Override
     public void ciphering() {
         errorMessage.setText("");
-        Cipher cipher = new Cipher(cipherText.getText(), cipherKey.getText());
+        Cipher cipher = new Cipher(cipherText.getText(), cipherKey.getText(),
+                "src/main/resources/com/example/enigma/keys.csv");
         cipherText.setText(cipher.getCodedText());
 
         addToUserTrophy();
@@ -383,7 +385,7 @@ public class CipherController implements IEncodable, ITimer {
      * Raise user trophy score
      */
     private void addToUserTrophy(){
-        Trophy trophy = new Trophy();
+        Trophy trophy = new Trophy("src/main/resources/com/example/enigma/trophy.csv");
 
         if (trophy.getCipherTrophy() < 20){
             trophy.updateTrophy(1);

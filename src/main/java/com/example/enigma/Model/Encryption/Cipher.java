@@ -10,6 +10,7 @@ import com.example.enigma.Model.Encryption.Substitute.SubstituteCipher;
  * @see ShiftCipher
  * @see SubstituteCipher
  * @see AsciiCipher
+ * @author Mojtaba Alizade
  */
 public class Cipher {
 
@@ -22,12 +23,13 @@ public class Cipher {
      *
      * @param cipherText The text to be ciphered.
      * @param cipherKey  The cipher key used for the cipher.
+     * @param filePath The path to the CSV file
      */
-    public Cipher(String cipherText, String cipherKey) {
+    public Cipher(String cipherText, String cipherKey, String filePath) {
         shiftCipher = new ShiftCipher(cipherText, cipherKey);
         String textLevel1 = cipherLevel1();
 
-        substituteCipher = new SubstituteCipher(textLevel1, cipherKey);
+        substituteCipher = new SubstituteCipher(textLevel1, cipherKey, filePath);
         String textLevel2 = cipherLevel2();
 
         asciiCipher = new AsciiCipher(textLevel2);
@@ -48,7 +50,7 @@ public class Cipher {
      * @return The ciphered text after the level 2 operation.
      */
     private String cipherLevel2() {
-        return substituteCipher.substitute();
+        return substituteCipher.substitution();
     }
 
     /**

@@ -8,6 +8,7 @@ import java.util.Map;
 /**
  * The TextValidator class is responsible for validating the input text and key before encryption or decryption.
  * It performs checks on the text and key to ensure they meet the required criteria.
+ * @author Mojtaba Alizade
  */
 public class TextValidator {
 
@@ -35,7 +36,9 @@ public class TextValidator {
         boolean validText = textValidator();
         boolean specialCase = encryption.getClass().equals(DeCipherController.class);
         boolean validKey = keyValidator();
+
         user.keys();
+
         Map<String, String> keysInUse = user.getUserKeys();
 
         if (!text.isEmpty() && !key.isEmpty()) {

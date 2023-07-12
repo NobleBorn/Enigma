@@ -3,6 +3,7 @@ package com.example.enigma.Model.Encryption.Shift;
 /**
  * The ShiftParent class is an abstract class that defines the structure for a shift cipher algorithm.
  * It provides methods for switching up the cipher key and performing the shift cipher operation.
+ * @author Mojtaba Alizade
  */
 public abstract class ShiftParent {
 

@@ -4,6 +4,7 @@ package com.example.enigma.Model.Interfaces;
  * The ITimer interface represents a timer functionality with two methods: duringTimer and afterTimer.
  * Classes implementing this interface should provide implementations for these methods to define the behavior
  * during and after the timer duration.
+ * @author Mojtaba Alizade
  */
 public interface ITimer {
 

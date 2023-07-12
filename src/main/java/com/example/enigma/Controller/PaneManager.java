@@ -7,6 +7,7 @@ import java.util.Stack;
 /**
  * The PaneManager class is responsible for managing the navigation between different panes in the application.
  * It keeps track of the previous nodes (panes) and provides methods to save and retrieve them.
+ * @author Mojtaba Alizade
  */
 public class PaneManager {
 

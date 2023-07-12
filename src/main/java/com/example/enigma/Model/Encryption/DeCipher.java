@@ -13,6 +13,7 @@ import com.example.enigma.Model.Encryption.Substitute.SubstituteDeCipher;
  * @see ShiftCipher
  * @see SubstituteCipher
  * @see AsciiCipher
+ * @author Mojtaba Alizade
  */
 public class DeCipher {
 
@@ -24,13 +25,14 @@ public class DeCipher {
      * Constructs a DeCipher object with the given decipher text and decipher key.
      *
      * @param deCipherText The text to be deciphered.
-     * @param deCipherKey  The decipher key used for the decipher.
+     * @param deCipherKey  The decipher key used for decipher.
+     * @param filePath The path to the CSV file
      */
-    public DeCipher(String deCipherText, String deCipherKey){
+    public DeCipher(String deCipherText, String deCipherKey, String filePath){
         asciiDeCipher = new AsciiDeCipher(deCipherText);
         String deCipherLevel1 = deCipherLevel1();
 
-        substituteDeCipher = new SubstituteDeCipher(deCipherLevel1, deCipherKey);
+        substituteDeCipher = new SubstituteDeCipher(deCipherLevel1, deCipherKey, filePath);
         String deCipherLevel2 = deCipherLevel2();
 
         shiftDeCipher = new ShiftDeCipher(deCipherLevel2, deCipherKey);

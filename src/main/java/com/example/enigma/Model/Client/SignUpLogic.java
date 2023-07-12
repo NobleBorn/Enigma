@@ -1,4 +1,4 @@
-package com.example.enigma.Model.Client.SignUp;
+package com.example.enigma.Model.Client;
 
 import java.io.IOException;
 
@@ -11,12 +11,16 @@ import org.apache.commons.csv.CSVRecord;
  * The SignUpLogic class handles the logic for user sign-up process.
  * It interacts with CSV files to create new user records, remember user settings,
  * and initialize trophy records for new users.
+ * @author Mojtaba Alizade
  */
 public class SignUpLogic {
 
     private final FileManager csvUser;
     private final FileManager csvRememberUSer;
     private final FileManager csvTrophy;
+    private final String userName;
+    private final String passWord;
+    private final String secretCode;
     private boolean userExists;
 
     /**
@@ -25,23 +29,15 @@ public class SignUpLogic {
      * @param userName    The username entered by the user.
      * @param passWord    The password entered by the user.
      * @param secretCode  The secret code entered by the user.
-     * @throws IOException If an error occurs while accessing the CSV files.
+     * @param filePaths   The paths to the CSV files
      */
-    public SignUpLogic(String userName, String passWord, String secretCode) throws IOException {
-        csvUser = new FileManager("src/main/resources/com/example/enigma/users.csv");
-        csvRememberUSer = new FileManager("src/main/resources/com/example/enigma/rememberUser.csv");
-        csvTrophy = new FileManager("src/main/resources/com/example/enigma/trophy.csv");
-
-        userExists = false;
-        int id = userID(userName);
-
-        if (!userExists){
-            addNewUser(id, userName, passWord, secretCode);
-            remember(id);
-            initialTrophy(id);
-        } else {
-            throw new IOException();
-        }
+    public SignUpLogic(String userName, String passWord, String secretCode, String[] filePaths) {
+        this.userName = userName;
+        this.passWord = passWord;
+        this.secretCode = secretCode;
+        this.csvUser = new FileManager(filePaths[0]);
+        this.csvRememberUSer = new FileManager(filePaths[1]);
+        this.csvTrophy = new FileManager(filePaths[2]);
     }
 
     /**
@@ -68,7 +64,7 @@ public class SignUpLogic {
             System.out.println("CSV file read successfully!");
 
         } catch (IOException e) {
-            System.out.println("Error occurred while reading the CSV file: " + e.getMessage());
+            System.out.println("Error occurred while reading users CSV file: " + e.getMessage());
         }
 
         return id;
@@ -88,7 +84,7 @@ public class SignUpLogic {
             csvPrinter.printRecord(String.valueOf(id), userName, passWord, secretCode);
 
         } catch (IOException e) {
-            System.out.println("Error occurred while writing to the CSV file: " + e.getMessage());
+            System.out.println("Error occurred while writing to the users file: " + e.getMessage());
         }
     }
 
@@ -104,7 +100,7 @@ public class SignUpLogic {
             csvPrinter.printRecord(String.valueOf(id), rememberUser);
 
         } catch (IOException e) {
-            System.out.println("Error occurred while writing to the CSV file: " + e.getMessage());
+            System.out.println("Error occurred while writing to the rememberUser file: " + e.getMessage());
         }
     }
 
@@ -119,8 +115,27 @@ public class SignUpLogic {
             csvPrinter.printRecord(String.valueOf(id), "0", "0", "0");
 
         } catch (IOException e) {
-            System.out.println("Error occurred while writing to the CSV file: " + e.getMessage());
+            System.out.println("Error occurred while writing to the trophy file: " + e.getMessage());
         }
     }
 
+
+    /**
+     * Adds the new user and its initial record values
+     * @return {@code true} if the user is added, {@code false} otherwise.
+     */
+    public boolean addUser() {
+        boolean added = false;
+        userExists = false;
+        int id = userID(userName);
+
+        if (!userExists){
+            addNewUser(id, userName, passWord, secretCode);
+            remember(id);
+            initialTrophy(id);
+            added = true;
+        }
+
+        return added;
+    }
 }

@@ -3,6 +3,7 @@ package com.example.enigma.Model.Encryption.Ascii;
 /**
  * The AsciiDeCipher class extends the AsciiParent class and provides an implementation for deciphering
  * a given cipher text using ASCII cipher.
+ * @author Mojtaba Alizade
  */
 public class AsciiDeCipher extends AsciiParent {
 

@@ -7,10 +7,12 @@ import java.io.IOException;
 /**
  * The SubstituteDeCipher class is responsible for performing the deciphering operation using a substitution cipher.
  * It uses a provided decipher text and decipher key to reverse the substitution and obtain the original text.
+ * It extends the SubstituteParent class
+ * @see SubstituteParent
+ * @author Mojtaba Alizade
  */
-public class SubstituteDeCipher {
+public class SubstituteDeCipher extends SubstituteParent{
 
-    private final SubstituteParent substituteDeCipher;
     private final User user;
 
     /**
@@ -18,12 +20,13 @@ public class SubstituteDeCipher {
      *
      * @param deCipherText The text to be deciphered.
      * @param deCipherKey  The decipher key used for the cipher.
+     * @param path The path to the CSV file
      */
-    public SubstituteDeCipher(String deCipherText, String deCipherKey) {
-        substituteDeCipher = new SubstituteParent(deCipherText, deCipherKey);
+    public SubstituteDeCipher(String deCipherText, String deCipherKey, String path) {
+        super(deCipherText, deCipherKey, path);
         user = User.getInstance();
         populateCodes();
-        getCodeNumber();
+        getEnCodeNumber();
     }
 
     /**
@@ -40,18 +43,18 @@ public class SubstituteDeCipher {
      * Retrieves the code number from the CSV file based on the user's ID and decipher key.
      * Sets the code number and the found flag if a match is found.
      */
-    private void getCodeNumber() {
+    private void getEnCodeNumber() {
         int userId = user.getUserId();
 
-        try (CSVParser csvParser = substituteDeCipher.getCsv().readFromFile()) {
+        try (CSVParser csvParser = getCsv().readFromFile()) {
             csvParser.forEach(record -> {
-                if (Integer.parseInt(record.get(0)) == userId && record.get(2).equals(substituteDeCipher.getKey())) {
-                    substituteDeCipher.setCodeNumber(Integer.parseInt(record.get(1)));
-                    substituteDeCipher.setFound();
+                if (Integer.parseInt(record.get(0)) == userId && record.get(2).equals(getKey())) {
+                    setCodeNumber(Integer.parseInt(record.get(1)));
+                    setFound();
                 }
             });
 
-            if (!substituteDeCipher.isFound()) System.out.println("Not found");
+            if (!isFound()) System.out.println("Not found");
             System.out.println("CSV file read successfully!");
         } catch (IOException e) {
             System.out.println("Error occurred while reading the CSV file: " + e.getMessage());
@@ -64,7 +67,7 @@ public class SubstituteDeCipher {
      * @return The deciphered text.
      */
     public String deSubstitute() {
-        return substituteDeCipher.substitute(substituteDeCipher.getText());
+        return substitute(getText());
     }
 
     /**
@@ -72,11 +75,11 @@ public class SubstituteDeCipher {
      */
     private void populateCodeHalf() {
         for (int i = 90; i >= 78; i--) {
-            substituteDeCipher.getCodeHalf().put((char) i, (char) (i - 13));
+            getCodeHalf().put((char) i, (char) (i - 13));
         }
 
         for (int i = 122; i >= 110; i--) {
-            substituteDeCipher.getCodeHalf().put((char) i, (char) (i - 13));
+           getCodeHalf().put((char) i, (char) (i - 13));
         }
     }
 
@@ -89,7 +92,7 @@ public class SubstituteDeCipher {
 
         while (steps >= 1) {
             positionKey--;
-            substituteDeCipher.getCodeInvert().put((char) positionKey, (char) (positionKey - steps));
+            getCodeInvert().put((char) positionKey, (char) (positionKey - steps));
             steps -= 2;
         }
 
@@ -98,7 +101,7 @@ public class SubstituteDeCipher {
 
         while (stepsMinor >= 1) {
             positionKeyMinor--;
-            substituteDeCipher.getCodeInvert().put((char) positionKeyMinor, (char) (positionKeyMinor - stepsMinor));
+            getCodeInvert().put((char) positionKeyMinor, (char) (positionKeyMinor - stepsMinor));
             stepsMinor -= 2;
         }
     }
@@ -108,26 +111,26 @@ public class SubstituteDeCipher {
      */
     private void populateCodeStep() {
         for (int i = 90; i >= 66; i--) {
-            substituteDeCipher.getCodeStep().put((char) i, (char) (i - 1));
+            getCodeStep().put((char) i, (char) (i - 1));
         }
 
-        substituteDeCipher.getCodeStep().put((char) 65, (char) 90);
+        getCodeStep().put((char) 65, (char) 90);
 
         for (int i = 122; i >= 98; i--) {
-            substituteDeCipher.getCodeStep().put((char) i, (char) (i - 1));
+            getCodeStep().put((char) i, (char) (i - 1));
         }
 
-        substituteDeCipher.getCodeStep().put((char) 97, (char) 122);
+        getCodeStep().put((char) 97, (char) 122);
     }
 
     /**
      * Populates the code key substitution mapping.
      */
     private void populateCodeKey() {
-        char[] keyChar = substituteDeCipher.getKey().toCharArray();
-        substituteDeCipher.getCodeKey().put('\u03A3', keyChar[0]);
-        substituteDeCipher.getCodeKey().put('\u03B1', keyChar[1]);
-        substituteDeCipher.getCodeKey().put('\u03B2', keyChar[2]);
+        char[] keyChar = getKey().toCharArray();
+        getCodeKey().put('\u03A3', keyChar[0]);
+        getCodeKey().put('\u03B1', keyChar[1]);
+        getCodeKey().put('\u03B2', keyChar[2]);
     }
 }
 

@@ -12,6 +12,7 @@ import java.util.Map;
  * The User class represents a user in the Enigma application.
  * It provides access to user information, such as ID, name, secret code, password, and user keys.
  * The User class follows the singleton design pattern.
+ * @author Mojtaba Alizade
  */
 public class User {
 
@@ -20,19 +21,15 @@ public class User {
     private String name;
     private String secretCode;
     private String password;
-    private final FileManager csvUser;
-    private final FileManager csvKeys;
-    private final FileManager csvRemember;
+    private FileManager csvUser;
+    private FileManager csvKeys;
+    private FileManager csvRemember;
     private Map<String, String> userKeys = new LinkedHashMap<>();
 
     /**
      * Private constructor to enforce the singleton pattern.
      */
-    private User(){
-        csvUser = new FileManager("src/main/resources/com/example/enigma/users.csv");
-        csvKeys = new FileManager("src/main/resources/com/example/enigma/keys.csv");
-        csvRemember = new FileManager("src/main/resources/com/example/enigma/rememberUser.csv");
-    }
+    private User(){}
 
     /**
      * Returns the instance of the User class.
@@ -41,6 +38,16 @@ public class User {
      */
     public static User getInstance(){
         return instance;
+    }
+
+    /**
+     * Initialize the paths to the CSV files
+     * @param filePaths The paths to the CSV files
+     */
+    public void init(String[] filePaths){
+        csvUser = new FileManager(filePaths[0]);
+        csvRemember = new FileManager(filePaths[1]);
+        csvKeys = new FileManager(filePaths[2]);
     }
 
     /**
