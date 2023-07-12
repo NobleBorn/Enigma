@@ -15,6 +15,7 @@ import java.io.IOException;
 
 /**
  * The MainPageController class manages the main page functionality and user interface events in the Enigma application.
+ * @author Mojtaba Alizade
  */
 public class MainPageController {
 

@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * The IChangeable interface represents the capability to modify a list of CSV records.
  * Classes implementing this interface should provide an implementation for the modify method.
+ * @author Mojtaba Alizade
  */
 public interface IChangeable {
 

@@ -24,6 +24,7 @@ import java.io.IOException;
  * It allows users to enter text and a decipher key, perform decryption and copy/paste text
  * @see IEncodable
  * @see ITimer
+ * @author Mojtaba Alizade
  */
 public class DeCipherController implements IEncodable, ITimer {
 
@@ -108,7 +109,8 @@ public class DeCipherController implements IEncodable, ITimer {
     @Override
     public void ciphering() {
         errorLabel.setText("");
-        DeCipher deCipher = new DeCipher(deCipherText.getText(), deCipherKey.getText());
+        DeCipher deCipher = new DeCipher(deCipherText.getText(), deCipherKey.getText(),
+                "src/main/resources/com/example/enigma/keys.csv");
         deCipherText.setText(deCipher.getDeCodedText());
 
         addToUserTrophy();
@@ -171,7 +173,7 @@ public class DeCipherController implements IEncodable, ITimer {
      * Raise user trophy score
      */
     private void addToUserTrophy(){
-        Trophy trophy = new Trophy();
+        Trophy trophy = new Trophy("src/main/resources/com/example/enigma/trophy.csv");
 
         if (trophy.getDecipherTrophy() < 20){
             trophy.updateTrophy(3);

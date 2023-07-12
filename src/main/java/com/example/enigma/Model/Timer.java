@@ -7,6 +7,7 @@ import javafx.concurrent.Task;
 /**
  * The Timer class provides a simple way to execute code with a specified time delay.
  * It allows you to execute a callback method during the timer duration and after the timer has completed.
+ * @author Mojtaba Alizade
  */
 public class Timer {
 

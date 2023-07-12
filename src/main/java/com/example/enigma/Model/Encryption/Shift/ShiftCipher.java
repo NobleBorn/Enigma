@@ -5,6 +5,7 @@ import java.util.HashMap;
 /**
  * The ShiftCipher class is a concrete implementation of the ShiftParent class.
  * It performs a shift cipher algorithm using a specified cipher key.
+ * @author Mojtaba Alizade
  */
 public class ShiftCipher extends ShiftParent {
 

@@ -5,6 +5,7 @@ import java.util.HashMap;
 /**
  * The ShiftDeCipher class is a concrete implementation of the ShiftParent class.
  * It performs a reverse shift cipher algorithm using a specified decipher key.
+ * @author Mojtaba Alizade
  */
 public class ShiftDeCipher extends ShiftParent {
 

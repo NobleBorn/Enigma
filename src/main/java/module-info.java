@@ -6,14 +6,10 @@ module com.example.enigma {
     requires org.kordamp.bootstrapfx.core;
     requires org.apache.commons.csv;
 
-    opens com.example.enigma to javafx.fxml;
     exports com.example.enigma;
+    opens com.example.enigma to javafx.fxml;
     exports com.example.enigma.Model;
     opens com.example.enigma.Model to javafx.fxml;
-    exports com.example.enigma.Model.Client.LogIn;
-    opens com.example.enigma.Model.Client.LogIn to javafx.fxml;
-    exports com.example.enigma.Model.Client.SignUp;
-    opens com.example.enigma.Model.Client.SignUp to javafx.fxml;
     exports com.example.enigma.Model.Encryption;
     opens com.example.enigma.Model.Encryption to javafx.fxml;
     exports com.example.enigma.Model.Interfaces;

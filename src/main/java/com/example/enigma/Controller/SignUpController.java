@@ -1,17 +1,17 @@
 package com.example.enigma.Controller;
 
 import com.example.enigma.Model.Interfaces.ITimer;
-import com.example.enigma.Model.Client.SignUp.SignUpLogic;
+import com.example.enigma.Model.Client.SignUpLogic;
 import com.example.enigma.Model.Timer;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 
-import java.io.IOException;
 
 /**
  * The SignUpController class handles the signup functionality and user interface events related to user registration
  * in the Enigma application.
+ * @author Mojtaba Alizade
  */
 public class SignUpController implements ITimer {
 
@@ -43,16 +43,27 @@ public class SignUpController implements ITimer {
         int passWordLength = passWordSign.getLength();
         if (!userNameSign.getText().isEmpty() && !passWordSign.getText().isEmpty() && validUserName
                 && !secretCode.getText().isEmpty() && passWordLength >= 4) {
-            try {
-                new SignUpLogic(userNameSign.getText(), passWordSign.getText(), secretCode.getText());
+
+            String[] filePaths = {
+                    "src/main/resources/com/example/enigma/users.csv",
+                    "src/main/resources/com/example/enigma/rememberUser.csv",
+                    "src/main/resources/com/example/enigma/trophy.csv"
+            };
+
+            SignUpLogic signUpLogic =
+                    new SignUpLogic(userNameSign.getText(), passWordSign.getText(),
+                            secretCode.getText(), filePaths);
+
+            if (signUpLogic.addUser()){
                 changeStyle();
                 Timer takeTime = new Timer();
                 takeTime.timer(this);
-            } catch (IOException e) {
-                errorLabel.setText("Username already exists");
+            } else  {
+                errorLabel.setText("Username already exists!");
                 userNameSign.setText("");
                 passWordSign.setText("");
             }
+
         } else if (userNameSign.getText().isEmpty()) {
             errorLabel.setText("Please provide username");
         } else if (passWordSign.getText().isEmpty()) {

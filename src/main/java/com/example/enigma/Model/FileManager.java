@@ -12,6 +12,7 @@ import java.io.Reader;
 /**
  * The FileManager class provides methods to read from and write to a CSV file.
  * It uses Apache Commons CSV library for parsing and printing CSV data.
+ * @author Mojtaba Alizade
  */
 public class FileManager {
 

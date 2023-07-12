@@ -1,0 +1,9 @@
+com.example.enigma
+com.example.enigma.Controller
+com.example.enigma.Model
+com.example.enigma.Model.Client
+com.example.enigma.Model.Encryption
+com.example.enigma.Model.Encryption.Ascii
+com.example.enigma.Model.Encryption.Shift
+com.example.enigma.Model.Encryption.Substitute
+com.example.enigma.Model.Interfaces

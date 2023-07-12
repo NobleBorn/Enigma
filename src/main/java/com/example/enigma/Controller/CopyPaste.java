@@ -6,6 +6,7 @@ import com.example.enigma.Model.Timer;
 /**
  * The CopyPaste class is responsible for managing the copy and paste functionality in the application.
  * It allows copying and pasting text and provides a timer for tracking the duration of copy or paste operations.
+ * @author Mojtaba Alizade
  */
 public class CopyPaste {
 

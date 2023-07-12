@@ -13,6 +13,7 @@ import java.io.IOException;
 /**
  * The controller class for the TrophyPage.
  * It manages the functionality related to trophies and handles user interactions.
+ * @author Mojtaba Alizade
  */
 public class TrophyController {
 
@@ -65,7 +66,7 @@ public class TrophyController {
      * Enables and disables trophy panes based on the user's achievements.
      */
     private void lookUpTrophies(){
-        Trophy trophy = new Trophy();
+        Trophy trophy = new Trophy("src/main/resources/com/example/enigma/trophy.csv");
 
         if (trophy.getCipherTrophy() >= 20){
             cipherTrophy.setDisable(false);

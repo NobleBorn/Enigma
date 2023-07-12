@@ -12,6 +12,7 @@ import java.util.List;
  * The Trophy class represents the trophies earned by a user in the Enigma application.
  * It implements the IChangeable interface to modify the trophy records.
  * @see IChangeable
+ * @author Mojtaba Alizade
  */
 public class Trophy implements IChangeable {
 
@@ -24,10 +25,11 @@ public class Trophy implements IChangeable {
     /**
      * Constructs a Trophy object.
      * It initializes the necessary file managers and retrieves the current user instance.
+     * @param filePath The path to the CSV file
      */
-    public Trophy() {
-        modifyFiles = new ModifyFiles("src/main/resources/com/example/enigma/trophy.csv");
-        csvTrophy = new FileManager("src/main/resources/com/example/enigma/trophy.csv");
+    public Trophy(String filePath) {
+        modifyFiles = new ModifyFiles(filePath);
+        csvTrophy = new FileManager(filePath);
         user = User.getInstance();
     }
 

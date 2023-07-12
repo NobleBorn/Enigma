@@ -26,6 +26,7 @@ import java.util.Objects;
 /**
  * The AccountController class manages the account page functionality and user interface events in the Enigma application.
  * @see IChangeable
+ * @author Mojtaba Alizade
  */
 public class AccountController implements IChangeable {
 
@@ -57,7 +58,7 @@ public class AccountController implements IChangeable {
         loader.setController(this);
 
         user = User.getInstance();
-        user.currentUser(user.getName());
+
         paneManager = PaneManager.getInstance();
         modifyFiles = new ModifyFiles("src/main/resources/com/example/enigma/users.csv");
         modifyRemember = new ModifyFiles("src/main/resources/com/example/enigma/rememberUser.csv");
@@ -72,6 +73,7 @@ public class AccountController implements IChangeable {
 
         fxmlActions();
 
+        user.currentUser(user.getName());
         if (user.isRemembered()){
             rememberSecret.setDisable(false);
             rememberSecret.setSelected(true);
@@ -110,7 +112,8 @@ public class AccountController implements IChangeable {
     public void changeCode() {
         if (!newCode.getText().isEmpty() && !oldCode.getText().isEmpty()) {
             if (oldCode.getText().equals(user.getSecretCode())){
-                SecretCode secretCode = new SecretCode(newCode.getText());
+                SecretCode secretCode = new SecretCode(newCode.getText(),
+                        "src/main/resources/com/example/enigma/users.csv");
                 secretCode.secretCodeChange();
                 rememberSecret.setSelected(false);
                 changeRememberUser();

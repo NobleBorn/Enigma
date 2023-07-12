@@ -10,6 +10,7 @@ import java.util.List;
  * The SecretCode class represents the change of secret code functionality in the Enigma application.
  * It implements the IChangeable interface to handle modifications of CSV records.
  * @see IChangeable
+ * @author Mojtaba Alizade
  */
 public class SecretCode implements IChangeable {
 
@@ -22,9 +23,10 @@ public class SecretCode implements IChangeable {
      * Constructs a SecretCode instance with the new secret code.
      *
      * @param newCode The new secret code.
+     * @param filePath The path to the CSV file
      */
-    public SecretCode(String newCode){
-        modifyFiles = new ModifyFiles("src/main/resources/com/example/enigma/users.csv");
+    public SecretCode(String newCode, String filePath){
+        modifyFiles = new ModifyFiles(filePath);
         user = User.getInstance();
         user.currentUser(user.getName());
         records = modifyFiles.readRecords();

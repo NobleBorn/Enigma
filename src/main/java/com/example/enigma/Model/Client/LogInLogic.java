@@ -1,4 +1,4 @@
-package com.example.enigma.Model.Client.LogIn;
+package com.example.enigma.Model.Client;
 
 import com.example.enigma.Model.FileManager;
 import org.apache.commons.csv.CSVParser;
@@ -10,6 +10,7 @@ import java.io.IOException;
  * The LogInLogic class handles the logic for user login authentication.
  * It checks the provided username and password against a CSV file containing user credentials.
  * The class provides methods to perform the login check and retrieve the authorization status.
+ * @author Mojtaba Alizade
  */
 public class LogInLogic {
 
@@ -21,9 +22,10 @@ public class LogInLogic {
      *
      * @param userName The username entered by the user.
      * @param passWord The password entered by the user.
+     * @param filePath The path to the user CSV files
      */
-    public LogInLogic(String userName, String passWord){
-        csv = new FileManager("src/main/resources/com/example/enigma/users.csv");
+    public LogInLogic(String userName, String passWord, String filePath){
+        csv = new FileManager(filePath);
         boolean userNameExists = checkUserName(userName);
         boolean correctPassWord = false;
 

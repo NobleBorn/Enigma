@@ -1,6 +1,6 @@
 package com.example.enigma.Controller;
 
-import com.example.enigma.Model.Client.LogIn.LogInLogic;
+import com.example.enigma.Model.Client.LogInLogic;
 import com.example.enigma.Model.Client.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +20,7 @@ import java.util.Set;
 /**
  * The LogInController class handles the login functionality and user interface events related to login, signup,
  * and user actions in the Enigma application.
+ * @author Mojtaba Alizade
  */
 public class LogInController {
 
@@ -48,6 +49,12 @@ public class LogInController {
      */
     public LogInController() {
         paneManager = PaneManager.getInstance();
+        String[] filePaths = {
+                "src/main/resources/com/example/enigma/users.csv",
+                "src/main/resources/com/example/enigma/rememberUser.csv",
+                "src/main/resources/com/example/enigma/keys.csv"
+        };
+        current.init(filePaths);
         populateMap();
     }
 
@@ -57,13 +64,19 @@ public class LogInController {
      */
     public void logIn() {
         if (!userNameField.getText().isEmpty() && !passWordField.getText().isEmpty()){
-            LogInLogic logInLogic = new LogInLogic(userNameField.getText(), passWordField.getText());
+
+            LogInLogic logInLogic = new LogInLogic(userNameField.getText(), passWordField.getText(),
+                    "src/main/resources/com/example/enigma/users.csv");
+
             if (logInLogic.isAuthorizedUser()){
+
                 Node[] startPage = {borderPane.getTop(), borderPane.getCenter(), borderPane.getLeft(),
                         borderPane.getRight()};
+
                 paneManager.setStartPage(startPage);
 
                 current.currentUser(userNameField.getText());
+
                 errorText.setText("");
                 userNameField.setText("");
                 passWordField.setText("");
@@ -88,17 +101,23 @@ public class LogInController {
     /**
      * Handles the signup page transition when the signup button is clicked.
      *
-     * @throws IOException if an error occurs while loading the signup page.
      */
-    public void signUpPage() throws IOException {
+    public void signUpPage() {
+        errorText.setText("");
+        userNameField.setText("");
+        passWordField.setText("");
         paneManager.setBorderPane(borderPane);
         paneManager.saveCurrentNodes(borderPane.getCenter());
         FXMLLoader fxmlLoader = new FXMLLoader(Objects.requireNonNull(
                 getClass().getResource("/com/example/enigma/SignUp.fxml")));
         fxmlLoader.setController(this);
-        Parent node = fxmlLoader.load();
-        signUpButton.setOnAction(actionEvent -> registerUser());
-        borderPane.setCenter(node);
+        try {
+            Parent node = fxmlLoader.load();
+            signUpButton.setOnAction(actionEvent -> registerUser());
+            borderPane.setCenter(node);
+        } catch (IOException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     /**

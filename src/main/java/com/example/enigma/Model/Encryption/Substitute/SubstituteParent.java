@@ -6,6 +6,7 @@ import java.util.HashMap;
 /**
  * The SubstituteParent class is a parent class for substitution ciphers.
  * It provides common functionality and attributes for different types of substitution ciphers.
+ * @author Mojtaba Alizade
  */
 public class SubstituteParent {
 
@@ -25,10 +26,10 @@ public class SubstituteParent {
      * @param Text The text to be substituted.
      * @param Key  The substitution key used for the cipher.
      */
-    protected SubstituteParent(String Text, String Key){
+    protected SubstituteParent(String Text, String Key, String filePath){
         this.Text = Text;
         this.Key = Key;
-        csv = new FileManager("src/main/resources/com/example/keys.csv");
+        csv = new FileManager(filePath);
     }
 
     /**

@@ -13,10 +13,12 @@ import java.util.Random;
 /**
  * The SubstituteCipher class is responsible for performing the ciphering operation using a substitution cipher.
  * It uses a provided cipher text and cipher key to substitute characters and obtain the encoded text.
+ * It extends the SubstituteParent class
+ * @see SubstituteParent
+ * @author Mojtaba Alizade
  */
-public class SubstituteCipher {
+public class SubstituteCipher extends SubstituteParent {
 
-    private final SubstituteParent substituteCipher;
     private final User user;
 
     /**
@@ -24,14 +26,15 @@ public class SubstituteCipher {
      *
      * @param cipherText The text to be ciphered.
      * @param cipherKey  The cipher key used for the cipher.
+     * @param path The path to the CSV file
      */
-    public SubstituteCipher(String cipherText, String cipherKey) {
-        substituteCipher = new SubstituteParent(cipherText, cipherKey);
+    public SubstituteCipher(String cipherText, String cipherKey, String path) {
+        super(cipherText, cipherKey, path);
         user = User.getInstance();
         populateCodes();
         Random random = new Random();
         int codeNumber = random.nextInt(3) + 1;
-        substituteCipher.setCodeNumber(codeNumber);
+        setCodeNumber(codeNumber);
         saveCodeNumber();
     }
 
@@ -50,15 +53,15 @@ public class SubstituteCipher {
      *
      * @return The ciphered text.
      */
-    public String substitute() {
-        return substituteCipher.substitute(substituteCipher.getText());
+    public String substitution() {
+        return substitute(getText());
     }
 
     /**
      * Saves the code number and current timestamp to the CSV file.
      */
     private void saveCodeNumber() {
-        try (CSVPrinter csvPrinter = substituteCipher.getCsv().writeToFile()) {
+        try (CSVPrinter csvPrinter = getCsv().writeToFile()) {
             Instant timestamp = Instant.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             ZonedDateTime zonedDateTime = timestamp.atZone(ZoneId.systemDefault());
@@ -66,7 +69,7 @@ public class SubstituteCipher {
             System.out.println(formattedTimestamp);
 
             csvPrinter.printRecord(String.valueOf(user.getUserId()),
-                    String.valueOf(substituteCipher.getCodeNumber()), substituteCipher.getKey(), formattedTimestamp);
+                    String.valueOf(getCodeNumber()), getKey(), formattedTimestamp);
         } catch (IOException e) {
             System.out.println("Error occurred while writing to the CSV file: " + e.getMessage());
         }
@@ -77,11 +80,11 @@ public class SubstituteCipher {
      */
     private void populateCodeHalf() {
         for (int i = 65; i <= 77; i++) {
-            substituteCipher.getCodeHalf().put((char) i, (char) (i + 13));
+            getCodeHalf().put((char) i, (char) (i + 13));
         }
 
         for (int i = 97; i <= 109; i++) {
-            substituteCipher.getCodeHalf().put((char) i, (char) (i + 13));
+            getCodeHalf().put((char) i, (char) (i + 13));
         }
     }
 
@@ -94,7 +97,7 @@ public class SubstituteCipher {
 
         while (steps >= 1) {
             positionKey++;
-            substituteCipher.getCodeInvert().put((char) positionKey, (char) (positionKey + steps));
+            getCodeInvert().put((char) positionKey, (char) (positionKey + steps));
             steps -= 2;
         }
 
@@ -103,7 +106,7 @@ public class SubstituteCipher {
 
         while (stepsMinor >= 1) {
             positionKeyMinor++;
-            substituteCipher.getCodeInvert().put((char) positionKeyMinor, (char) (positionKeyMinor + stepsMinor));
+            getCodeInvert().put((char) positionKeyMinor, (char) (positionKeyMinor + stepsMinor));
             stepsMinor -= 2;
         }
     }
@@ -113,26 +116,26 @@ public class SubstituteCipher {
      */
     private void populateCodeStep() {
         for (int i = 65; i <= 89; i++) {
-            substituteCipher.getCodeStep().put((char) i, (char) (i + 1));
+            getCodeStep().put((char) i, (char) (i + 1));
         }
 
-        substituteCipher.getCodeStep().put((char) 90, (char) 65);
+        getCodeStep().put((char) 90, (char) 65);
 
         for (int i = 97; i <= 121; i++) {
-            substituteCipher.getCodeStep().put((char) i, (char) (i + 1));
+            getCodeStep().put((char) i, (char) (i + 1));
         }
 
-        substituteCipher.getCodeStep().put((char) 122, (char) 97);
+        getCodeStep().put((char) 122, (char) 97);
     }
 
     /**
      * Populates the code key substitution mapping.
      */
     private void populateCodeKey() {
-        char[] keyChar = substituteCipher.getKey().toCharArray();
-        substituteCipher.getCodeKey().put(keyChar[0], '\u03A3');
-        substituteCipher.getCodeKey().put(keyChar[1], '\u03B1');
-        substituteCipher.getCodeKey().put(keyChar[2], '\u03B2');
+        char[] keyChar = getKey().toCharArray();
+        getCodeKey().put(keyChar[0], '\u03A3');
+        getCodeKey().put(keyChar[1], '\u03B1');
+        getCodeKey().put(keyChar[2], '\u03B2');
     }
 }
 
