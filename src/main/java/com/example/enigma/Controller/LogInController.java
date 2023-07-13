@@ -65,7 +65,10 @@ public class LogInController {
     public void logIn() {
         if (!userNameField.getText().isEmpty() && !passWordField.getText().isEmpty()){
 
-            LogInLogic logInLogic = new LogInLogic(userNameField.getText(), passWordField.getText(),
+            String name = userNameField.getText().trim();
+            String pass = passWordField.getText().trim();
+
+            LogInLogic logInLogic = new LogInLogic(name, pass,
                     "src/main/resources/com/example/enigma/users.csv");
 
             if (logInLogic.isAuthorizedUser()){

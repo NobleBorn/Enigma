@@ -16,6 +16,7 @@ public class PaneManager {
     private BorderPane borderPane;
     private Node[] homePage = new Node[4];
     private Node[] startPage = new Node[4];
+    private Stack<String> previous = new Stack<>();
 
     private PaneManager(){}
 
@@ -42,6 +43,7 @@ public class PaneManager {
     protected Node getPreviousNodes(){
         return pageNodes.pop();
     }
+
 
     /**
      * Sets the BorderPane instance used for managing panes.
@@ -90,5 +92,42 @@ public class PaneManager {
     protected Node[] getHomePage() {
         return homePage;
     }
+
+    /**
+     * Push the previous page in the stack
+     * @param previousPage The previous page
+     */
+    protected void setPrevious(String previousPage) {
+        if (this.previous.isEmpty()) this.previous.push("");
+
+        if (!this.previous.peek().equals(previousPage)) {
+            this.previous.push(previousPage);
+        }
+    }
+
+    /**
+     * Gets the previous page from the stack
+     * @return The previous page
+     */
+    protected String getPrevious() {
+        if (this.previous.isEmpty()) return "";
+        else return this.previous.peek();
+    }
+
+    /**
+     * Removes the previous page from the stack
+     */
+    protected void removePrevious() {
+        if (!this.previous.isEmpty())
+            this.previous.pop();
+    }
+
+    /**
+     * Empty the stack
+     */
+    protected void emptyStack(){
+        this.previous = new Stack<>();
+    }
+
 }
 

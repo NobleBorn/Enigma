@@ -62,6 +62,7 @@ public class KeysPageController implements IChangeable {
             System.out.println(e.getMessage());
         }
 
+
         user.currentUser(user.getName());
         if (user.isRemembered()){
             secretCodePane.setDisable(true);
@@ -169,6 +170,8 @@ public class KeysPageController implements IChangeable {
      * Navigates back to the previous page.
      */
     private void back(){
+        paneManager.removePrevious();
+
         Node nodeRight = paneManager.getPreviousNodes();
         Node nodeLeft = paneManager.getPreviousNodes();
         Node nodeCenter = paneManager.getPreviousNodes();

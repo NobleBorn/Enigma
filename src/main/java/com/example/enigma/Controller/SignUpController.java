@@ -38,42 +38,49 @@ public class SignUpController implements ITimer {
      * @param secretCode   The text field containing the secret code.
      */
     public void registerUser(TextField userNameSign, TextField passWordSign, TextField secretCode) {
-        boolean validUserName = userNameValidator(userNameSign.getText());
 
-        int passWordLength = passWordSign.getLength();
-        if (!userNameSign.getText().isEmpty() && !passWordSign.getText().isEmpty() && validUserName
-                && !secretCode.getText().isEmpty() && passWordLength >= 4) {
+        if (!userNameSign.getText().isEmpty() && !passWordSign.getText().isEmpty()
+                && !secretCode.getText().isEmpty()) {
 
-            String[] filePaths = {
-                    "src/main/resources/com/example/enigma/users.csv",
-                    "src/main/resources/com/example/enigma/rememberUser.csv",
-                    "src/main/resources/com/example/enigma/trophy.csv"
-            };
+            String name = userNameSign.getText().trim();
+            String pass = passWordSign.getText().trim();
+            String code = secretCode.getText().trim();
 
-            SignUpLogic signUpLogic =
-                    new SignUpLogic(userNameSign.getText(), passWordSign.getText(),
-                            secretCode.getText(), filePaths);
+            System.out.println(name);
+            boolean validUserName = userNameValidator(name);
+            int passWordLength = pass.length();
 
-            if (signUpLogic.addUser()){
-                changeStyle();
-                Timer takeTime = new Timer();
-                takeTime.timer(this);
-            } else  {
-                errorLabel.setText("Username already exists!");
-                userNameSign.setText("");
-                passWordSign.setText("");
+            if (validUserName && passWordLength >= 4 && passWordLength <= 10){
+                String[] filePaths = {
+                        "src/main/resources/com/example/enigma/users.csv",
+                        "src/main/resources/com/example/enigma/rememberUser.csv",
+                        "src/main/resources/com/example/enigma/trophy.csv"
+                };
+
+                SignUpLogic signUpLogic = new SignUpLogic(name, pass, code, filePaths);
+
+                if (signUpLogic.addUser()){
+                    changeStyle();
+                    Timer takeTime = new Timer();
+                    takeTime.timer(this);
+                } else  {
+                    errorLabel.setText("Username already exists!");
+                    userNameSign.setText("");
+                    passWordSign.setText("");
+                }
+            } else if (!validUserName) {
+                errorLabel.setText("Username between 3-10 characters, only english letter!");
+            } else {
+                errorLabel.setText("Password should be of length 4-10 characters!");
             }
+
 
         } else if (userNameSign.getText().isEmpty()) {
             errorLabel.setText("Please provide username");
         } else if (passWordSign.getText().isEmpty()) {
             errorLabel.setText("Please provide password");
-        } else if (secretCode.getText().isEmpty()) {
-            errorLabel.setText("Please provide a pokemon name");
-        } else if (!validUserName) {
-            errorLabel.setText("Username can contain only letters and numbers");
         } else {
-            errorLabel.setText("Password at least of length four");
+            errorLabel.setText("Please provide a pokemon name");
         }
     }
 
@@ -84,14 +91,23 @@ public class SignUpController implements ITimer {
      * @return true if the username is valid, false otherwise.
      */
     private boolean userNameValidator(String text) {
-        return text.matches("[a-zA-Z0-9]+");
+        boolean valid = text.matches("[a-zA-Z0-9]+");
+        boolean validLength = text.length() >= 3 && text.length() <= 10;
+
+        return valid && validLength;
     }
 
+    /**
+     * During timer
+     */
     @Override
     public void duringTimer() {
         errorLabel.setText("Account created!");
     }
 
+    /**
+     * After timer
+     */
     @Override
     public void afterTimer() {
         borderPane.setCenter(paneManager.getPreviousNodes());
