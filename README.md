@@ -4,7 +4,7 @@
 
 The Enigma Encryption System is a Java-based application that provides a secure and efficient method for encrypting and 
 decrypting messages using various encryption algorithms. It offers a user-friendly interface for users to input their 
-messages, choose encryption techniques, and generate encrypted outputs.
+messages and generate encrypted outputs.
 
 * Multiple encryption algorithm 
 * User-friendly interface: The application provides an intuitive graphical user interface (GUI) that allows users to 
