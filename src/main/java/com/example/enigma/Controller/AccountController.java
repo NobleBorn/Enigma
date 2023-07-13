@@ -3,7 +3,9 @@ package com.example.enigma.Controller;
 import com.example.enigma.Model.Interfaces.IChangeable;
 import com.example.enigma.Model.Client.SecretCode;
 import com.example.enigma.Model.Client.User;
+import com.example.enigma.Model.Interfaces.ITimer;
 import com.example.enigma.Model.ModifyFiles;
+import com.example.enigma.Model.Timer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -26,9 +28,10 @@ import java.util.Objects;
 /**
  * The AccountController class manages the account page functionality and user interface events in the Enigma application.
  * @see IChangeable
+ * @see ITimer
  * @author Mojtaba Alizade
  */
-public class AccountController implements IChangeable {
+public class AccountController implements IChangeable, ITimer {
 
     @FXML TextField userName;
     @FXML TextField oldPassword;
@@ -44,15 +47,17 @@ public class AccountController implements IChangeable {
     private final PaneManager paneManager;
     private final User user;
     private final BorderPane borderPane;
-    private final String[] operation = {"changePass", "rememberUser"};
+    private final String[] operation = {"changePass", "rememberUser", "changeCode"};
     private String currentOperation;
     private final ModifyFiles modifyFiles;
     private final ModifyFiles modifyRemember;
+    private final Timer takeTime = new Timer();
+    private final String prev;
 
     /**
      * Constructs an AccountController object and initializes the account page of the Enigma application.
      */
-    public AccountController() {
+    public AccountController(String prev) {
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(
                 getClass().getResource("/com/example/enigma/AccountPage.fxml")));
         loader.setController(this);
@@ -70,6 +75,8 @@ public class AccountController implements IChangeable {
         } catch (IOException e){
             System.out.println(e.getMessage());
         }
+
+        this.prev = prev;
 
         fxmlActions();
 
@@ -92,10 +99,10 @@ public class AccountController implements IChangeable {
                 currentOperation = operation[0];
                 modifyFiles.modifyRecords(records, this);
 
-                changeStyle();
-                informationLabel.setText("Password changed");
+                takeTime.timer(this);
+
             } else if (!validPass) {
-                informationLabel.setText("Not a valid password");
+                informationLabel.setText("Password length of 4-10!");
             } else {
                 informationLabel.setText("Incorrect password!");
             }
@@ -112,6 +119,8 @@ public class AccountController implements IChangeable {
     public void changeCode() {
         if (!newCode.getText().isEmpty() && !oldCode.getText().isEmpty()) {
             if (oldCode.getText().equals(user.getSecretCode())){
+                currentOperation = operation[2];
+
                 SecretCode secretCode = new SecretCode(newCode.getText(),
                         "src/main/resources/com/example/enigma/users.csv");
                 secretCode.secretCodeChange();
@@ -119,8 +128,8 @@ public class AccountController implements IChangeable {
                 changeRememberUser();
                 rememberSecret.setDisable(true);
 
-                changeStyle();
-                informationLabel.setText("Secret code changed");
+                takeTime.timer(this);
+
             } else {
                 informationLabel.setText("Incorrect code!");
             }
@@ -147,21 +156,30 @@ public class AccountController implements IChangeable {
      * @return {@code true} if the password is valid, {@code false} otherwise.
      */
     private boolean passWordValidator(String text) {
-        return text.matches("[a-zA-Z0-9!@#$%^&*()-=_+\\\\[\\\\]{}|;':\\\",./<>?\\s]+");
+        boolean validPass = text.matches("[a-zA-Z0-9!@#$%^&*()-=_+\\\\[\\\\]{}|;':\\\",./<>?\\s]+");
+        boolean validLength = text.length() >= 4 && text.length() <= 10;
+        return validPass && validLength;
     }
 
     /**
      * Navigates back to the previous page.
      */
     private void back(){
+        paneManager.removePrevious();
+
         Node nodeRight = paneManager.getPreviousNodes();
         Node nodeLeft = paneManager.getPreviousNodes();
         Node nodeCenter = paneManager.getPreviousNodes();
         Node nodeTop = paneManager.getPreviousNodes();
-        borderPane.setTop(nodeTop);
-        borderPane.setLeft(nodeLeft);
-        borderPane.setCenter(nodeCenter);
-        borderPane.setRight(nodeRight);
+
+        if (prev.equals("KeysPage")){
+            new KeysPageController();
+        } else {
+            borderPane.setTop(nodeTop);
+            borderPane.setLeft(nodeLeft);
+            borderPane.setCenter(nodeCenter);
+            borderPane.setRight(nodeRight);
+        }
     }
 
     /**
@@ -189,6 +207,10 @@ public class AccountController implements IChangeable {
                 " -fx-effect: dropshadow(gaussian, #ffffff, 10, 0, 0, 0);");
     }
 
+    private void changeStyleBack(){
+        informationLabel.setStyle("-fx-text-fill: #ff0d0d; -fx-effect: dropshadow(gaussian, #c35252, 10, 0, 0, 0);");
+    }
+
     /**
      * Sets the actions for the FXML nodes
      */
@@ -198,6 +220,37 @@ public class AccountController implements IChangeable {
         changePass.setOnAction(actionEvent -> changePassword());
         changeCode.setOnAction(actionEvent -> changeCode());
         rememberSecret.setOnAction(actionEvent -> changeRememberUser());
+    }
+
+    /**
+     * During delay
+     */
+    @Override
+    public void duringTimer() {
+        changeStyle();
+        if (currentOperation.equals(operation[0])){
+            informationLabel.setText("Password changed");
+        } else {
+            informationLabel.setText("Secret code changed");
+        }
+    }
+
+    /**
+     * After the delay
+     */
+    @Override
+    public void afterTimer() {
+        changeStyleBack();
+        informationLabel.setText("");
+
+        if (currentOperation.equals(operation[0])){
+            oldPassword.setText("");
+            newPassword.setText("");
+        }  else {
+            informationLabel.setText("");
+            oldCode.setText("");
+            newCode.setText("");
+        }
     }
 }
 

@@ -103,23 +103,28 @@ public class MainPageController {
         borderPane.setCenter(home[1]);
         borderPane.setLeft(home[2]);
         borderPane.setRight(home[3]);
+
+        paneManager.emptyStack();
     }
 
     /**
      * Navigates to the account page of the Enigma application.
      */
     public void account() {
-        saveNodes();
+        String prev = paneManager.getPrevious();
+        if (!prev.equals("AccountPage")) saveNodes();
+        paneManager.setPrevious("AccountPage");
 
         nullify();
-        new AccountController();
+        new AccountController(prev);
     }
 
     /**
      * Navigates to the user's keys page in the Enigma application.
      */
     public void usersKeys() {
-        saveNodes();
+        if (!paneManager.getPrevious().equals("KeysPage")) saveNodes();
+        paneManager.setPrevious("KeysPage");
 
         nullify();
         new KeysPageController();
@@ -162,6 +167,7 @@ public class MainPageController {
         paneManager.saveCurrentNodes(borderPane.getLeft());
         paneManager.saveCurrentNodes(borderPane.getRight());
     }
+
 
     /**
      * Sets the action events for the FXML buttons.
