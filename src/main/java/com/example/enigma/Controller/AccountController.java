@@ -11,10 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
 import javafx.scene.layout.BorderPane;
@@ -34,10 +31,10 @@ import java.util.Objects;
 public class AccountController implements IChangeable, ITimer {
 
     @FXML TextField userName;
-    @FXML TextField oldPassword;
-    @FXML TextField newPassword;
-    @FXML TextField oldCode;
-    @FXML TextField newCode;
+    @FXML PasswordField oldPassword;
+    @FXML PasswordField newPassword;
+    @FXML PasswordField oldCode;
+    @FXML PasswordField newCode;
     @FXML Label informationLabel;
     @FXML ImageView backImage;
     @FXML Button changePass;
@@ -79,6 +76,10 @@ public class AccountController implements IChangeable, ITimer {
         this.prev = prev;
 
         fxmlActions();
+        restrictSpaces(oldPassword);
+        restrictSpaces(newPassword);
+        restrictSpaces(oldCode);
+        restrictSpaces(newCode);
 
         user.currentUser(user.getName());
         if (user.isRemembered()){
@@ -138,6 +139,18 @@ public class AccountController implements IChangeable, ITimer {
         } else {
             informationLabel.setText("Provide a new code");
         }
+    }
+
+    /**
+     * Restricts the space character in the field
+     * @param passwordField The password field being restricted
+     */
+    private void restrictSpaces(PasswordField passwordField) {
+        passwordField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.contains(" ")) {
+                passwordField.setText(newValue.replaceAll(" ", ""));
+            }
+        });
     }
 
     /**

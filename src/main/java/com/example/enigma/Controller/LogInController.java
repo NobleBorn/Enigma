@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -25,17 +26,18 @@ import java.util.Set;
 public class LogInController {
 
     @FXML TextField userNameField;
-    @FXML TextField passWordField;
+    @FXML PasswordField passWordField;
     @FXML BorderPane borderPane;
     @FXML Label errorText;
 
     @FXML TextField userNameSign;
-    @FXML TextField passWordSign;
-    @FXML TextField pokemonCode;
+    @FXML PasswordField passWordSign;
+    @FXML PasswordField pokemonCode;
     @FXML Label errorLabel;
     @FXML Button signUpButton;
 
     @FXML Button trophyButton;
+    @FXML Button restrictButton;
 
 
     private final PaneManager paneManager;
@@ -56,6 +58,10 @@ public class LogInController {
         };
         current.init(filePaths);
         populateMap();
+    }
+
+    public void restrict(){
+        restrictSpaces(passWordField);
     }
 
     /**
@@ -121,6 +127,21 @@ public class LogInController {
         } catch (IOException e){
             System.out.println(e.getMessage());
         }
+
+        restrictSpaces(passWordSign);
+        restrictSpaces(pokemonCode);
+    }
+
+    /**
+     * Restricts the space character in the field
+     * @param passwordField The password field being restricted
+     */
+    private void restrictSpaces(PasswordField passwordField) {
+        passwordField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.contains(" ")) {
+                passwordField.setText(newValue.replaceAll(" ", ""));
+            }
+        });
     }
 
     /**

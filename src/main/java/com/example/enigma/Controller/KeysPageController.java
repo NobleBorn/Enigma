@@ -30,7 +30,7 @@ public class KeysPageController implements IChangeable {
     @FXML ScrollPane scrollPane;
     @FXML VBox keyVBox;
     @FXML Pane secretCodePane;
-    @FXML TextField secretPass;
+    @FXML PasswordField secretPass;
     @FXML Button submitButton;
     @FXML ImageView backPointer;
     @FXML Label errorInfo;
@@ -71,6 +71,7 @@ public class KeysPageController implements IChangeable {
 
         submitButton.setOnAction(actionEvent -> submit());
         backPointer.setOnMouseClicked(mouseEvent -> back());
+        restrictSpaces(secretPass);
         keys();
     }
 
@@ -148,6 +149,18 @@ public class KeysPageController implements IChangeable {
         } else {
             errorInfo.setText("Incorrect code!");
         }
+    }
+
+    /**
+     * Restricts the space character in the field
+     * @param passwordField The password field being restricted
+     */
+    private void restrictSpaces(PasswordField passwordField) {
+        passwordField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.contains(" ")) {
+                passwordField.setText(newValue.replaceAll(" ", ""));
+            }
+        });
     }
 
     /**

@@ -32,6 +32,9 @@
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                   </TextField>
                   <Button fx:id="logInButton" layoutX="399.0" layoutY="305.0" mnemonicParsing="false" onAction="#logIn" prefHeight="48.0" prefWidth="163.0" text="Login">
                      <font>
@@ -54,10 +57,13 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <PasswordField fx:id="passWordField" layoutX="266.0" layoutY="203.0" prefHeight="46.0" prefWidth="408.0" promptText="Password">
+                  <PasswordField fx:id="passWordField" layoutX="266.0" layoutY="203.0" onMouseClicked="#restrict" prefHeight="46.0" prefWidth="408.0" promptText="Password">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                   </PasswordField>
                   <Label fx:id="errorText" alignment="CENTER" layoutX="265.0" layoutY="27.0" prefHeight="46.0" prefWidth="408.0" textFill="#ff0d0d">
                      <font>
