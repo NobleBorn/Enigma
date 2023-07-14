@@ -17,6 +17,9 @@
          <font>
             <Font name="Arial" size="24.0" />
          </font>
+         <effect>
+            <DropShadow />
+         </effect>
       </TextField>
       <Button fx:id="signUpButton" layoutX="399.0" layoutY="305.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="163.0" text="Sign up">
          <font>
@@ -33,6 +36,9 @@
          <font>
             <Font name="Arial" size="24.0" />
          </font>
+         <effect>
+            <DropShadow />
+         </effect>
       </PasswordField>
       <Label fx:id="errorLabel" alignment="CENTER" layoutX="133.0" layoutY="27.0" prefHeight="46.0" prefWidth="648.0" textFill="#ff0d0d">
          <font>
@@ -50,6 +56,9 @@
          <font>
             <Font name="Arial" size="24.0" />
          </font>
+         <effect>
+            <DropShadow />
+         </effect>
       </PasswordField>
    </children>
    <effect>

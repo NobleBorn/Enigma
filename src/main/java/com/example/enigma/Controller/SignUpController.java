@@ -4,6 +4,7 @@ import com.example.enigma.Model.Interfaces.ITimer;
 import com.example.enigma.Model.Client.SignUpLogic;
 import com.example.enigma.Model.Timer;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 
@@ -34,11 +35,10 @@ public class SignUpController implements ITimer {
      * Registers a new user with the provided username, password, and secret code.
      *
      * @param userNameSign The text field containing the username.
-     * @param passWordSign The text field containing the password.
-     * @param secretCode   The text field containing the secret code.
+     * @param passWordSign The password field containing the password.
+     * @param secretCode   The password field containing the secret code.
      */
-    public void registerUser(TextField userNameSign, TextField passWordSign, TextField secretCode) {
-
+    public void registerUser(TextField userNameSign, PasswordField passWordSign, PasswordField secretCode) {
         if (!userNameSign.getText().isEmpty() && !passWordSign.getText().isEmpty()
                 && !secretCode.getText().isEmpty()) {
 
@@ -46,7 +46,6 @@ public class SignUpController implements ITimer {
             String pass = passWordSign.getText().trim();
             String code = secretCode.getText().trim();
 
-            System.out.println(name);
             boolean validUserName = userNameValidator(name);
             int passWordLength = pass.length();
 
@@ -96,6 +95,7 @@ public class SignUpController implements ITimer {
 
         return valid && validLength;
     }
+
 
     /**
      * During timer
