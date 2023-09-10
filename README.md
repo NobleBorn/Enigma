@@ -19,7 +19,7 @@ The user needs to create an account in order to use the application. For the sig
 username, password and a secret code. The system does have error handling as well as validation. After that the user can
 log in to the application.
 
-![Signup Page](src/main/resources/com/example/pictures/signUpPic.png)
+![Signup Page](src/main/resources/com/example/pictures/signUpImage.png)
 ![Login Page](src/main/resources/com/example/pictures/logInPic.png)
 
 
