@@ -11,7 +11,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="77.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" stylesheets="@../css/ButtonCSS.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" stylesheets="@../css/ButtonCSS.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <effect>
       <InnerShadow>
          <color>
@@ -102,7 +102,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ImageView disable="true" fitHeight="37.0" fitWidth="40.0" layoutX="1811.0" layoutY="20.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="logOutImage" disable="true" fitHeight="37.0" fitWidth="40.0" layoutX="1811.0" layoutY="20.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -132,7 +132,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ImageView disable="true" fitHeight="35.0" fitWidth="38.0" layoutX="1677.0" layoutY="21.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="accountImage" disable="true" fitHeight="35.0" fitWidth="38.0" layoutX="1677.0" layoutY="21.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -140,7 +140,7 @@
             <Image url="@../pictures/account.png" />
          </image>
       </ImageView>
-      <ImageView disable="true" fitHeight="42.0" fitWidth="50.0" layoutX="1545.0" layoutY="18.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="lockImage" disable="true" fitHeight="42.0" fitWidth="50.0" layoutX="1545.0" layoutY="18.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -148,7 +148,7 @@
             <Image url="@../pictures/keys.png" />
          </image>
       </ImageView>
-      <ImageView disable="true" fitHeight="33.0" fitWidth="40.0" layoutX="1410.0" layoutY="21.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="homeImage" disable="true" fitHeight="33.0" fitWidth="40.0" layoutX="1410.0" layoutY="21.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

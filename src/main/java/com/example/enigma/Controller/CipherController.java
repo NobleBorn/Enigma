@@ -7,6 +7,7 @@ import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,7 +19,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Circle;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -43,6 +46,7 @@ public class CipherController implements IEncodable, ITimer {
     @FXML Button pasteButton;
     @FXML Button copyButton;
     @FXML Label infoLabel;
+    @FXML BorderPane borderPane;
 
     @FXML Button qButton;
     @FXML Button wButton;
@@ -89,6 +93,7 @@ public class CipherController implements IEncodable, ITimer {
     private boolean lockOff = false;
     private final String[] operation = {"copy", "paste"};
     private String currentOperation;
+    private final Rectangle2D bounds;
 
     /**
      * Constructs a CipherController object and initializes the cipher page of the Enigma application.
@@ -96,6 +101,8 @@ public class CipherController implements IEncodable, ITimer {
      * @param event The action event that triggered the cipher page.
      */
     public CipherController(ActionEvent event){
+        Screen screen = Screen.getPrimary();
+        bounds = screen.getVisualBounds();
         paneManager = PaneManager.getInstance();
         copyPaste = CopyPaste.getInstance();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/enigma/CipherPage.fxml"));
@@ -106,6 +113,7 @@ public class CipherController implements IEncodable, ITimer {
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
 
+            initializeCipherPage();
             populateButtons();
             buttonActions();
 
@@ -116,6 +124,24 @@ public class CipherController implements IEncodable, ITimer {
         }
 
         setupKeyHandlers();
+    }
+
+    private void initializeCipherPage(){
+        borderPane.setPrefWidth(bounds.getWidth());
+        borderPane.setPrefHeight(bounds.getHeight());
+        cipherText.setPrefWidth(bounds.getWidth() * 0.72);
+        copyButton.setPrefWidth(bounds.getWidth() * 0.053);
+        copyButton.setLayoutX(bounds.getWidth() * 0.7);
+        pasteButton.setPrefWidth(bounds.getWidth() * 0.053);
+        pasteButton.setLayoutX(bounds.getWidth() * 0.76);
+        cleanButton.setPrefWidth(bounds.getWidth() * 0.053);
+        cleanButton.setLayoutX(bounds.getWidth() * 0.82);
+        infoLabel.setLayoutX(bounds.getWidth() * 0.426);
+
+        SoundController soundController = new SoundController();
+        soundController.sound(copyButton);
+        soundController.sound(pasteButton);
+        soundController.sound(cleanButton);
     }
 
     /**

@@ -15,11 +15,11 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="parentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.enigma.Controller.LogInController">
+<AnchorPane fx:id="parentPane" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.enigma.Controller.LogInController">
    <children>
-      <BorderPane fx:id="borderPane" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" stylesheets="@../css/ButtonCSS.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane fx:id="borderPane" style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" stylesheets="@../css/ButtonCSS.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <Pane fx:id="logInPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="448.0" prefWidth="879.0" style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" BorderPane.alignment="CENTER">
+            <Pane fx:id="logInPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" BorderPane.alignment="CENTER">
                <effect>
                   <DropShadow>
                      <color>
@@ -81,7 +81,7 @@
             </Pane>
          </center>
          <top>
-            <Pane prefHeight="77.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" BorderPane.alignment="CENTER">
+            <Pane style="-fx-background-color: linear-gradient(to right, #141e30, #243b55);" BorderPane.alignment="CENTER">
                <effect>
                   <InnerShadow>
                      <color>
@@ -156,7 +156,7 @@
             </Pane>
          </top>
          <right>
-            <Pane fx:id="messagePane" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="448.0" prefWidth="500.0" visible="false" BorderPane.alignment="CENTER">
+            <Pane fx:id="messagePane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="448.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <children>
                   <Label fx:id="message1" alignment="CENTER" layoutX="60.0" layoutY="40.0" onMouseEntered="#changeMessage" prefHeight="30.0" prefWidth="35.0" text="W" textFill="WHITE">
                      <font>
@@ -834,7 +834,7 @@
             </Pane>
          </right>
          <left>
-            <Pane fx:id="trophyPane" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="448.0" prefWidth="500.0" visible="false" BorderPane.alignment="CENTER">
+            <Pane fx:id="trophyPane" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="448.0" prefWidth="400.0" visible="false" BorderPane.alignment="CENTER">
                <children>
                   <Pane layoutX="200.0" layoutY="20.0" prefHeight="259.0" prefWidth="78.0" style="-fx-background-color: linear-gradient(to right, #007991, #78ffd6);">
                      <children>

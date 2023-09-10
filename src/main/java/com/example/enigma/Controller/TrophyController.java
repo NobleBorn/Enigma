@@ -3,10 +3,12 @@ package com.example.enigma.Controller;
 import com.example.enigma.Model.Trophy;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Screen;
 
 import java.io.IOException;
 
@@ -27,12 +29,15 @@ public class TrophyController {
 
     private final PaneManager paneManager;
     private final BorderPane borderPane;
+    private final Rectangle2D bounds;
 
     /**
      * Initializes a new instance of the TrophyController class.
      * Sets up the necessary dependencies and loads the associated FXML file.
      */
     public TrophyController(){
+        Screen screen = Screen.getPrimary();
+        bounds = screen.getVisualBounds();
         paneManager = PaneManager.getInstance();
         borderPane = paneManager.getBorderPane();
 
@@ -46,8 +51,15 @@ public class TrophyController {
             throw new RuntimeException(exception);
         }
 
+        initializeTrophies();
         goingBack.setOnMouseClicked(mouseEvent -> back());
         lookUpTrophies();
+    }
+
+    private void initializeTrophies(){
+        cipherTrophy.setLayoutX(bounds.getWidth() * 0.208);
+        keyTrophy.setLayoutX(bounds.getWidth() * 0.448);
+        decipherTrophy.setLayoutX(bounds.getWidth() * 0.677);
     }
 
     /**

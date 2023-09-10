@@ -5,6 +5,7 @@ module com.example.enigma {
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
     requires org.apache.commons.csv;
+    requires java.desktop;
 
     exports com.example.enigma;
     opens com.example.enigma to javafx.fxml;

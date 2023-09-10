@@ -73,6 +73,10 @@ public class AccountController implements IChangeable, ITimer {
             System.out.println(e.getMessage());
         }
 
+        SoundController soundController = new SoundController();
+        soundController.sound(changeCode);
+        soundController.sound(changePass);
+
         this.prev = prev;
 
         fxmlActions();

@@ -43,6 +43,7 @@ public class KeysPageController implements IChangeable {
     private String currentOperation;
     private ModifyFiles modifyRemember;
     private String keyText;
+    private final SoundController soundController = new SoundController();
 
     /**
      * Constructs a KeysPageController object and initializes the keys page of the Enigma application.
@@ -72,6 +73,8 @@ public class KeysPageController implements IChangeable {
         submitButton.setOnAction(actionEvent -> submit());
         backPointer.setOnMouseClicked(mouseEvent -> back());
         restrictSpaces(secretPass);
+        soundController.sound(submitButton);
+
         keys();
     }
 
@@ -100,6 +103,7 @@ public class KeysPageController implements IChangeable {
 
             Button button = new Button("Delete");
             button.setOnAction(this::deleteKey);
+            soundController.sound(button);
 
             hBox.getChildren().addAll(keyValue, creation, button);
             keyVBox.getChildren().add(hBox);

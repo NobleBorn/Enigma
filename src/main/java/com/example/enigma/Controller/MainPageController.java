@@ -4,11 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Screen;
 
 
 import java.io.IOException;
@@ -26,8 +29,14 @@ public class MainPageController {
     @FXML Button keyButton;
     @FXML Button homeButton;
 
+    @FXML ImageView homeImage;
+    @FXML ImageView lockImage;
+    @FXML ImageView accountImage;
+    @FXML ImageView logOutImage;
+
     private final PaneManager paneManager;
     private final BorderPane borderPane;
+    private final Rectangle2D bounds;
 
     /**
      * Constructs a MainPageController object and initializes the main page of the Enigma application.
@@ -35,6 +44,8 @@ public class MainPageController {
      * @throws IOException if an error occurs during loading of the FXML files.
      */
     public MainPageController() throws IOException {
+        Screen screen = Screen.getPrimary();
+        bounds = screen.getVisualBounds();
         paneManager = PaneManager.getInstance();
         borderPane = paneManager.getBorderPane();
 
@@ -56,8 +67,13 @@ public class MainPageController {
             throw new RuntimeException(exception);
         }
 
+        initializeTopBar();
+        initializeBorderPane(center, top, rightPart, leftPart);
         fxmlActions();
 
+    }
+
+    private void initializeBorderPane(Parent center, Parent top, Node rightPart, Node leftPart){
         borderPane.setCenter(center);
         borderPane.setTop(top);
         borderPane.setRight(rightPart);
@@ -73,6 +89,25 @@ public class MainPageController {
         paneManager.setHomePage(home);
     }
 
+    private void initializeTopBar(){
+        homeButton.setLayoutX(bounds.getWidth() * 0.716);
+        keyButton.setLayoutX(bounds.getWidth() * 0.786);
+        accountButton.setLayoutX(bounds.getWidth() * 0.857);
+        logOutButton.setLayoutX(bounds.getWidth() * 0.927);
+        homeImage.setLayoutX(bounds.getWidth() * 0.734);
+        lockImage.setLayoutX(bounds.getWidth() * 0.805);
+        accountImage.setLayoutX(bounds.getWidth() * 0.875);
+        logOutImage.setLayoutX(bounds.getWidth() * 0.943);
+
+        SoundController soundController = new SoundController();
+        soundController.sound(homeButton);
+        soundController.sound(keyButton);
+        soundController.sound(accountButton);
+        soundController.sound(logOutButton);
+        soundController.sound(cipherButton);
+        soundController.sound(decipherButton);
+    }
+
     /**
      * Logs out the user and returns to the start page of the Enigma application.
      */
@@ -83,9 +118,6 @@ public class MainPageController {
             borderPane.setRight(startPage[3]);
             borderPane.setLeft(startPage[2]);
         }
-
-        borderPane.getRight().setVisible(false);
-        borderPane.getRight().setDisable(true);
 
         borderPane.getLeft().setVisible(false);
         borderPane.getLeft().setDisable(true);
